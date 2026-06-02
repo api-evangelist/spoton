@@ -1,0 +1,77 @@
+aid: spoton
+name: SpotOn
+description: >-
+  SpotOn is an all-in-one restaurant point-of-sale and management platform that
+  combines POS, online ordering, reservations, payments, labor, and reporting
+  for restaurants and hospitality businesses. For developers and integration
+  partners, SpotOn offers the Restaurant POS Export API, a location-centric REST
+  API that delivers close-to-realtime data export from the SpotOn Restaurant POS
+  System. It exposes resources such as orders, menu items, modifiers, employees,
+  taxes, surcharges, payment options, labor reports, and time clock entries.
+  Authentication uses an API key supplied via the x-api-key request header, with
+  access granted on a per-location basis. SpotOn also publishes a separate
+  Reserve API for its reservations and waitlist product.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Restaurant
+  - Point of Sale
+  - Payments
+  - Online Ordering
+  - Reservations
+  - Reporting
+url: https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/apis.yml
+created: '2026-06-02'
+modified: '2026-06-02'
+specificationVersion: '0.19'
+apis:
+  - aid: spoton:rest-api
+    name: SpotOn Restaurant POS Export API
+    description: >-
+      A location-centric REST API providing close-to-realtime data export from
+      the SpotOn Restaurant POS System. Resources include orders, menu items,
+      modifiers, employees, locations, taxes, surcharges, payment options, labor
+      reports, and time clock entries. Authentication uses an API key passed in
+      the x-api-key request header, with access scoped per location.
+    humanURL: https://developers.spoton.com/restaurant/docs/introduction
+    tags:
+      - Point of Sale
+      - Orders
+      - Menu
+      - Employees
+      - Reporting
+    properties:
+      - type: Documentation
+        url: https://developers.spoton.com/restaurant/docs/introduction
+      - type: Authentication
+        url: https://developers.spoton.com/restaurant/docs/api-access
+  - aid: spoton:reserve-api
+    name: SpotOn Reserve API
+    description: >-
+      An API for SpotOn Reserve, the company's reservations and waitlist
+      product, allowing partners to integrate reservation and guest management
+      workflows. Documentation covers making requests and getting started with
+      the Reserve web portal integration.
+    humanURL: https://developers.spoton.com/reserve/docs/getting-started
+    tags:
+      - Reservations
+      - Waitlist
+    properties:
+      - type: Documentation
+        url: https://developers.spoton.com/reserve/docs/getting-started
+      - type: GettingStarted
+        url: https://developers.spoton.com/reserve/docs/getting-started
+common:
+  - type: Website
+    url: https://www.spoton.com
+  - type: Documentation
+    url: https://developers.spoton.com/restaurant/docs/introduction
+  - type: GitHubOrganization
+    url: https://github.com/SpotOnInc
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/spoton
+  - type: X
+    url: https://twitter.com/spoton
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
