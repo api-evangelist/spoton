@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AvailabilitySlot",
+  "description": "An available reservation time slot.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-schema/reserve-availability-slot-schema.json",
+  "type": "object",
+  "properties": {
+    "time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The available reservation date and time, in RFC 3339 format."
+    },
+    "available": {
+      "type": "boolean",
+      "description": "Whether the slot is available for booking."
+    }
+  }
+}

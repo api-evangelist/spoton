@@ -1,0 +1,14 @@
+{
+  "id": "abc123",
+  "locationId": "abc123",
+  "deleted": true,
+  "voided": false,
+  "paymentOptionId": "abc123",
+  "amount": "12.50",
+  "employeeId": "abc123",
+  "employeeName": "Smoke's Burgers",
+  "createdAt": "2025-03-15T14:30:00Z",
+  "kind": "IN",
+  "reason": "Cash Low",
+  "notes": "Operator note"
+}

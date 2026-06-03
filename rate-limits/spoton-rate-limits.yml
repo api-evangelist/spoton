@@ -1,0 +1,67 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: SpotOn
+providerId: spoton
+created: '2026-06-03'
+modified: '2026-06-03'
+reconciled: false
+tags:
+  - Rate Limiting
+  - Restaurant
+  - Point of Sale
+  - Reservations
+description: >-
+  SpotOn's developer APIs are key-scoped. The Restaurant POS Export API enforces
+  request shape constraints rather than a published per-second rate: order and
+  time-clock queries are limited to a 26-hour date range, paid in/out queries to
+  a 7-day range, only data from roughly the last 90 days is retrievable, and end
+  timestamps must be at least 5 minutes in the past. The Reserve API (SeatNinja)
+  documents that the sandbox environment enforces daily and hourly request
+  quotas while production has no documented rate limit. Numeric per-second limits
+  are not published, so this artifact is not reconciled to specific figures.
+sources:
+  - https://developers.spoton.com/restaurant/docs/api-access
+  - https://developers.spoton.com/restaurant/docs/orders-1
+  - https://developers.spoton.com/reserve/docs/getting-started
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+  forbidden: 403
+limits:
+  - name: Restaurant POS Export API requests (production)
+    scope: key/location
+    metric: varies
+    limit: 'no published per-second limit; constrained by date-range and lookback rules'
+    notes: >-
+      Order, time-clock, and cash-deposit ranges max 26 hours; paid in/out ranges
+      max 7 days; only ~90 days of history available; end timestamps must be at
+      least 5 minutes in the past.
+  - name: Reserve API requests (sandbox)
+    scope: key/restaurant
+    metric: requests_per_hour
+    limit: 'daily and hourly request quotas enforced; exact numbers not published'
+    notes: Sandbox-only quotas intended to protect the test environment.
+  - name: Reserve API requests (production)
+    scope: key/restaurant
+    metric: varies
+    limit: 'no documented production rate limit'
+policies:
+  - name: Per-key scoping
+    description: >-
+      Each API key is scoped to specific locations (Restaurant API) or restaurants
+      (Reserve API). Requests for resources outside the key's grant return 403
+      Forbidden; contact SpotOn to extend access.
+  - name: Date-range windowing
+    description: >-
+      Time-bounded export endpoints must be paged by walking the allowed window
+      (26 hours for orders/time clock, 7 days for paid in/outs) across the ~90-day
+      retention horizon rather than requesting a single large range.
+  - name: Settlement delay
+    description: >-
+      End timestamps must be at least 5 minutes in the past, giving the POS time
+      to settle close-to-realtime data before it is exported.
+  - name: Sandbox-first testing
+    description: >-
+      Validate Reserve integrations against the sandbox (sandbox.seatninja.com),
+      where hourly and daily quotas apply, before promoting to production.

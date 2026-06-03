@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/reserve-availability-response-structure.json",
+  "name": "AvailabilityResponse",
+  "description": "The set of available reservation time slots for a date and party size.",
+  "type": "object",
+  "properties": {
+    "restaurantId": {
+      "type": "int32",
+      "description": "The restaurant the availability applies to."
+    },
+    "date": {
+      "type": "date",
+      "description": "The date the availability applies to."
+    },
+    "partySize": {
+      "type": "int32",
+      "description": "The party size the availability applies to."
+    },
+    "slots": {
+      "type": "array",
+      "description": "The available time slots.",
+      "items": {
+        "type": "object",
+        "description": "An available reservation time slot.",
+        "properties": {
+          "time": {
+            "type": "datetime",
+            "description": "The available reservation date and time, in RFC 3339 format."
+          },
+          "available": {
+            "type": "boolean",
+            "description": "Whether the slot is available for booking."
+          }
+        }
+      }
+    }
+  }
+}

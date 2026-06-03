@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WaitlistRequest",
+  "description": "A request to add a guest to the waitlist.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-schema/reserve-waitlist-request-schema.json",
+  "type": "object",
+  "properties": {
+    "customerInformation": {
+      "type": "object",
+      "description": "Guest contact and identity details for a reservation or waitlist entry.",
+      "properties": {
+        "customerId": {
+          "type": "string",
+          "description": "Optional existing customer identifier."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "Guest first name."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Guest last name."
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "Guest phone number."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Guest email address."
+        },
+        "imageUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "Optional URL of a guest image."
+        },
+        "memberNumber": {
+          "type": "string",
+          "description": "Optional loyalty member number."
+        },
+        "memberTier": {
+          "type": "string",
+          "description": "Optional loyalty member tier."
+        }
+      },
+      "required": [
+        "firstName",
+        "phoneNumber"
+      ]
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional notes for the waitlist entry."
+    },
+    "partySize": {
+      "type": "integer",
+      "format": "int32",
+      "minimum": 1,
+      "maximum": 99,
+      "description": "The number of guests in the party."
+    },
+    "partyFlags": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Optional bit flags describing party attributes."
+    }
+  },
+  "required": [
+    "customerInformation",
+    "partySize"
+  ]
+}

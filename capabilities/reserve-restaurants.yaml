@@ -1,0 +1,73 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SpotOn Reserve API — Restaurants
+  description: 'Restaurants surface of the SpotOn Reserve API. 1 operation. Lead operation: List Restaurants. Self-contained Naftiko capability covering one SpotOn business surface.'
+  tags:
+  - SpotOn
+  - Reservations
+  - Restaurants
+  created: '2026-06-03'
+  modified: '2026-06-03'
+binds:
+- namespace: env
+  keys:
+    SPOTON_API_KEY: SPOTON_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: reserve-restaurants
+    baseUri: https://api.seatninja.com
+    description: SpotOn Reserve API — Restaurants business capability. Self-contained, no shared references.
+    authentication:
+      type: apikey
+      key: x-api-key
+      value: '{{env.SPOTON_API_KEY}}'
+      placement: header
+    resources:
+    - name: restaurants
+      path: /restaurants
+      operations:
+      - name: listRestaurants
+        method: GET
+        description: SpotOn List Restaurants
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: reserve-restaurants-rest
+    port: 8080
+    description: REST adapter for SpotOn Reserve API — Restaurants. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/restaurants
+      name: restaurants
+      description: REST surface for SpotOn List Restaurants.
+      operations:
+      - method: GET
+        name: listRestaurants
+        description: SpotOn List Restaurants
+        call: reserve-restaurants.listRestaurants
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: reserve-restaurants-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SpotOn Reserve API — Restaurants. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: list-restaurants
+      description: SpotOn List Restaurants
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: reserve-restaurants.listRestaurants
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.

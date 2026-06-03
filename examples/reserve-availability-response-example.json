@@ -1,0 +1,11 @@
+{
+  "restaurantId": 152,
+  "date": "2025-03-15",
+  "partySize": 4,
+  "slots": [
+    {
+      "time": "2025-03-15T14:30:00Z",
+      "available": false
+    }
+  ]
+}

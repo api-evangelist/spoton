@@ -1,0 +1,87 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SpotOn Reserve API — Reservations
+  description: 'Reservations surface of the SpotOn Reserve API. 1 operation. Lead operation: Create Reservation. Self-contained Naftiko capability covering one SpotOn business surface.'
+  tags:
+  - SpotOn
+  - Reservations
+  - Reservations
+  created: '2026-06-03'
+  modified: '2026-06-03'
+binds:
+- namespace: env
+  keys:
+    SPOTON_API_KEY: SPOTON_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: reserve-reservations
+    baseUri: https://api.seatninja.com
+    description: SpotOn Reserve API — Reservations business capability. Self-contained, no shared references.
+    authentication:
+      type: apikey
+      key: x-api-key
+      value: '{{env.SPOTON_API_KEY}}'
+      placement: header
+    resources:
+    - name: v2-reservations-restaurantid-reservation
+      path: /v2/reservations/{restaurantId}/reservation
+      operations:
+      - name: createReservation
+        method: POST
+        description: SpotOn Create Reservation
+        inputParameters:
+        - name: restaurantId
+          in: path
+          type: integer
+          required: true
+          description: The unique identifier for the restaurant.
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: reserve-reservations-rest
+    port: 8080
+    description: REST adapter for SpotOn Reserve API — Reservations. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/v2-reservations-restaurantid-reservation
+      name: v2-reservations-restaurantid-reservation
+      description: REST surface for SpotOn Create Reservation.
+      operations:
+      - method: POST
+        name: createReservation
+        description: SpotOn Create Reservation
+        call: reserve-reservations.createReservation
+        with:
+          restaurantId: rest.restaurantId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: reserve-reservations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SpotOn Reserve API — Reservations. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: create-reservation
+      description: SpotOn Create Reservation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: reserve-reservations.createReservation
+      with:
+        restaurantId: tools.restaurantId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

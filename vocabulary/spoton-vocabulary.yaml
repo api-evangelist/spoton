@@ -1,0 +1,302 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "SpotOn"
+  description: >-
+    Unified taxonomy for the SpotOn restaurant platform, mapping the operational
+    dimension (the SpotOn Restaurant POS Export API and the SpotOn Reserve API at
+    the protocol level) to the capability dimension (Naftiko REST and MCP
+    workflows) for front-of-house, back-office, and guest-experience teams.
+  created: "2026-06-03"
+  modified: "2026-06-03"
+
+# OPERATIONAL DIMENSION (from OpenAPI)
+operational:
+  apis:
+    - name: "SpotOn Restaurant POS Export API"
+      namespace: "restaurant-pos-export"
+      version: "v1"
+      baseUrl: "https://restaurantapi.spoton.com/posexport/v1"
+      status: active
+    - name: "SpotOn Reserve API"
+      namespace: "reserve"
+      version: "v2"
+      baseUrl: "https://api.seatninja.com"
+      status: active
+
+  resources:
+    - name: locations
+      api: restaurant-pos-export
+      actions: [get]
+    - name: orders
+      api: restaurant-pos-export
+      actions: [list, get]
+    - name: order-types
+      api: restaurant-pos-export
+      actions: [list, get]
+    - name: menu-items
+      api: restaurant-pos-export
+      actions: [list, get]
+    - name: payment-options
+      api: restaurant-pos-export
+      actions: [list, get]
+    - name: employees
+      api: restaurant-pos-export
+      actions: [list, get]
+    - name: job-positions
+      api: restaurant-pos-export
+      actions: [list, get]
+    - name: time-clock-entries
+      api: restaurant-pos-export
+      actions: [list, get]
+    - name: paid-in-outs
+      api: restaurant-pos-export
+      actions: [list, get]
+    - name: cash-deposits
+      api: restaurant-pos-export
+      actions: [list, get]
+    - name: report-categories
+      api: restaurant-pos-export
+      actions: [list, get]
+    - name: restaurants
+      api: reserve
+      actions: [list]
+    - name: availability
+      api: reserve
+      actions: [get]
+    - name: reservations
+      api: reserve
+      actions: [create]
+    - name: waitlist
+      api: reserve
+      actions: [add]
+
+  actions:
+    - name: list
+      httpMethod: GET
+      pattern: read
+    - name: get
+      httpMethod: GET
+      pattern: read
+    - name: create
+      httpMethod: POST
+      pattern: write
+    - name: add
+      httpMethod: POST
+      pattern: write
+
+  schemas:
+    core:
+      - Location
+      - Order
+      - OrderType
+      - MenuItemCatalog
+      - PaymentOption
+      - ReportCategory
+    orderDetail:
+      - OrderCheck
+      - OrderGuest
+      - OrderMenuItem
+      - OrderModifier
+      - OrderPayment
+      - OrderSurcharge
+      - OrderTax
+      - OrderDiscount
+      - OwnerInfo
+    labor:
+      - Employee
+      - JobPosition
+      - TimeClockEntry
+      - Break
+      - Address
+    cash:
+      - PaidInOut
+      - CashDeposit
+    reservations:
+      - Restaurant
+      - Reservation
+      - ReservationRequest
+      - WaitlistRequest
+      - WaitlistEntry
+      - CustomerInformation
+      - AvailabilityResponse
+      - AvailabilitySlot
+      - WaitTimeResponse
+
+  parameters:
+    pagination: []
+    identifiers:
+      - locationId
+      - orderId
+      - orderTypeId
+      - menuItemId
+      - paymentOptionId
+      - employeeId
+      - jobPositionId
+      - timeClockEntryId
+      - paidInOutId
+      - cashDepositId
+      - reportCategoryId
+      - restaurantId
+    filters:
+      - updatedAtStart
+      - updatedAtEnd
+      - createdAtStart
+      - createdAtEnd
+      - closedAtStart
+      - closedAtEnd
+      - inStart
+      - inEnd
+      - outStart
+      - outEnd
+      - includeUpdatedActivity
+      - date
+      - partySize
+
+  enums:
+    paymentKinds: [CASH, CC, OTHER]
+    paidInOutKinds: [IN, OUT]
+    breakKinds: [PAID, UNPAID]
+    cardTypes: [Unknown, Amex, Discover, "Manual CC", Mastercard, Visa]
+    reservationStatuses: [booked, confirmed, checked_in, cancelled]
+
+  authentication:
+    scheme: apiKey
+    header: x-api-key
+    scope:
+      restaurant-pos-export: per-location
+      reserve: per-restaurant
+
+# CAPABILITY DIMENSION (from Naftiko)
+capability:
+  workflows:
+    - name: "POS Order Export"
+      file: capabilities/restaurant-pos-export-orders.yaml
+      apis: [restaurant-pos-export]
+      tools: 2
+      personas: [Data Engineer, Accountant]
+      domains: [Sales, Reporting]
+    - name: "Menu Catalog Sync"
+      file: capabilities/restaurant-pos-export-menu-items.yaml
+      apis: [restaurant-pos-export]
+      tools: 2
+      personas: [Integration Developer]
+      domains: [Menu]
+    - name: "Labor and Time Clock"
+      file: capabilities/restaurant-pos-export-time-clock-entries.yaml
+      apis: [restaurant-pos-export]
+      tools: 2
+      personas: [Payroll Manager]
+      domains: [Labor]
+    - name: "Cash Management"
+      file: capabilities/restaurant-pos-export-cash-deposits.yaml
+      apis: [restaurant-pos-export]
+      tools: 2
+      personas: [Accountant]
+      domains: [Cash]
+    - name: "Reservation Booking"
+      file: capabilities/reserve-reservations.yaml
+      apis: [reserve]
+      tools: 1
+      personas: [Host, Guest Experience Developer]
+      domains: [Reservations]
+    - name: "Waitlist Management"
+      file: capabilities/reserve-waitlist.yaml
+      apis: [reserve]
+      tools: 1
+      personas: [Host]
+      domains: [Reservations]
+    - name: "Availability Lookup"
+      file: capabilities/reserve-availability.yaml
+      apis: [reserve]
+      tools: 2
+      personas: [Guest Experience Developer]
+      domains: [Reservations]
+
+  personas:
+    - id: data-engineer
+      name: "Data Engineer"
+      description: "Exports POS data into warehouses and analytics pipelines."
+      workflows: [POS Order Export]
+    - id: accountant
+      name: "Accountant"
+      description: "Reconciles sales, cash deposits, and paid in/outs."
+      workflows: [POS Order Export, Cash Management]
+    - id: integration-developer
+      name: "Integration Developer"
+      description: "Synchronizes the menu catalog with third-party systems."
+      workflows: [Menu Catalog Sync]
+    - id: payroll-manager
+      name: "Payroll Manager"
+      description: "Processes time clock entries and labor reporting for payroll."
+      workflows: [Labor and Time Clock]
+    - id: host
+      name: "Host"
+      description: "Manages reservations and the waitlist at the host stand."
+      workflows: [Reservation Booking, Waitlist Management]
+    - id: guest-experience-developer
+      name: "Guest Experience Developer"
+      description: "Builds guest-facing booking and availability experiences."
+      workflows: [Reservation Booking, Availability Lookup]
+
+  domains:
+    - name: Sales
+      description: "Orders, checks, payments, and tenders captured at the POS."
+    - name: Reporting
+      description: "Report categories and exported sales used for analytics."
+    - name: Menu
+      description: "Menu items, modifiers, and pricing."
+    - name: Labor
+      description: "Employees, job positions, and time clock entries."
+    - name: Cash
+      description: "Cash deposits and paid in/out records."
+    - name: Reservations
+      description: "Reservations, waitlist, availability, and wait times."
+
+  namespaces:
+    - consumed: restaurant-pos-export-orders
+      rest: restaurant-pos-export-orders-rest
+      mcp: restaurant-pos-export-orders-mcp
+      restPort: 8080
+      mcpPort: 9090
+    - consumed: reserve-reservations
+      rest: reserve-reservations-rest
+      mcp: reserve-reservations-mcp
+      restPort: 8080
+      mcpPort: 9090
+
+  binds:
+    - key: SPOTON_API_KEY
+      description: "API key supplied via the x-api-key header for both SpotOn APIs."
+      workflows: [POS Order Export, Menu Catalog Sync, Labor and Time Clock, Cash Management, Reservation Booking, Waitlist Management, Availability Lookup]
+
+# CROSS-REFERENCE
+crossReference:
+  - resource: orders
+    operations: [listOrders, getOrder]
+    workflows: [POS Order Export]
+    personas: [Data Engineer, Accountant]
+  - resource: menu-items
+    operations: [listMenuItems, getMenuItem]
+    workflows: [Menu Catalog Sync]
+    personas: [Integration Developer]
+  - resource: time-clock-entries
+    operations: [listTimeClockEntries, getTimeClockEntry]
+    workflows: [Labor and Time Clock]
+    personas: [Payroll Manager]
+  - resource: cash-deposits
+    operations: [listCashDeposits, getCashDeposit]
+    workflows: [Cash Management]
+    personas: [Accountant]
+  - resource: reservations
+    operations: [createReservation]
+    workflows: [Reservation Booking]
+    personas: [Host, Guest Experience Developer]
+  - resource: waitlist
+    operations: [addToWaitlist]
+    workflows: [Waitlist Management]
+    personas: [Host]
+  - resource: availability
+    operations: [getAvailableReservationTimes, getWaitTime]
+    workflows: [Availability Lookup]
+    personas: [Guest Experience Developer]

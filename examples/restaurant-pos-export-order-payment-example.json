@@ -1,0 +1,27 @@
+{
+  "paymentOptionId": "abc123",
+  "paymentName": "Smoke's Burgers",
+  "createdAt": "2025-03-15T14:30:00Z",
+  "amount": "12.50",
+  "surcharges": [
+    {
+      "surchargeId": "abc123",
+      "surchargeName": "Smoke's Burgers",
+      "createdAt": "2025-03-15T14:30:00Z",
+      "amount": "12.50",
+      "taxesAmount": "12.50",
+      "taxes": [
+        "example"
+      ]
+    }
+  ],
+  "surchargesAmount": 0,
+  "tipAmount": "12.50",
+  "tipDeductionAmount": "12.50",
+  "tipAppliedToEmployeeId": "abc123",
+  "employeeId": "abc123",
+  "employeeName": "Smoke's Burgers",
+  "cardType": "Manual CC",
+  "cardNumber": "3",
+  "cardholderName": "Smoke's Burgers"
+}

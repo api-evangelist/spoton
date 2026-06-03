@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/restaurant-pos-export-order-structure.json",
+  "name": "Order",
+  "description": "An order exported from the SpotOn Restaurant POS System.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique order identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Order name."
+    },
+    "deleted": {
+      "type": "boolean",
+      "description": "Whether the order is marked as deleted."
+    },
+    "locationId": {
+      "type": "string",
+      "description": "Associated location identifier."
+    },
+    "orderTypeId": {
+      "type": "string",
+      "description": "Order type identifier."
+    },
+    "orderTypeName": {
+      "type": "string",
+      "description": "Order type name at the time of assignment."
+    },
+    "createdByEmployeeId": {
+      "type": "string",
+      "description": "Identifier of the employee who created the order."
+    },
+    "createdByEmployeeName": {
+      "type": "string",
+      "description": "Name of the employee who created the order."
+    },
+    "createdAt": {
+      "type": "datetime",
+      "description": "RFC 3339 creation timestamp."
+    },
+    "closedAt": {
+      "type": "datetime",
+      "description": "RFC 3339 closure timestamp. Null if the order is open."
+    },
+    "orderNumber": {
+      "type": "string",
+      "description": "Assigned order number. Empty if unassigned."
+    },
+    "tableNumber": {
+      "type": "string",
+      "description": "Assigned table number. Empty if none."
+    },
+    "scheduled": {
+      "type": "boolean",
+      "description": "Whether the order is scheduled for the future."
+    },
+    "releasedAt": {
+      "type": "datetime",
+      "description": "RFC 3339 kitchen release time for scheduled orders."
+    },
+    "ownerInfo": {
+      "type": "object",
+      "description": "Employee ownership details for an order.",
+      "properties": {
+        "employeeId": {
+          "type": "string",
+          "description": "Employee identifier."
+        },
+        "employeeName": {
+          "type": "string",
+          "description": "Employee name."
+        },
+        "jobPositionId": {
+          "type": "string",
+          "description": "Job position identifier held during ownership."
+        }
+      }
+    },
+    "totalAmount": {
+      "type": "string",
+      "description": "Final total after discounts, taxes, and surcharges, as a decimal string."
+    },
+    "balanceDueAmount": {
+      "type": "string",
+      "description": "Remaining balance due, as a decimal string."
+    },
+    "checks": {
+      "type": "array",
+      "description": "Checks belonging to the order.",
+      "items": {
+        "type": "object",
+        "description": "A check on an order, holding guests, payments, and surcharges.",
+        "properties": {
+          "gratuityAmount": {
+            "type": "string",
+            "description": "Applied auto-gratuity amount, as a decimal string."
+          },
+          "totalAmount": {
+            "type": "string",
+            "description": "Final check total, as a decimal string."
+          },
+          "paymentsAmount": {
+            "type": "string",
+            "description": "Total payments received, as a decimal string."
+          },
+          "balanceAmount": {
+            "type": "string",
+            "description": "Remaining balance, as a decimal string."
+          },
+          "guests": {
+            "type": "array",
+            "description": "Guests on the check.",
+            "items": {
+              "$ref": "#/components/schemas/OrderGuest"
+            }
+          },
+          "surcharges": {
+            "type": "array",
+            "description": "Check-level surcharges.",
+            "items": {
+              "$ref": "#/components/schemas/OrderSurcharge"
+            }
+          },
+          "payments": {
+            "type": "array",
+            "description": "Payment records.",
+            "items": {
+              "$ref": "#/components/schemas/OrderPayment"
+            }
+          },
+          "autoGratuityTaxes": {
+            "type": "array",
+            "description": "Taxes applied to the auto-gratuity.",
+            "items": {
+              "$ref": "#/components/schemas/OrderTax"
+            }
+          },
+          "items": {
+            "type": "array",
+            "description": "Items applied directly to the check, typically empty.",
+            "items": {
+              "$ref": "#/components/schemas/OrderMenuItem"
+            }
+          },
+          "voidedItems": {
+            "type": "array",
+            "description": "Voided items applied directly to the check.",
+            "items": {
+              "$ref": "#/components/schemas/OrderMenuItem"
+            }
+          }
+        }
+      }
+    },
+    "updatedAt": {
+      "type": "datetime",
+      "description": "RFC 3339 last update timestamp, including milliseconds."
+    }
+  }
+}

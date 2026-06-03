@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/reserve-waitlist-request-structure.json",
+  "name": "WaitlistRequest",
+  "description": "A request to add a guest to the waitlist.",
+  "type": "object",
+  "properties": {
+    "customerInformation": {
+      "type": "object",
+      "description": "Guest contact and identity details for a reservation or waitlist entry.",
+      "properties": {
+        "customerId": {
+          "type": "string",
+          "description": "Optional existing customer identifier."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "Guest first name."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Guest last name."
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "Guest phone number."
+        },
+        "email": {
+          "type": "string",
+          "description": "Guest email address."
+        },
+        "imageUrl": {
+          "type": "uri",
+          "description": "Optional URL of a guest image."
+        },
+        "memberNumber": {
+          "type": "string",
+          "description": "Optional loyalty member number."
+        },
+        "memberTier": {
+          "type": "string",
+          "description": "Optional loyalty member tier."
+        }
+      },
+      "required": [
+        "firstName",
+        "phoneNumber"
+      ]
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional notes for the waitlist entry."
+    },
+    "partySize": {
+      "type": "int32",
+      "minimum": 1,
+      "maximum": 99,
+      "description": "The number of guests in the party."
+    },
+    "partyFlags": {
+      "type": "int64",
+      "description": "Optional bit flags describing party attributes."
+    }
+  },
+  "required": [
+    "customerInformation",
+    "partySize"
+  ]
+}

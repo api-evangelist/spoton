@@ -1,0 +1,143 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SpotOn Restaurant POS Export API — Cash Deposits
+  description: 'Cash Deposits surface of the SpotOn Restaurant POS Export API. 2 operations. Lead operation: List Cash Deposits. Self-contained Naftiko capability covering one SpotOn business surface.'
+  tags:
+  - SpotOn
+  - Restaurant
+  - Cash Deposits
+  created: '2026-06-03'
+  modified: '2026-06-03'
+binds:
+- namespace: env
+  keys:
+    SPOTON_API_KEY: SPOTON_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: restaurant-pos-export-cash-deposits
+    baseUri: https://restaurantapi.spoton.com/posexport/v1
+    description: SpotOn Restaurant POS Export API — Cash Deposits business capability. Self-contained, no shared references.
+    authentication:
+      type: apikey
+      key: x-api-key
+      value: '{{env.SPOTON_API_KEY}}'
+      placement: header
+    resources:
+    - name: locations-locationid-cash-deposits
+      path: /locations/{locationId}/cash-deposits
+      operations:
+      - name: listCashDeposits
+        method: GET
+        description: SpotOn List Cash Deposits
+        inputParameters:
+        - name: locationId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier for the location.
+        - name: updatedAtStart
+          in: query
+          type: string
+          required: false
+          description: Inclusive RFC 3339 start of the update range.
+        - name: updatedAtEnd
+          in: query
+          type: string
+          required: false
+          description: Exclusive RFC 3339 end of the update range.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: locations-locationid-cash-deposits-cashdepositid
+      path: /locations/{locationId}/cash-deposits/{cashDepositId}
+      operations:
+      - name: getCashDeposit
+        method: GET
+        description: SpotOn Get Cash Deposit
+        inputParameters:
+        - name: locationId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier for the location.
+        - name: cashDepositId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier for the cash deposit.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: restaurant-pos-export-cash-deposits-rest
+    port: 8080
+    description: REST adapter for SpotOn Restaurant POS Export API — Cash Deposits. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/locations-locationid-cash-deposits
+      name: locations-locationid-cash-deposits
+      description: REST surface for SpotOn List Cash Deposits.
+      operations:
+      - method: GET
+        name: listCashDeposits
+        description: SpotOn List Cash Deposits
+        call: restaurant-pos-export-cash-deposits.listCashDeposits
+        with:
+          locationId: rest.locationId
+          updatedAtStart: rest.updatedAtStart
+          updatedAtEnd: rest.updatedAtEnd
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/locations-locationid-cash-deposits-cashdepositid
+      name: locations-locationid-cash-deposits-cashdepositid
+      description: REST surface for SpotOn Get Cash Deposit.
+      operations:
+      - method: GET
+        name: getCashDeposit
+        description: SpotOn Get Cash Deposit
+        call: restaurant-pos-export-cash-deposits.getCashDeposit
+        with:
+          locationId: rest.locationId
+          cashDepositId: rest.cashDepositId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: restaurant-pos-export-cash-deposits-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SpotOn Restaurant POS Export API — Cash Deposits. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: list-cash-deposits
+      description: SpotOn List Cash Deposits
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-pos-export-cash-deposits.listCashDeposits
+      with:
+        locationId: tools.locationId
+        updatedAtStart: tools.updatedAtStart
+        updatedAtEnd: tools.updatedAtEnd
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-cash-deposit
+      description: SpotOn Get Cash Deposit
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-pos-export-cash-deposits.getCashDeposit
+      with:
+        locationId: tools.locationId
+        cashDepositId: tools.cashDepositId
+      outputParameters:
+      - type: object
+        mapping: $.

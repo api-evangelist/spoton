@@ -1,0 +1,33 @@
+{
+  "id": "abc123",
+  "locationID": "abc123",
+  "firstName": "Mark",
+  "lastName": "Nalepka",
+  "email": "jsmith@example.com",
+  "nickName": "Smoke's Burgers",
+  "address": {
+    "street1": "1242 Selma",
+    "street2": "1242 Selma",
+    "city": "Westland",
+    "state": "MI",
+    "zip": "48185",
+    "phone": "1112223333"
+  },
+  "birthDate": "2025-03-15T14:30:00Z",
+  "hireDate": "2025-03-15T14:30:00Z",
+  "terminationDate": "2025-03-15T14:30:00Z",
+  "loginCode": "A1B2",
+  "payrollId": "abc123",
+  "active": true,
+  "posUserId": "abc123",
+  "deleted": false,
+  "excludeFromReporting": true,
+  "jobPositions": [
+    {
+      "id": "abc123",
+      "locationId": "abc123",
+      "name": "Smoke's Burgers",
+      "deleted": true
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/restaurant-pos-export-location-structure.json",
+  "name": "Location",
+  "description": "A SpotOn POS location.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique location identifier."
+    },
+    "organizationId": {
+      "type": "string",
+      "description": "Unique organization identifier shared across all locations in the organization."
+    },
+    "name": {
+      "type": "string",
+      "description": "Location name."
+    },
+    "deleted": {
+      "type": "boolean",
+      "description": "Whether the location is marked as deleted."
+    },
+    "fiscalendofdaytime": {
+      "type": "int64",
+      "description": "Fiscal end-of-day time, in milliseconds from the start of the day."
+    },
+    "spotonmerchantid": {
+      "type": "string",
+      "description": "The SpotOn merchant identifier for the location."
+    }
+  }
+}

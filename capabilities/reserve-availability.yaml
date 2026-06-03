@@ -1,0 +1,143 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SpotOn Reserve API — Availability
+  description: 'Availability surface of the SpotOn Reserve API. 2 operations. Lead operation: Get Available Reservation Times. Self-contained Naftiko capability covering one SpotOn business surface.'
+  tags:
+  - SpotOn
+  - Reservations
+  - Availability
+  created: '2026-06-03'
+  modified: '2026-06-03'
+binds:
+- namespace: env
+  keys:
+    SPOTON_API_KEY: SPOTON_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: reserve-availability
+    baseUri: https://api.seatninja.com
+    description: SpotOn Reserve API — Availability business capability. Self-contained, no shared references.
+    authentication:
+      type: apikey
+      key: x-api-key
+      value: '{{env.SPOTON_API_KEY}}'
+      placement: header
+    resources:
+    - name: v2-reservations-restaurantid-availability
+      path: /v2/reservations/{restaurantId}/availability
+      operations:
+      - name: getAvailableReservationTimes
+        method: GET
+        description: SpotOn Get Available Reservation Times
+        inputParameters:
+        - name: restaurantId
+          in: path
+          type: integer
+          required: true
+          description: The unique identifier for the restaurant.
+        - name: date
+          in: query
+          type: string
+          required: true
+          description: The date to check availability for, in YYYY-MM-DD format.
+        - name: partySize
+          in: query
+          type: integer
+          required: true
+          description: The number of guests in the party.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-reservations-restaurantid-wait-time
+      path: /v2/reservations/{restaurantId}/wait-time
+      operations:
+      - name: getWaitTime
+        method: GET
+        description: SpotOn Get Wait Time
+        inputParameters:
+        - name: restaurantId
+          in: path
+          type: integer
+          required: true
+          description: The unique identifier for the restaurant.
+        - name: partySize
+          in: query
+          type: integer
+          required: false
+          description: Optional party size to retrieve a size-specific wait time.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: reserve-availability-rest
+    port: 8080
+    description: REST adapter for SpotOn Reserve API — Availability. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/v2-reservations-restaurantid-availability
+      name: v2-reservations-restaurantid-availability
+      description: REST surface for SpotOn Get Available Reservation Times.
+      operations:
+      - method: GET
+        name: getAvailableReservationTimes
+        description: SpotOn Get Available Reservation Times
+        call: reserve-availability.getAvailableReservationTimes
+        with:
+          restaurantId: rest.restaurantId
+          date: rest.date
+          partySize: rest.partySize
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2-reservations-restaurantid-wait-time
+      name: v2-reservations-restaurantid-wait-time
+      description: REST surface for SpotOn Get Wait Time.
+      operations:
+      - method: GET
+        name: getWaitTime
+        description: SpotOn Get Wait Time
+        call: reserve-availability.getWaitTime
+        with:
+          restaurantId: rest.restaurantId
+          partySize: rest.partySize
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: reserve-availability-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SpotOn Reserve API — Availability. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: get-available-reservation-times
+      description: SpotOn Get Available Reservation Times
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: reserve-availability.getAvailableReservationTimes
+      with:
+        restaurantId: tools.restaurantId
+        date: tools.date
+        partySize: tools.partySize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-wait-time
+      description: SpotOn Get Wait Time
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: reserve-availability.getWaitTime
+      with:
+        restaurantId: tools.restaurantId
+        partySize: tools.partySize
+      outputParameters:
+      - type: object
+        mapping: $.

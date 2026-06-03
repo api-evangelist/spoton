@@ -1,0 +1,242 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OrderMenuItem",
+  "description": "A menu item line on an order check or guest.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-schema/restaurant-pos-export-order-menu-item-schema.json",
+  "type": "object",
+  "properties": {
+    "menuItemId": {
+      "type": "string",
+      "description": "Menu item identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Item name at the time the order was placed."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 timestamp when the item was added."
+    },
+    "quantity": {
+      "type": "string",
+      "description": "Decimal quantity as a string. Subitems show the parent quantity."
+    },
+    "preDiscountsAmount": {
+      "type": "string",
+      "description": "Extended amount before discounts and taxes, as a decimal string."
+    },
+    "discountsAmount": {
+      "type": "string",
+      "description": "Total applied discounts, as a decimal string."
+    },
+    "postDiscountsAmount": {
+      "type": "string",
+      "description": "Amount after discounts and before taxes, as a decimal string."
+    },
+    "taxesAmount": {
+      "type": "string",
+      "description": "Applied taxes, as a decimal string."
+    },
+    "totalAmount": {
+      "type": "string",
+      "description": "Final amount after discounts and taxes, as a decimal string."
+    },
+    "discounts": {
+      "type": "array",
+      "description": "Applied discount details.",
+      "items": {
+        "type": "object",
+        "description": "A discount applied to an order line or modifier.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Discount instance identifier. May repeat across levels."
+          },
+          "discountId": {
+            "type": "string",
+            "description": "Discount type identifier."
+          },
+          "discountName": {
+            "type": "string",
+            "description": "Discount name at the time of application."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "RFC 3339 timestamp when the discount was applied."
+          },
+          "amount": {
+            "type": "string",
+            "description": "Discount amount in US dollars, as a decimal string."
+          }
+        }
+      }
+    },
+    "taxes": {
+      "type": "array",
+      "description": "Applied tax details.",
+      "items": {
+        "type": "object",
+        "description": "A tax applied to an order line, modifier, or surcharge.",
+        "properties": {
+          "taxId": {
+            "type": "string",
+            "description": "Tax identifier. Empty for splick.it orders."
+          },
+          "taxName": {
+            "type": "string",
+            "description": "Tax name at the time of application."
+          },
+          "percentage": {
+            "type": "string",
+            "description": "Tax percentage as a decimal string, for example \"6.5\"."
+          },
+          "amount": {
+            "type": "string",
+            "description": "Tax amount in US dollars, as a decimal string."
+          }
+        }
+      }
+    },
+    "subItems": {
+      "type": "array",
+      "description": "Nested subitems.",
+      "items": {
+        "type": "object",
+        "description": "A menu item line on an order check or guest.",
+        "properties": {
+          "menuItemId": {
+            "type": "string",
+            "description": "Menu item identifier."
+          },
+          "name": {
+            "type": "string",
+            "description": "Item name at the time the order was placed."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "RFC 3339 timestamp when the item was added."
+          },
+          "quantity": {
+            "type": "string",
+            "description": "Decimal quantity as a string. Subitems show the parent quantity."
+          },
+          "preDiscountsAmount": {
+            "type": "string",
+            "description": "Extended amount before discounts and taxes, as a decimal string."
+          },
+          "discountsAmount": {
+            "type": "string",
+            "description": "Total applied discounts, as a decimal string."
+          },
+          "postDiscountsAmount": {
+            "type": "string",
+            "description": "Amount after discounts and before taxes, as a decimal string."
+          },
+          "taxesAmount": {
+            "type": "string",
+            "description": "Applied taxes, as a decimal string."
+          },
+          "totalAmount": {
+            "type": "string",
+            "description": "Final amount after discounts and taxes, as a decimal string."
+          },
+          "discounts": {
+            "type": "array",
+            "description": "Applied discount details.",
+            "items": {
+              "$ref": "#/components/schemas/OrderDiscount"
+            }
+          },
+          "taxes": {
+            "type": "array",
+            "description": "Applied tax details.",
+            "items": {
+              "$ref": "#/components/schemas/OrderTax"
+            }
+          },
+          "subItems": {
+            "type": "array",
+            "description": "Nested subitems.",
+            "items": {
+              "$ref": "#/components/schemas/OrderMenuItem"
+            }
+          },
+          "giftCardIssueReload": {
+            "type": "boolean",
+            "description": "Whether the line represents a gift card sale or reload."
+          },
+          "modifiers": {
+            "type": "array",
+            "description": "Applied modifiers.",
+            "items": {
+              "$ref": "#/components/schemas/OrderModifier"
+            }
+          }
+        }
+      }
+    },
+    "giftCardIssueReload": {
+      "type": "boolean",
+      "description": "Whether the line represents a gift card sale or reload."
+    },
+    "modifiers": {
+      "type": "array",
+      "description": "Applied modifiers.",
+      "items": {
+        "type": "object",
+        "description": "A modifier applied to an ordered menu item.",
+        "properties": {
+          "modifierId": {
+            "type": "string",
+            "description": "Modifier identifier."
+          },
+          "modifierOptionId": {
+            "type": "string",
+            "description": "Selected modifier option identifier."
+          },
+          "text": {
+            "type": "string",
+            "description": "Combined display text for the modifier, for example \"Extra Cheese\"."
+          },
+          "preDiscountsAmount": {
+            "type": "string",
+            "description": "Extended amount before discounts and taxes, as a decimal string."
+          },
+          "discountsAmount": {
+            "type": "string",
+            "description": "Applied discount portion, as a decimal string."
+          },
+          "postDiscountsAmount": {
+            "type": "string",
+            "description": "Amount after discounts and before taxes, as a decimal string."
+          },
+          "taxesAmount": {
+            "type": "string",
+            "description": "Applied taxes, as a decimal string."
+          },
+          "totalAmount": {
+            "type": "string",
+            "description": "Final amount after discounts and taxes, as a decimal string."
+          },
+          "discounts": {
+            "type": "array",
+            "description": "Distributed discount details.",
+            "items": {
+              "$ref": "#/components/schemas/OrderDiscount"
+            }
+          },
+          "taxes": {
+            "type": "array",
+            "description": "Applied tax details.",
+            "items": {
+              "$ref": "#/components/schemas/OrderTax"
+            }
+          }
+        }
+      }
+    }
+  }
+}

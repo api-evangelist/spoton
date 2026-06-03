@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JobPosition",
+  "description": "A job position configured at a location.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-schema/restaurant-pos-export-job-position-schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique job position identifier."
+    },
+    "locationId": {
+      "type": "string",
+      "description": "Associated location identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Job position title."
+    },
+    "deleted": {
+      "type": "boolean",
+      "description": "Whether the job position is marked as deleted."
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/restaurant-pos-export-cash-deposit-structure.json",
+  "name": "CashDeposit",
+  "description": "A cash deposit recorded at a location.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique cash deposit identifier."
+    },
+    "locationId": {
+      "type": "string",
+      "description": "Associated location identifier."
+    },
+    "deleted": {
+      "type": "boolean",
+      "description": "Whether the deposit is marked as deleted."
+    },
+    "amount": {
+      "type": "string",
+      "description": "Deposit amount in US dollars, as a decimal string."
+    },
+    "employeeId": {
+      "type": "string",
+      "description": "Identifier of the employee who recorded the deposit."
+    },
+    "jobPositionId": {
+      "type": "string",
+      "description": "Job position of the employee during recording."
+    },
+    "recordedAt": {
+      "type": "datetime",
+      "description": "RFC 3339 timestamp when the deposit was recorded."
+    },
+    "lastUpdatedByEmployeeId": {
+      "type": "string",
+      "description": "Identifier of the employee who last updated the deposit."
+    },
+    "lastUpdatedByJobPositionId": {
+      "type": "string",
+      "description": "Job position of the employee during the last update."
+    },
+    "lastUpdatedAt": {
+      "type": "datetime",
+      "description": "RFC 3339 timestamp of the last update."
+    }
+  }
+}

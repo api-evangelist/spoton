@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Employee",
+  "description": "An employee record at a location.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-schema/restaurant-pos-export-employee-schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique employee identifier."
+    },
+    "locationID": {
+      "type": "string",
+      "description": "Associated location identifier."
+    },
+    "firstName": {
+      "type": "string",
+      "description": "Employee first name."
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Employee last name."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Employee email address."
+    },
+    "nickName": {
+      "type": "string",
+      "description": "Employee nickname."
+    },
+    "address": {
+      "type": "object",
+      "description": "A mailing address for an employee.",
+      "properties": {
+        "street1": {
+          "type": "string",
+          "description": "First line of the street address."
+        },
+        "street2": {
+          "type": "string",
+          "description": "Second line of the street address."
+        },
+        "city": {
+          "type": "string",
+          "description": "City."
+        },
+        "state": {
+          "type": "string",
+          "description": "State or province."
+        },
+        "zip": {
+          "type": "string",
+          "description": "Postal code."
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number."
+        }
+      }
+    },
+    "birthDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Employee birth date in RFC 3339 format. May be null."
+    },
+    "hireDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Employee hire date in RFC 3339 format. May be null."
+    },
+    "terminationDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Employee termination date in RFC 3339 format. May be null."
+    },
+    "loginCode": {
+      "type": "string",
+      "description": "POS login code for the employee."
+    },
+    "payrollId": {
+      "type": "string",
+      "description": "Optional payroll identifier."
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether the employee is active at the location."
+    },
+    "posUserId": {
+      "type": "string",
+      "description": "Location-specific POS user identifier."
+    },
+    "deleted": {
+      "type": "boolean",
+      "description": "Whether the employee record is marked as deleted."
+    },
+    "excludeFromReporting": {
+      "type": "boolean",
+      "description": "Whether the employee is excluded from reporting."
+    },
+    "jobPositions": {
+      "type": "array",
+      "description": "The job positions the employee holds.",
+      "items": {
+        "type": "object",
+        "description": "A job position configured at a location.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique job position identifier."
+          },
+          "locationId": {
+            "type": "string",
+            "description": "Associated location identifier."
+          },
+          "name": {
+            "type": "string",
+            "description": "Job position title."
+          },
+          "deleted": {
+            "type": "boolean",
+            "description": "Whether the job position is marked as deleted."
+          }
+        }
+      }
+    }
+  }
+}

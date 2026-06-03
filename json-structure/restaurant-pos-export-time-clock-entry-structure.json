@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/restaurant-pos-export-time-clock-entry-structure.json",
+  "name": "TimeClockEntry",
+  "description": "An employee shift clock-in and clock-out record.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique time clock entry identifier."
+    },
+    "locationId": {
+      "type": "string",
+      "description": "Associated location identifier."
+    },
+    "deleted": {
+      "type": "boolean",
+      "description": "Whether the entry is marked as deleted."
+    },
+    "voided": {
+      "type": "boolean",
+      "description": "Whether the entry is voided."
+    },
+    "employeeId": {
+      "type": "string",
+      "description": "Associated employee identifier."
+    },
+    "jobPositionId": {
+      "type": "string",
+      "description": "Associated job position identifier."
+    },
+    "payRateAmount": {
+      "type": "string",
+      "description": "Hourly pay rate in US dollars, as a decimal string."
+    },
+    "declaredCashTipsAmount": {
+      "type": "string",
+      "description": "Declared cash tips collected, as a decimal string."
+    },
+    "declaredCashTipsToOthersAmount": {
+      "type": "string",
+      "description": "Declared cash tips given to others, as a decimal string."
+    },
+    "inAt": {
+      "type": "datetime",
+      "description": "RFC 3339 shift start (clock-in) time."
+    },
+    "outAt": {
+      "type": "datetime",
+      "description": "RFC 3339 shift end (clock-out) time. May be null if the shift is open."
+    },
+    "breaks": {
+      "type": "array",
+      "description": "Break records taken during the shift.",
+      "items": {
+        "type": "object",
+        "description": "A break taken during a time clock shift.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique break identifier."
+          },
+          "startedAt": {
+            "type": "datetime",
+            "description": "RFC 3339 timestamp when the break started."
+          },
+          "endedAt": {
+            "type": "datetime",
+            "description": "RFC 3339 timestamp when the break ended. May be null if the break is ongoing."
+          },
+          "kind": {
+            "type": "string",
+            "description": "Whether the break is paid or unpaid.",
+            "enum": [
+              "PAID",
+              "UNPAID"
+            ]
+          }
+        }
+      }
+    },
+    "lastUpdatedAt": {
+      "type": "datetime",
+      "description": "RFC 3339 timestamp of the last update."
+    }
+  }
+}

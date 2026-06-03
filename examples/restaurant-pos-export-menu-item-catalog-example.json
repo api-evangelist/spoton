@@ -1,0 +1,11 @@
+{
+  "id": "abc123",
+  "locationId": "abc123",
+  "deleted": false,
+  "available": false,
+  "name": "Smoke's Burgers",
+  "openItem": false,
+  "reportCategoryId": "abc123",
+  "standardPriceAmount": "12.50",
+  "plu": "12345"
+}

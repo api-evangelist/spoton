@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SpotOn Restaurant POS Export API — Locations
+  description: 'Locations surface of the SpotOn Restaurant POS Export API. 1 operation. Lead operation: Get Location. Self-contained Naftiko capability covering one SpotOn business surface.'
+  tags:
+  - SpotOn
+  - Restaurant
+  - Locations
+  created: '2026-06-03'
+  modified: '2026-06-03'
+binds:
+- namespace: env
+  keys:
+    SPOTON_API_KEY: SPOTON_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: restaurant-pos-export-locations
+    baseUri: https://restaurantapi.spoton.com/posexport/v1
+    description: SpotOn Restaurant POS Export API — Locations business capability. Self-contained, no shared references.
+    authentication:
+      type: apikey
+      key: x-api-key
+      value: '{{env.SPOTON_API_KEY}}'
+      placement: header
+    resources:
+    - name: locations-locationid
+      path: /locations/{locationId}
+      operations:
+      - name: getLocation
+        method: GET
+        description: SpotOn Get Location
+        inputParameters:
+        - name: locationId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier for the location.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: restaurant-pos-export-locations-rest
+    port: 8080
+    description: REST adapter for SpotOn Restaurant POS Export API — Locations. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/locations-locationid
+      name: locations-locationid
+      description: REST surface for SpotOn Get Location.
+      operations:
+      - method: GET
+        name: getLocation
+        description: SpotOn Get Location
+        call: restaurant-pos-export-locations.getLocation
+        with:
+          locationId: rest.locationId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: restaurant-pos-export-locations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SpotOn Restaurant POS Export API — Locations. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: get-location
+      description: SpotOn Get Location
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-pos-export-locations.getLocation
+      with:
+        locationId: tools.locationId
+      outputParameters:
+      - type: object
+        mapping: $.

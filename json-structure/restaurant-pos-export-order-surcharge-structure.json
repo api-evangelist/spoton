@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/restaurant-pos-export-order-surcharge-structure.json",
+  "name": "OrderSurcharge",
+  "description": "A surcharge applied to an order check or payment.",
+  "type": "object",
+  "properties": {
+    "surchargeId": {
+      "type": "string",
+      "description": "Surcharge identifier."
+    },
+    "surchargeName": {
+      "type": "string",
+      "description": "Surcharge name at the time of application."
+    },
+    "createdAt": {
+      "type": "datetime",
+      "description": "RFC 3339 timestamp when the surcharge was applied."
+    },
+    "amount": {
+      "type": "string",
+      "description": "Surcharge amount in US dollars, as a decimal string."
+    },
+    "taxesAmount": {
+      "type": "string",
+      "description": "Applied tax amount, as a decimal string."
+    },
+    "taxes": {
+      "type": "array",
+      "description": "Tax details.",
+      "items": {
+        "type": "object",
+        "description": "A tax applied to an order line, modifier, or surcharge.",
+        "properties": {
+          "taxId": {
+            "type": "string",
+            "description": "Tax identifier. Empty for splick.it orders."
+          },
+          "taxName": {
+            "type": "string",
+            "description": "Tax name at the time of application."
+          },
+          "percentage": {
+            "type": "string",
+            "description": "Tax percentage as a decimal string, for example \"6.5\"."
+          },
+          "amount": {
+            "type": "string",
+            "description": "Tax amount in US dollars, as a decimal string."
+          }
+        }
+      }
+    }
+  }
+}

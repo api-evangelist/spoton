@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ReportCategory",
+  "description": "A hierarchical report category used to group menu items.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-schema/restaurant-pos-export-report-category-schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique report category identifier."
+    },
+    "locationId": {
+      "type": "string",
+      "description": "Associated location identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Report category name."
+    },
+    "parentId": {
+      "type": "string",
+      "description": "Parent category identifier for hierarchical organization."
+    },
+    "deleted": {
+      "type": "boolean",
+      "description": "Whether the report category is marked as deleted."
+    }
+  }
+}

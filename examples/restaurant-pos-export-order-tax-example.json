@@ -1,0 +1,6 @@
+{
+  "taxId": "abc123",
+  "taxName": "Smoke's Burgers",
+  "percentage": "8.25",
+  "amount": "12.50"
+}

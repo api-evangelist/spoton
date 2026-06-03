@@ -1,0 +1,50 @@
+{
+  "id": "abc123",
+  "name": "Smoke's Burgers",
+  "deleted": false,
+  "locationId": "abc123",
+  "orderTypeId": "abc123",
+  "orderTypeName": "Smoke's Burgers",
+  "createdByEmployeeId": "abc123",
+  "createdByEmployeeName": "Smoke's Burgers",
+  "createdAt": "2025-03-15T14:30:00Z",
+  "closedAt": "2025-03-15T14:30:00Z",
+  "orderNumber": "3",
+  "tableNumber": "3",
+  "scheduled": true,
+  "releasedAt": "2025-03-15T14:30:00Z",
+  "ownerInfo": {
+    "employeeId": "abc123",
+    "employeeName": "Smoke's Burgers",
+    "jobPositionId": "abc123"
+  },
+  "totalAmount": "12.50",
+  "balanceDueAmount": "12.50",
+  "checks": [
+    {
+      "gratuityAmount": "12.50",
+      "totalAmount": "12.50",
+      "paymentsAmount": "12.50",
+      "balanceAmount": "12.50",
+      "guests": [
+        "example"
+      ],
+      "surcharges": [
+        "example"
+      ],
+      "payments": [
+        "example"
+      ],
+      "autoGratuityTaxes": [
+        "example"
+      ],
+      "items": [
+        "example"
+      ],
+      "voidedItems": [
+        "example"
+      ]
+    }
+  ],
+  "updatedAt": "2025-03-15T14:30:00Z"
+}

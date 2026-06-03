@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/restaurant-pos-export-order-tax-structure.json",
+  "name": "OrderTax",
+  "description": "A tax applied to an order line, modifier, or surcharge.",
+  "type": "object",
+  "properties": {
+    "taxId": {
+      "type": "string",
+      "description": "Tax identifier. Empty for splick.it orders."
+    },
+    "taxName": {
+      "type": "string",
+      "description": "Tax name at the time of application."
+    },
+    "percentage": {
+      "type": "string",
+      "description": "Tax percentage as a decimal string, for example \"6.5\"."
+    },
+    "amount": {
+      "type": "string",
+      "description": "Tax amount in US dollars, as a decimal string."
+    }
+  }
+}

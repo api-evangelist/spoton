@@ -1,0 +1,16 @@
+{
+  "customerInformation": {
+    "customerId": "abc123",
+    "firstName": "Mark",
+    "lastName": "Nalepka",
+    "phoneNumber": "1112223333",
+    "email": "jsmith@example.com",
+    "imageUrl": "https://example.com/path/abc123",
+    "memberNumber": "3",
+    "memberTier": "Gold"
+  },
+  "notes": "Operator note",
+  "time": "2025-03-15T14:30:00Z",
+  "partySize": 4,
+  "partyFlags": 0
+}

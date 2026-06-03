@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OrderDiscount",
+  "description": "A discount applied to an order line or modifier.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-schema/restaurant-pos-export-order-discount-schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Discount instance identifier. May repeat across levels."
+    },
+    "discountId": {
+      "type": "string",
+      "description": "Discount type identifier."
+    },
+    "discountName": {
+      "type": "string",
+      "description": "Discount name at the time of application."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 timestamp when the discount was applied."
+    },
+    "amount": {
+      "type": "string",
+      "description": "Discount amount in US dollars, as a decimal string."
+    }
+  }
+}

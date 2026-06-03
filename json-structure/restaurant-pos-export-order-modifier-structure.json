@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/restaurant-pos-export-order-modifier-structure.json",
+  "name": "OrderModifier",
+  "description": "A modifier applied to an ordered menu item.",
+  "type": "object",
+  "properties": {
+    "modifierId": {
+      "type": "string",
+      "description": "Modifier identifier."
+    },
+    "modifierOptionId": {
+      "type": "string",
+      "description": "Selected modifier option identifier."
+    },
+    "text": {
+      "type": "string",
+      "description": "Combined display text for the modifier, for example \"Extra Cheese\"."
+    },
+    "preDiscountsAmount": {
+      "type": "string",
+      "description": "Extended amount before discounts and taxes, as a decimal string."
+    },
+    "discountsAmount": {
+      "type": "string",
+      "description": "Applied discount portion, as a decimal string."
+    },
+    "postDiscountsAmount": {
+      "type": "string",
+      "description": "Amount after discounts and before taxes, as a decimal string."
+    },
+    "taxesAmount": {
+      "type": "string",
+      "description": "Applied taxes, as a decimal string."
+    },
+    "totalAmount": {
+      "type": "string",
+      "description": "Final amount after discounts and taxes, as a decimal string."
+    },
+    "discounts": {
+      "type": "array",
+      "description": "Distributed discount details.",
+      "items": {
+        "type": "object",
+        "description": "A discount applied to an order line or modifier.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Discount instance identifier. May repeat across levels."
+          },
+          "discountId": {
+            "type": "string",
+            "description": "Discount type identifier."
+          },
+          "discountName": {
+            "type": "string",
+            "description": "Discount name at the time of application."
+          },
+          "createdAt": {
+            "type": "datetime",
+            "description": "RFC 3339 timestamp when the discount was applied."
+          },
+          "amount": {
+            "type": "string",
+            "description": "Discount amount in US dollars, as a decimal string."
+          }
+        }
+      }
+    },
+    "taxes": {
+      "type": "array",
+      "description": "Applied tax details.",
+      "items": {
+        "type": "object",
+        "description": "A tax applied to an order line, modifier, or surcharge.",
+        "properties": {
+          "taxId": {
+            "type": "string",
+            "description": "Tax identifier. Empty for splick.it orders."
+          },
+          "taxName": {
+            "type": "string",
+            "description": "Tax name at the time of application."
+          },
+          "percentage": {
+            "type": "string",
+            "description": "Tax percentage as a decimal string, for example \"6.5\"."
+          },
+          "amount": {
+            "type": "string",
+            "description": "Tax amount in US dollars, as a decimal string."
+          }
+        }
+      }
+    }
+  }
+}

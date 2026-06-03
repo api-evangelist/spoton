@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/restaurant-pos-export-order-discount-structure.json",
+  "name": "OrderDiscount",
+  "description": "A discount applied to an order line or modifier.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Discount instance identifier. May repeat across levels."
+    },
+    "discountId": {
+      "type": "string",
+      "description": "Discount type identifier."
+    },
+    "discountName": {
+      "type": "string",
+      "description": "Discount name at the time of application."
+    },
+    "createdAt": {
+      "type": "datetime",
+      "description": "RFC 3339 timestamp when the discount was applied."
+    },
+    "amount": {
+      "type": "string",
+      "description": "Discount amount in US dollars, as a decimal string."
+    }
+  }
+}

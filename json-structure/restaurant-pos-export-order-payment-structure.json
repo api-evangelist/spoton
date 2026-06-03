@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/restaurant-pos-export-order-payment-structure.json",
+  "name": "OrderPayment",
+  "description": "A payment recorded against an order check.",
+  "type": "object",
+  "properties": {
+    "paymentOptionId": {
+      "type": "string",
+      "description": "Payment method identifier."
+    },
+    "paymentName": {
+      "type": "string",
+      "description": "Payment method name at the time of application."
+    },
+    "createdAt": {
+      "type": "datetime",
+      "description": "RFC 3339 timestamp when the payment was applied."
+    },
+    "amount": {
+      "type": "string",
+      "description": "Payment amount in US dollars, as a decimal string."
+    },
+    "surcharges": {
+      "type": "array",
+      "description": "Payment-level surcharges.",
+      "items": {
+        "type": "object",
+        "description": "A surcharge applied to an order check or payment.",
+        "properties": {
+          "surchargeId": {
+            "type": "string",
+            "description": "Surcharge identifier."
+          },
+          "surchargeName": {
+            "type": "string",
+            "description": "Surcharge name at the time of application."
+          },
+          "createdAt": {
+            "type": "datetime",
+            "description": "RFC 3339 timestamp when the surcharge was applied."
+          },
+          "amount": {
+            "type": "string",
+            "description": "Surcharge amount in US dollars, as a decimal string."
+          },
+          "taxesAmount": {
+            "type": "string",
+            "description": "Applied tax amount, as a decimal string."
+          },
+          "taxes": {
+            "type": "array",
+            "description": "Tax details.",
+            "items": {
+              "$ref": "#/components/schemas/OrderTax"
+            }
+          }
+        }
+      }
+    },
+    "surchargesAmount": {
+      "type": "int64",
+      "description": "Total surcharge amount."
+    },
+    "tipAmount": {
+      "type": "string",
+      "description": "Tip amount in US dollars, as a decimal string."
+    },
+    "tipDeductionAmount": {
+      "type": "string",
+      "description": "Processing fee deduction from the tip, as a decimal string."
+    },
+    "tipAppliedToEmployeeId": {
+      "type": "string",
+      "description": "Identifier of the employee the tip was applied to."
+    },
+    "employeeId": {
+      "type": "string",
+      "description": "Identifier of the employee who processed the payment."
+    },
+    "employeeName": {
+      "type": "string",
+      "description": "Name of the employee who processed the payment."
+    },
+    "cardType": {
+      "type": "string",
+      "description": "The card type used for the payment.",
+      "enum": [
+        "Unknown",
+        "Amex",
+        "Discover",
+        "Manual CC",
+        "Mastercard",
+        "Visa"
+      ]
+    },
+    "cardNumber": {
+      "type": "string",
+      "description": "Last four digits of the card, formatted as \"...XXXX\"."
+    },
+    "cardholderName": {
+      "type": "string",
+      "description": "Cardholder name."
+    }
+  }
+}

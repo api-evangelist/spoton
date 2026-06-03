@@ -1,0 +1,22 @@
+{
+  "id": "abc123",
+  "locationId": "abc123",
+  "deleted": true,
+  "voided": false,
+  "employeeId": "abc123",
+  "jobPositionId": "abc123",
+  "payRateAmount": "12.50",
+  "declaredCashTipsAmount": "12.50",
+  "declaredCashTipsToOthersAmount": "12.50",
+  "inAt": "2025-03-15T14:30:00Z",
+  "outAt": "2025-03-15T14:30:00Z",
+  "breaks": [
+    {
+      "id": "abc123",
+      "startedAt": "2025-03-15T14:30:00Z",
+      "endedAt": "2025-03-15T14:30:00Z",
+      "kind": "PAID"
+    }
+  ],
+  "lastUpdatedAt": "2025-03-15T14:30:00Z"
+}

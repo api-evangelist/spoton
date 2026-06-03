@@ -1,0 +1,110 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: SpotOn
+providerId: spoton
+created: '2026-06-03'
+modified: '2026-06-03'
+reconciled: false
+tags:
+  - Restaurant
+  - Point of Sale
+  - Payments
+  - Reservations
+  - Pricing
+description: >-
+  SpotOn prices its restaurant platform as hardware-and-software subscriptions
+  bundled with card-processing take rates. The publicly promoted tiers are a $0
+  all-in "Quick Start" plan that recovers cost through a higher processing rate,
+  a per-station "POS Essentials" subscription with a lower processing rate, and a
+  custom "Build Your Own" enterprise plan for multi-location operations.
+  Subscriptions are month-to-month. The developer APIs (Restaurant POS Export API
+  and Reserve API) are not separately metered; API access is granted to SpotOn
+  customers and integration partners as part of the platform relationship. Exact
+  rates are negotiated per merchant and shift over time, so this artifact is not
+  reconciled to a single authoritative figure.
+sources:
+  - https://www.spoton.com/pricing/
+  - https://developers.spoton.com/restaurant/docs/introduction
+  - https://developers.spoton.com/reserve/docs/getting-started
+plans:
+  - id: spoton-quick-start
+    name: Quick Start
+    type: freemium
+    description: Zero monthly software fee with cost recovered through a higher card-processing rate.
+    entries:
+      - label: Software subscription
+        name: software_subscription
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: US
+        unit: '1'
+        price: '$0'
+        userMultiplied: false
+      - label: Card processing
+        name: card_processing
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: '1'
+        price: '2.89% + $0.25'
+        userMultiplied: false
+    elements:
+      - name: Restaurant POS
+      - name: Online ordering
+      - name: Payments
+      - name: Restaurant POS Export API access
+  - id: spoton-pos-essentials
+    name: POS Essentials
+    type: subscription
+    description: Per-station monthly subscription with a lower card-processing rate and hardware financing.
+    entries:
+      - label: Per-station subscription
+        name: station_subscription
+        type: subscription
+        metric: seat
+        limit: -1
+        timeFrame: month
+        geo: US
+        unit: '1'
+        price: '$55'
+        userMultiplied: true
+      - label: Card processing
+        name: card_processing
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: '1'
+        price: '1.99% + $0.25'
+        userMultiplied: false
+    elements:
+      - name: Restaurant POS
+      - name: Online ordering
+      - name: Reporting
+      - name: Restaurant POS Export API access
+  - id: spoton-build-your-own
+    name: Build Your Own
+    type: enterprise
+    description: Custom pricing for multi-location and complex restaurant operations.
+    entries:
+      - label: Custom platform pricing
+        name: custom_platform_pricing
+        type: flat
+        metric: varies
+        limit: -1
+        timeFrame: month
+        geo: US
+        unit: '1'
+        price: 'contact sales'
+        userMultiplied: false
+    elements:
+      - name: Multi-location management
+      - name: Restaurant POS Export API access
+      - name: Reserve API access
+      - name: Dedicated support

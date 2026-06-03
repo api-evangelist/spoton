@@ -1,0 +1,109 @@
+{
+  "gratuityAmount": "12.50",
+  "totalAmount": "12.50",
+  "paymentsAmount": "12.50",
+  "balanceAmount": "12.50",
+  "guests": [
+    {
+      "name": "Smoke's Burgers",
+      "items": [
+        "example"
+      ],
+      "voidedItems": [
+        "example"
+      ]
+    }
+  ],
+  "surcharges": [
+    {
+      "surchargeId": "abc123",
+      "surchargeName": "Smoke's Burgers",
+      "createdAt": "2025-03-15T14:30:00Z",
+      "amount": "12.50",
+      "taxesAmount": "12.50",
+      "taxes": [
+        "example"
+      ]
+    }
+  ],
+  "payments": [
+    {
+      "paymentOptionId": "abc123",
+      "paymentName": "Smoke's Burgers",
+      "createdAt": "2025-03-15T14:30:00Z",
+      "amount": "12.50",
+      "surcharges": [
+        "example"
+      ],
+      "surchargesAmount": 0,
+      "tipAmount": "12.50",
+      "tipDeductionAmount": "12.50",
+      "tipAppliedToEmployeeId": "abc123",
+      "employeeId": "abc123",
+      "employeeName": "Smoke's Burgers",
+      "cardType": "Amex",
+      "cardNumber": "3",
+      "cardholderName": "Smoke's Burgers"
+    }
+  ],
+  "autoGratuityTaxes": [
+    {
+      "taxId": "abc123",
+      "taxName": "Smoke's Burgers",
+      "percentage": "8.25",
+      "amount": "12.50"
+    }
+  ],
+  "items": [
+    {
+      "menuItemId": "abc123",
+      "name": "Smoke's Burgers",
+      "createdAt": "2025-03-15T14:30:00Z",
+      "quantity": "example",
+      "preDiscountsAmount": "12.50",
+      "discountsAmount": "12.50",
+      "postDiscountsAmount": "12.50",
+      "taxesAmount": "12.50",
+      "totalAmount": "12.50",
+      "discounts": [
+        "example"
+      ],
+      "taxes": [
+        "example"
+      ],
+      "subItems": [
+        "example"
+      ],
+      "giftCardIssueReload": true,
+      "modifiers": [
+        "example"
+      ]
+    }
+  ],
+  "voidedItems": [
+    {
+      "menuItemId": "abc123",
+      "name": "Smoke's Burgers",
+      "createdAt": "2025-03-15T14:30:00Z",
+      "quantity": "example",
+      "preDiscountsAmount": "12.50",
+      "discountsAmount": "12.50",
+      "postDiscountsAmount": "12.50",
+      "taxesAmount": "12.50",
+      "totalAmount": "12.50",
+      "discounts": [
+        "example"
+      ],
+      "taxes": [
+        "example"
+      ],
+      "subItems": [
+        "example"
+      ],
+      "giftCardIssueReload": false,
+      "modifiers": [
+        "example"
+      ]
+    }
+  ]
+}

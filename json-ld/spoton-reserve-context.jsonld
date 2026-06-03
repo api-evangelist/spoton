@@ -1,0 +1,111 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "spoton": "https://developers.spoton.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "AvailabilityResponse": "spoton:AvailabilityResponse",
+    "AvailabilitySlot": "spoton:AvailabilitySlot",
+    "CustomerInformation": "spoton:CustomerInformation",
+    "Reservation": "spoton:Reservation",
+    "ReservationRequest": "spoton:ReservationRequest",
+    "Restaurant": "spoton:Restaurant",
+    "WaitTimeResponse": "spoton:WaitTimeResponse",
+    "WaitlistEntry": "spoton:WaitlistEntry",
+    "WaitlistRequest": "spoton:WaitlistRequest",
+    "restaurantId": {
+      "@id": "spoton:restaurantId",
+      "@type": "xsd:integer"
+    },
+    "date": {
+      "@id": "spoton:date",
+      "@type": "xsd:date"
+    },
+    "partySize": {
+      "@id": "spoton:partySize",
+      "@type": "xsd:integer"
+    },
+    "slots": {
+      "@id": "spoton:slots",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "time": {
+      "@id": "spoton:time",
+      "@type": "xsd:dateTime"
+    },
+    "available": {
+      "@id": "spoton:available",
+      "@type": "xsd:boolean"
+    },
+    "customerId": {
+      "@id": "spoton:customerId",
+      "@type": "xsd:string"
+    },
+    "firstName": {
+      "@id": "spoton:firstName",
+      "@type": "xsd:string"
+    },
+    "lastName": {
+      "@id": "spoton:lastName",
+      "@type": "xsd:string"
+    },
+    "phoneNumber": {
+      "@id": "spoton:phoneNumber",
+      "@type": "xsd:string"
+    },
+    "email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "imageUrl": {
+      "@id": "spoton:imageUrl",
+      "@type": "@id"
+    },
+    "memberNumber": {
+      "@id": "spoton:memberNumber",
+      "@type": "xsd:string"
+    },
+    "memberTier": {
+      "@id": "spoton:memberTier",
+      "@type": "xsd:string"
+    },
+    "customerInformation": {
+      "@id": "spoton:customerInformation",
+      "@type": "@id"
+    },
+    "notes": {
+      "@id": "spoton:notes",
+      "@type": "xsd:string"
+    },
+    "partyFlags": {
+      "@id": "spoton:partyFlags",
+      "@type": "xsd:integer"
+    },
+    "reservationId": {
+      "@id": "spoton:reservationId",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "spoton:status",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "timeZone": {
+      "@id": "spoton:timeZone",
+      "@type": "xsd:string"
+    },
+    "quotedWaitMinutes": {
+      "@id": "spoton:quotedWaitMinutes",
+      "@type": "xsd:integer"
+    },
+    "waitlistId": {
+      "@id": "spoton:waitlistId",
+      "@type": "xsd:string"
+    }
+  }
+}

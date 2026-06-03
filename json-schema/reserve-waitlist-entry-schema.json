@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WaitlistEntry",
+  "description": "A created waitlist entry.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-schema/reserve-waitlist-entry-schema.json",
+  "type": "object",
+  "properties": {
+    "waitlistId": {
+      "type": "string",
+      "description": "The unique identifier for the waitlist entry."
+    },
+    "restaurantId": {
+      "type": "integer",
+      "format": "int32",
+      "description": "The restaurant the waitlist entry belongs to."
+    },
+    "customerInformation": {
+      "type": "object",
+      "description": "Guest contact and identity details for a reservation or waitlist entry.",
+      "properties": {
+        "customerId": {
+          "type": "string",
+          "description": "Optional existing customer identifier."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "Guest first name."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Guest last name."
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "Guest phone number."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Guest email address."
+        },
+        "imageUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "Optional URL of a guest image."
+        },
+        "memberNumber": {
+          "type": "string",
+          "description": "Optional loyalty member number."
+        },
+        "memberTier": {
+          "type": "string",
+          "description": "Optional loyalty member tier."
+        }
+      },
+      "required": [
+        "firstName",
+        "phoneNumber"
+      ]
+    },
+    "partySize": {
+      "type": "integer",
+      "format": "int32",
+      "description": "The number of guests in the party."
+    },
+    "quotedWaitMinutes": {
+      "type": "integer",
+      "format": "int32",
+      "description": "The quoted wait time in minutes."
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the waitlist entry."
+    }
+  }
+}

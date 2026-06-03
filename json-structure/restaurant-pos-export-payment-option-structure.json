@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/restaurant-pos-export-payment-option-structure.json",
+  "name": "PaymentOption",
+  "description": "A payment method configured at a location.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique payment option identifier."
+    },
+    "locationId": {
+      "type": "string",
+      "description": "Unique location identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Payment option name."
+    },
+    "deleted": {
+      "type": "boolean",
+      "description": "Whether the payment option is marked as deleted."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the payment option is enabled at the location."
+    },
+    "kind": {
+      "type": "string",
+      "description": "The category of payment option.",
+      "enum": [
+        "CASH",
+        "CC",
+        "OTHER"
+      ]
+    }
+  }
+}

@@ -1,0 +1,129 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SpotOn Restaurant POS Export API — Menu Items
+  description: 'Menu Items surface of the SpotOn Restaurant POS Export API. 2 operations. Lead operation: List Menu Items. Self-contained Naftiko capability covering one SpotOn business surface.'
+  tags:
+  - SpotOn
+  - Restaurant
+  - Menu Items
+  created: '2026-06-03'
+  modified: '2026-06-03'
+binds:
+- namespace: env
+  keys:
+    SPOTON_API_KEY: SPOTON_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: restaurant-pos-export-menu-items
+    baseUri: https://restaurantapi.spoton.com/posexport/v1
+    description: SpotOn Restaurant POS Export API — Menu Items business capability. Self-contained, no shared references.
+    authentication:
+      type: apikey
+      key: x-api-key
+      value: '{{env.SPOTON_API_KEY}}'
+      placement: header
+    resources:
+    - name: locations-locationid-menu-items
+      path: /locations/{locationId}/menu-items
+      operations:
+      - name: listMenuItems
+        method: GET
+        description: SpotOn List Menu Items
+        inputParameters:
+        - name: locationId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier for the location.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: locations-locationid-menu-items-menuitemid
+      path: /locations/{locationId}/menu-items/{menuItemId}
+      operations:
+      - name: getMenuItem
+        method: GET
+        description: SpotOn Get Menu Item
+        inputParameters:
+        - name: locationId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier for the location.
+        - name: menuItemId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier for the menu item.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: restaurant-pos-export-menu-items-rest
+    port: 8080
+    description: REST adapter for SpotOn Restaurant POS Export API — Menu Items. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/locations-locationid-menu-items
+      name: locations-locationid-menu-items
+      description: REST surface for SpotOn List Menu Items.
+      operations:
+      - method: GET
+        name: listMenuItems
+        description: SpotOn List Menu Items
+        call: restaurant-pos-export-menu-items.listMenuItems
+        with:
+          locationId: rest.locationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/locations-locationid-menu-items-menuitemid
+      name: locations-locationid-menu-items-menuitemid
+      description: REST surface for SpotOn Get Menu Item.
+      operations:
+      - method: GET
+        name: getMenuItem
+        description: SpotOn Get Menu Item
+        call: restaurant-pos-export-menu-items.getMenuItem
+        with:
+          locationId: rest.locationId
+          menuItemId: rest.menuItemId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: restaurant-pos-export-menu-items-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SpotOn Restaurant POS Export API — Menu Items. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: list-menu-items
+      description: SpotOn List Menu Items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-pos-export-menu-items.listMenuItems
+      with:
+        locationId: tools.locationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-menu-item
+      description: SpotOn Get Menu Item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-pos-export-menu-items.getMenuItem
+      with:
+        locationId: tools.locationId
+        menuItemId: tools.menuItemId
+      outputParameters:
+      - type: object
+        mapping: $.

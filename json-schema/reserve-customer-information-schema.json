@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CustomerInformation",
+  "description": "Guest contact and identity details for a reservation or waitlist entry.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-schema/reserve-customer-information-schema.json",
+  "type": "object",
+  "properties": {
+    "customerId": {
+      "type": "string",
+      "description": "Optional existing customer identifier."
+    },
+    "firstName": {
+      "type": "string",
+      "description": "Guest first name."
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Guest last name."
+    },
+    "phoneNumber": {
+      "type": "string",
+      "description": "Guest phone number."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Guest email address."
+    },
+    "imageUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "Optional URL of a guest image."
+    },
+    "memberNumber": {
+      "type": "string",
+      "description": "Optional loyalty member number."
+    },
+    "memberTier": {
+      "type": "string",
+      "description": "Optional loyalty member tier."
+    }
+  },
+  "required": [
+    "firstName",
+    "phoneNumber"
+  ]
+}

@@ -1,0 +1,349 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/restaurant-pos-export-order-check-structure.json",
+  "name": "OrderCheck",
+  "description": "A check on an order, holding guests, payments, and surcharges.",
+  "type": "object",
+  "properties": {
+    "gratuityAmount": {
+      "type": "string",
+      "description": "Applied auto-gratuity amount, as a decimal string."
+    },
+    "totalAmount": {
+      "type": "string",
+      "description": "Final check total, as a decimal string."
+    },
+    "paymentsAmount": {
+      "type": "string",
+      "description": "Total payments received, as a decimal string."
+    },
+    "balanceAmount": {
+      "type": "string",
+      "description": "Remaining balance, as a decimal string."
+    },
+    "guests": {
+      "type": "array",
+      "description": "Guests on the check.",
+      "items": {
+        "type": "object",
+        "description": "A guest on an order check.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Guest name if available."
+          },
+          "items": {
+            "type": "array",
+            "description": "Items ordered by the guest.",
+            "items": {
+              "$ref": "#/components/schemas/OrderMenuItem"
+            }
+          },
+          "voidedItems": {
+            "type": "array",
+            "description": "Items voided for the guest.",
+            "items": {
+              "$ref": "#/components/schemas/OrderMenuItem"
+            }
+          }
+        }
+      }
+    },
+    "surcharges": {
+      "type": "array",
+      "description": "Check-level surcharges.",
+      "items": {
+        "type": "object",
+        "description": "A surcharge applied to an order check or payment.",
+        "properties": {
+          "surchargeId": {
+            "type": "string",
+            "description": "Surcharge identifier."
+          },
+          "surchargeName": {
+            "type": "string",
+            "description": "Surcharge name at the time of application."
+          },
+          "createdAt": {
+            "type": "datetime",
+            "description": "RFC 3339 timestamp when the surcharge was applied."
+          },
+          "amount": {
+            "type": "string",
+            "description": "Surcharge amount in US dollars, as a decimal string."
+          },
+          "taxesAmount": {
+            "type": "string",
+            "description": "Applied tax amount, as a decimal string."
+          },
+          "taxes": {
+            "type": "array",
+            "description": "Tax details.",
+            "items": {
+              "$ref": "#/components/schemas/OrderTax"
+            }
+          }
+        }
+      }
+    },
+    "payments": {
+      "type": "array",
+      "description": "Payment records.",
+      "items": {
+        "type": "object",
+        "description": "A payment recorded against an order check.",
+        "properties": {
+          "paymentOptionId": {
+            "type": "string",
+            "description": "Payment method identifier."
+          },
+          "paymentName": {
+            "type": "string",
+            "description": "Payment method name at the time of application."
+          },
+          "createdAt": {
+            "type": "datetime",
+            "description": "RFC 3339 timestamp when the payment was applied."
+          },
+          "amount": {
+            "type": "string",
+            "description": "Payment amount in US dollars, as a decimal string."
+          },
+          "surcharges": {
+            "type": "array",
+            "description": "Payment-level surcharges.",
+            "items": {
+              "$ref": "#/components/schemas/OrderSurcharge"
+            }
+          },
+          "surchargesAmount": {
+            "type": "int64",
+            "description": "Total surcharge amount."
+          },
+          "tipAmount": {
+            "type": "string",
+            "description": "Tip amount in US dollars, as a decimal string."
+          },
+          "tipDeductionAmount": {
+            "type": "string",
+            "description": "Processing fee deduction from the tip, as a decimal string."
+          },
+          "tipAppliedToEmployeeId": {
+            "type": "string",
+            "description": "Identifier of the employee the tip was applied to."
+          },
+          "employeeId": {
+            "type": "string",
+            "description": "Identifier of the employee who processed the payment."
+          },
+          "employeeName": {
+            "type": "string",
+            "description": "Name of the employee who processed the payment."
+          },
+          "cardType": {
+            "type": "string",
+            "description": "The card type used for the payment.",
+            "enum": [
+              "Unknown",
+              "Amex",
+              "Discover",
+              "Manual CC",
+              "Mastercard",
+              "Visa"
+            ]
+          },
+          "cardNumber": {
+            "type": "string",
+            "description": "Last four digits of the card, formatted as \"...XXXX\"."
+          },
+          "cardholderName": {
+            "type": "string",
+            "description": "Cardholder name."
+          }
+        }
+      }
+    },
+    "autoGratuityTaxes": {
+      "type": "array",
+      "description": "Taxes applied to the auto-gratuity.",
+      "items": {
+        "type": "object",
+        "description": "A tax applied to an order line, modifier, or surcharge.",
+        "properties": {
+          "taxId": {
+            "type": "string",
+            "description": "Tax identifier. Empty for splick.it orders."
+          },
+          "taxName": {
+            "type": "string",
+            "description": "Tax name at the time of application."
+          },
+          "percentage": {
+            "type": "string",
+            "description": "Tax percentage as a decimal string, for example \"6.5\"."
+          },
+          "amount": {
+            "type": "string",
+            "description": "Tax amount in US dollars, as a decimal string."
+          }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "description": "Items applied directly to the check, typically empty.",
+      "items": {
+        "type": "object",
+        "description": "A menu item line on an order check or guest.",
+        "properties": {
+          "menuItemId": {
+            "type": "string",
+            "description": "Menu item identifier."
+          },
+          "name": {
+            "type": "string",
+            "description": "Item name at the time the order was placed."
+          },
+          "createdAt": {
+            "type": "datetime",
+            "description": "RFC 3339 timestamp when the item was added."
+          },
+          "quantity": {
+            "type": "string",
+            "description": "Decimal quantity as a string. Subitems show the parent quantity."
+          },
+          "preDiscountsAmount": {
+            "type": "string",
+            "description": "Extended amount before discounts and taxes, as a decimal string."
+          },
+          "discountsAmount": {
+            "type": "string",
+            "description": "Total applied discounts, as a decimal string."
+          },
+          "postDiscountsAmount": {
+            "type": "string",
+            "description": "Amount after discounts and before taxes, as a decimal string."
+          },
+          "taxesAmount": {
+            "type": "string",
+            "description": "Applied taxes, as a decimal string."
+          },
+          "totalAmount": {
+            "type": "string",
+            "description": "Final amount after discounts and taxes, as a decimal string."
+          },
+          "discounts": {
+            "type": "array",
+            "description": "Applied discount details.",
+            "items": {
+              "$ref": "#/components/schemas/OrderDiscount"
+            }
+          },
+          "taxes": {
+            "type": "array",
+            "description": "Applied tax details.",
+            "items": {
+              "$ref": "#/components/schemas/OrderTax"
+            }
+          },
+          "subItems": {
+            "type": "array",
+            "description": "Nested subitems.",
+            "items": {
+              "$ref": "#/components/schemas/OrderMenuItem"
+            }
+          },
+          "giftCardIssueReload": {
+            "type": "boolean",
+            "description": "Whether the line represents a gift card sale or reload."
+          },
+          "modifiers": {
+            "type": "array",
+            "description": "Applied modifiers.",
+            "items": {
+              "$ref": "#/components/schemas/OrderModifier"
+            }
+          }
+        }
+      }
+    },
+    "voidedItems": {
+      "type": "array",
+      "description": "Voided items applied directly to the check.",
+      "items": {
+        "type": "object",
+        "description": "A menu item line on an order check or guest.",
+        "properties": {
+          "menuItemId": {
+            "type": "string",
+            "description": "Menu item identifier."
+          },
+          "name": {
+            "type": "string",
+            "description": "Item name at the time the order was placed."
+          },
+          "createdAt": {
+            "type": "datetime",
+            "description": "RFC 3339 timestamp when the item was added."
+          },
+          "quantity": {
+            "type": "string",
+            "description": "Decimal quantity as a string. Subitems show the parent quantity."
+          },
+          "preDiscountsAmount": {
+            "type": "string",
+            "description": "Extended amount before discounts and taxes, as a decimal string."
+          },
+          "discountsAmount": {
+            "type": "string",
+            "description": "Total applied discounts, as a decimal string."
+          },
+          "postDiscountsAmount": {
+            "type": "string",
+            "description": "Amount after discounts and before taxes, as a decimal string."
+          },
+          "taxesAmount": {
+            "type": "string",
+            "description": "Applied taxes, as a decimal string."
+          },
+          "totalAmount": {
+            "type": "string",
+            "description": "Final amount after discounts and taxes, as a decimal string."
+          },
+          "discounts": {
+            "type": "array",
+            "description": "Applied discount details.",
+            "items": {
+              "$ref": "#/components/schemas/OrderDiscount"
+            }
+          },
+          "taxes": {
+            "type": "array",
+            "description": "Applied tax details.",
+            "items": {
+              "$ref": "#/components/schemas/OrderTax"
+            }
+          },
+          "subItems": {
+            "type": "array",
+            "description": "Nested subitems.",
+            "items": {
+              "$ref": "#/components/schemas/OrderMenuItem"
+            }
+          },
+          "giftCardIssueReload": {
+            "type": "boolean",
+            "description": "Whether the line represents a gift card sale or reload."
+          },
+          "modifiers": {
+            "type": "array",
+            "description": "Applied modifiers.",
+            "items": {
+              "$ref": "#/components/schemas/OrderModifier"
+            }
+          }
+        }
+      }
+    }
+  }
+}

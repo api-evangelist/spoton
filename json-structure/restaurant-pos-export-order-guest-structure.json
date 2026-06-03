@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/restaurant-pos-export-order-guest-structure.json",
+  "name": "OrderGuest",
+  "description": "A guest on an order check.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Guest name if available."
+    },
+    "items": {
+      "type": "array",
+      "description": "Items ordered by the guest.",
+      "items": {
+        "type": "object",
+        "description": "A menu item line on an order check or guest.",
+        "properties": {
+          "menuItemId": {
+            "type": "string",
+            "description": "Menu item identifier."
+          },
+          "name": {
+            "type": "string",
+            "description": "Item name at the time the order was placed."
+          },
+          "createdAt": {
+            "type": "datetime",
+            "description": "RFC 3339 timestamp when the item was added."
+          },
+          "quantity": {
+            "type": "string",
+            "description": "Decimal quantity as a string. Subitems show the parent quantity."
+          },
+          "preDiscountsAmount": {
+            "type": "string",
+            "description": "Extended amount before discounts and taxes, as a decimal string."
+          },
+          "discountsAmount": {
+            "type": "string",
+            "description": "Total applied discounts, as a decimal string."
+          },
+          "postDiscountsAmount": {
+            "type": "string",
+            "description": "Amount after discounts and before taxes, as a decimal string."
+          },
+          "taxesAmount": {
+            "type": "string",
+            "description": "Applied taxes, as a decimal string."
+          },
+          "totalAmount": {
+            "type": "string",
+            "description": "Final amount after discounts and taxes, as a decimal string."
+          },
+          "discounts": {
+            "type": "array",
+            "description": "Applied discount details.",
+            "items": {
+              "$ref": "#/components/schemas/OrderDiscount"
+            }
+          },
+          "taxes": {
+            "type": "array",
+            "description": "Applied tax details.",
+            "items": {
+              "$ref": "#/components/schemas/OrderTax"
+            }
+          },
+          "subItems": {
+            "type": "array",
+            "description": "Nested subitems.",
+            "items": {
+              "$ref": "#/components/schemas/OrderMenuItem"
+            }
+          },
+          "giftCardIssueReload": {
+            "type": "boolean",
+            "description": "Whether the line represents a gift card sale or reload."
+          },
+          "modifiers": {
+            "type": "array",
+            "description": "Applied modifiers.",
+            "items": {
+              "$ref": "#/components/schemas/OrderModifier"
+            }
+          }
+        }
+      }
+    },
+    "voidedItems": {
+      "type": "array",
+      "description": "Items voided for the guest.",
+      "items": {
+        "type": "object",
+        "description": "A menu item line on an order check or guest.",
+        "properties": {
+          "menuItemId": {
+            "type": "string",
+            "description": "Menu item identifier."
+          },
+          "name": {
+            "type": "string",
+            "description": "Item name at the time the order was placed."
+          },
+          "createdAt": {
+            "type": "datetime",
+            "description": "RFC 3339 timestamp when the item was added."
+          },
+          "quantity": {
+            "type": "string",
+            "description": "Decimal quantity as a string. Subitems show the parent quantity."
+          },
+          "preDiscountsAmount": {
+            "type": "string",
+            "description": "Extended amount before discounts and taxes, as a decimal string."
+          },
+          "discountsAmount": {
+            "type": "string",
+            "description": "Total applied discounts, as a decimal string."
+          },
+          "postDiscountsAmount": {
+            "type": "string",
+            "description": "Amount after discounts and before taxes, as a decimal string."
+          },
+          "taxesAmount": {
+            "type": "string",
+            "description": "Applied taxes, as a decimal string."
+          },
+          "totalAmount": {
+            "type": "string",
+            "description": "Final amount after discounts and taxes, as a decimal string."
+          },
+          "discounts": {
+            "type": "array",
+            "description": "Applied discount details.",
+            "items": {
+              "$ref": "#/components/schemas/OrderDiscount"
+            }
+          },
+          "taxes": {
+            "type": "array",
+            "description": "Applied tax details.",
+            "items": {
+              "$ref": "#/components/schemas/OrderTax"
+            }
+          },
+          "subItems": {
+            "type": "array",
+            "description": "Nested subitems.",
+            "items": {
+              "$ref": "#/components/schemas/OrderMenuItem"
+            }
+          },
+          "giftCardIssueReload": {
+            "type": "boolean",
+            "description": "Whether the line represents a gift card sale or reload."
+          },
+          "modifiers": {
+            "type": "array",
+            "description": "Applied modifiers.",
+            "items": {
+              "$ref": "#/components/schemas/OrderModifier"
+            }
+          }
+        }
+      }
+    }
+  }
+}

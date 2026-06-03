@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PaidInOut",
+  "description": "A cash paid in or paid out record at a location.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-schema/restaurant-pos-export-paid-in-out-schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique paid in/out identifier."
+    },
+    "locationId": {
+      "type": "string",
+      "description": "Associated location identifier."
+    },
+    "deleted": {
+      "type": "boolean",
+      "description": "Whether the record is marked as deleted."
+    },
+    "voided": {
+      "type": "boolean",
+      "description": "Whether the record is voided."
+    },
+    "paymentOptionId": {
+      "type": "string",
+      "description": "Associated payment option identifier."
+    },
+    "amount": {
+      "type": "string",
+      "description": "Amount in US dollars, as a decimal string."
+    },
+    "employeeId": {
+      "type": "string",
+      "description": "Identifier of the employee who recorded the entry."
+    },
+    "employeeName": {
+      "type": "string",
+      "description": "Full name of the employee who recorded the entry."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 creation timestamp."
+    },
+    "kind": {
+      "type": "string",
+      "description": "Whether cash was paid in or paid out.",
+      "enum": [
+        "IN",
+        "OUT"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "description": "Predefined reason for the entry."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Operator notes."
+    }
+  }
+}

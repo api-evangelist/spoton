@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OwnerInfo",
+  "description": "Employee ownership details for an order.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-schema/restaurant-pos-export-owner-info-schema.json",
+  "type": "object",
+  "properties": {
+    "employeeId": {
+      "type": "string",
+      "description": "Employee identifier."
+    },
+    "employeeName": {
+      "type": "string",
+      "description": "Employee name."
+    },
+    "jobPositionId": {
+      "type": "string",
+      "description": "Job position identifier held during ownership."
+    }
+  }
+}

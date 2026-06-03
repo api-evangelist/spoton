@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/reserve-wait-time-response-structure.json",
+  "name": "WaitTimeResponse",
+  "description": "The current wait time for a restaurant.",
+  "type": "object",
+  "properties": {
+    "restaurantId": {
+      "type": "int32",
+      "description": "The restaurant the wait time applies to."
+    },
+    "partySize": {
+      "type": "int32",
+      "description": "The party size the wait time applies to, if requested."
+    },
+    "quotedWaitMinutes": {
+      "type": "int32",
+      "description": "The current quoted wait time in minutes."
+    }
+  }
+}

@@ -1,0 +1,484 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "spoton": "https://developers.spoton.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Address": "spoton:Address",
+    "Break": "spoton:Break",
+    "CashDeposit": "spoton:CashDeposit",
+    "Employee": "spoton:Employee",
+    "JobPosition": "spoton:JobPosition",
+    "Location": "spoton:Location",
+    "MenuItemCatalog": "spoton:MenuItemCatalog",
+    "Order": "spoton:Order",
+    "OrderCheck": "spoton:OrderCheck",
+    "OrderDiscount": "spoton:OrderDiscount",
+    "OrderGuest": "spoton:OrderGuest",
+    "OrderMenuItem": "spoton:OrderMenuItem",
+    "OrderModifier": "spoton:OrderModifier",
+    "OrderPayment": "spoton:OrderPayment",
+    "OrderSurcharge": "spoton:OrderSurcharge",
+    "OrderTax": "spoton:OrderTax",
+    "OrderType": "spoton:OrderType",
+    "OwnerInfo": "spoton:OwnerInfo",
+    "PaidInOut": "spoton:PaidInOut",
+    "PaymentOption": "spoton:PaymentOption",
+    "ReportCategory": "spoton:ReportCategory",
+    "TimeClockEntry": "spoton:TimeClockEntry",
+    "street1": {
+      "@id": "spoton:street1",
+      "@type": "xsd:string"
+    },
+    "street2": {
+      "@id": "spoton:street2",
+      "@type": "xsd:string"
+    },
+    "city": {
+      "@id": "spoton:city",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "spoton:state",
+      "@type": "xsd:string"
+    },
+    "zip": {
+      "@id": "spoton:zip",
+      "@type": "xsd:string"
+    },
+    "phone": {
+      "@id": "spoton:phone",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "spoton:id",
+      "@type": "xsd:string"
+    },
+    "startedAt": {
+      "@id": "spoton:startedAt",
+      "@type": "xsd:dateTime"
+    },
+    "endedAt": {
+      "@id": "spoton:endedAt",
+      "@type": "xsd:dateTime"
+    },
+    "kind": {
+      "@id": "spoton:kind",
+      "@type": "xsd:string"
+    },
+    "locationId": {
+      "@id": "spoton:locationId",
+      "@type": "xsd:string"
+    },
+    "deleted": {
+      "@id": "spoton:deleted",
+      "@type": "xsd:boolean"
+    },
+    "amount": {
+      "@id": "spoton:amount",
+      "@type": "xsd:string"
+    },
+    "employeeId": {
+      "@id": "spoton:employeeId",
+      "@type": "xsd:string"
+    },
+    "jobPositionId": {
+      "@id": "spoton:jobPositionId",
+      "@type": "xsd:string"
+    },
+    "recordedAt": {
+      "@id": "spoton:recordedAt",
+      "@type": "xsd:dateTime"
+    },
+    "lastUpdatedByEmployeeId": {
+      "@id": "spoton:lastUpdatedByEmployeeId",
+      "@type": "xsd:string"
+    },
+    "lastUpdatedByJobPositionId": {
+      "@id": "spoton:lastUpdatedByJobPositionId",
+      "@type": "xsd:string"
+    },
+    "lastUpdatedAt": {
+      "@id": "spoton:lastUpdatedAt",
+      "@type": "xsd:dateTime"
+    },
+    "locationID": {
+      "@id": "spoton:locationID",
+      "@type": "xsd:string"
+    },
+    "firstName": {
+      "@id": "spoton:firstName",
+      "@type": "xsd:string"
+    },
+    "lastName": {
+      "@id": "spoton:lastName",
+      "@type": "xsd:string"
+    },
+    "email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "nickName": {
+      "@id": "spoton:nickName",
+      "@type": "xsd:string"
+    },
+    "address": {
+      "@id": "spoton:address",
+      "@type": "@id"
+    },
+    "birthDate": {
+      "@id": "spoton:birthDate",
+      "@type": "xsd:dateTime"
+    },
+    "hireDate": {
+      "@id": "spoton:hireDate",
+      "@type": "xsd:dateTime"
+    },
+    "terminationDate": {
+      "@id": "spoton:terminationDate",
+      "@type": "xsd:dateTime"
+    },
+    "loginCode": {
+      "@id": "spoton:loginCode",
+      "@type": "xsd:string"
+    },
+    "payrollId": {
+      "@id": "spoton:payrollId",
+      "@type": "xsd:string"
+    },
+    "active": {
+      "@id": "spoton:active",
+      "@type": "xsd:boolean"
+    },
+    "posUserId": {
+      "@id": "spoton:posUserId",
+      "@type": "xsd:string"
+    },
+    "excludeFromReporting": {
+      "@id": "spoton:excludeFromReporting",
+      "@type": "xsd:boolean"
+    },
+    "jobPositions": {
+      "@id": "spoton:jobPositions",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "organizationId": {
+      "@id": "spoton:organizationId",
+      "@type": "xsd:string"
+    },
+    "fiscalendofdaytime": {
+      "@id": "spoton:fiscalendofdaytime",
+      "@type": "xsd:integer"
+    },
+    "spotonmerchantid": {
+      "@id": "spoton:spotonmerchantid",
+      "@type": "xsd:string"
+    },
+    "available": {
+      "@id": "spoton:available",
+      "@type": "xsd:boolean"
+    },
+    "openItem": {
+      "@id": "spoton:openItem",
+      "@type": "xsd:boolean"
+    },
+    "reportCategoryId": {
+      "@id": "spoton:reportCategoryId",
+      "@type": "xsd:string"
+    },
+    "standardPriceAmount": {
+      "@id": "spoton:standardPriceAmount",
+      "@type": "xsd:string"
+    },
+    "plu": {
+      "@id": "spoton:plu",
+      "@type": "xsd:string"
+    },
+    "gratuityAmount": {
+      "@id": "spoton:gratuityAmount",
+      "@type": "xsd:string"
+    },
+    "totalAmount": {
+      "@id": "spoton:totalAmount",
+      "@type": "xsd:string"
+    },
+    "paymentsAmount": {
+      "@id": "spoton:paymentsAmount",
+      "@type": "xsd:string"
+    },
+    "balanceAmount": {
+      "@id": "spoton:balanceAmount",
+      "@type": "xsd:string"
+    },
+    "guests": {
+      "@id": "spoton:guests",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "items": {
+      "@id": "spoton:items",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "voidedItems": {
+      "@id": "spoton:voidedItems",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "surcharges": {
+      "@id": "spoton:surcharges",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "surchargeId": {
+      "@id": "spoton:surchargeId",
+      "@type": "xsd:string"
+    },
+    "surchargeName": {
+      "@id": "spoton:surchargeName",
+      "@type": "xsd:string"
+    },
+    "createdAt": {
+      "@id": "spoton:createdAt",
+      "@type": "xsd:dateTime"
+    },
+    "taxesAmount": {
+      "@id": "spoton:taxesAmount",
+      "@type": "xsd:string"
+    },
+    "taxes": {
+      "@id": "spoton:taxes",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "payments": {
+      "@id": "spoton:payments",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "paymentOptionId": {
+      "@id": "spoton:paymentOptionId",
+      "@type": "xsd:string"
+    },
+    "paymentName": {
+      "@id": "spoton:paymentName",
+      "@type": "xsd:string"
+    },
+    "surchargesAmount": {
+      "@id": "spoton:surchargesAmount",
+      "@type": "xsd:integer"
+    },
+    "tipAmount": {
+      "@id": "spoton:tipAmount",
+      "@type": "xsd:string"
+    },
+    "tipDeductionAmount": {
+      "@id": "spoton:tipDeductionAmount",
+      "@type": "xsd:string"
+    },
+    "tipAppliedToEmployeeId": {
+      "@id": "spoton:tipAppliedToEmployeeId",
+      "@type": "xsd:string"
+    },
+    "employeeName": {
+      "@id": "spoton:employeeName",
+      "@type": "xsd:string"
+    },
+    "cardType": {
+      "@id": "spoton:cardType",
+      "@type": "xsd:string"
+    },
+    "cardNumber": {
+      "@id": "spoton:cardNumber",
+      "@type": "xsd:string"
+    },
+    "cardholderName": {
+      "@id": "spoton:cardholderName",
+      "@type": "xsd:string"
+    },
+    "autoGratuityTaxes": {
+      "@id": "spoton:autoGratuityTaxes",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "taxId": {
+      "@id": "spoton:taxId",
+      "@type": "xsd:string"
+    },
+    "taxName": {
+      "@id": "spoton:taxName",
+      "@type": "xsd:string"
+    },
+    "percentage": {
+      "@id": "spoton:percentage",
+      "@type": "xsd:string"
+    },
+    "menuItemId": {
+      "@id": "spoton:menuItemId",
+      "@type": "xsd:string"
+    },
+    "quantity": {
+      "@id": "spoton:quantity",
+      "@type": "xsd:string"
+    },
+    "preDiscountsAmount": {
+      "@id": "spoton:preDiscountsAmount",
+      "@type": "xsd:string"
+    },
+    "discountsAmount": {
+      "@id": "spoton:discountsAmount",
+      "@type": "xsd:string"
+    },
+    "postDiscountsAmount": {
+      "@id": "spoton:postDiscountsAmount",
+      "@type": "xsd:string"
+    },
+    "discounts": {
+      "@id": "spoton:discounts",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "subItems": {
+      "@id": "spoton:subItems",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "giftCardIssueReload": {
+      "@id": "spoton:giftCardIssueReload",
+      "@type": "xsd:boolean"
+    },
+    "modifiers": {
+      "@id": "spoton:modifiers",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "discountId": {
+      "@id": "spoton:discountId",
+      "@type": "xsd:string"
+    },
+    "discountName": {
+      "@id": "spoton:discountName",
+      "@type": "xsd:string"
+    },
+    "modifierId": {
+      "@id": "spoton:modifierId",
+      "@type": "xsd:string"
+    },
+    "modifierOptionId": {
+      "@id": "spoton:modifierOptionId",
+      "@type": "xsd:string"
+    },
+    "text": {
+      "@id": "spoton:text",
+      "@type": "xsd:string"
+    },
+    "orderTypeId": {
+      "@id": "spoton:orderTypeId",
+      "@type": "xsd:string"
+    },
+    "orderTypeName": {
+      "@id": "spoton:orderTypeName",
+      "@type": "xsd:string"
+    },
+    "createdByEmployeeId": {
+      "@id": "spoton:createdByEmployeeId",
+      "@type": "xsd:string"
+    },
+    "createdByEmployeeName": {
+      "@id": "spoton:createdByEmployeeName",
+      "@type": "xsd:string"
+    },
+    "closedAt": {
+      "@id": "spoton:closedAt",
+      "@type": "xsd:dateTime"
+    },
+    "orderNumber": {
+      "@id": "spoton:orderNumber",
+      "@type": "xsd:string"
+    },
+    "tableNumber": {
+      "@id": "spoton:tableNumber",
+      "@type": "xsd:string"
+    },
+    "scheduled": {
+      "@id": "spoton:scheduled",
+      "@type": "xsd:boolean"
+    },
+    "releasedAt": {
+      "@id": "spoton:releasedAt",
+      "@type": "xsd:dateTime"
+    },
+    "ownerInfo": {
+      "@id": "spoton:ownerInfo",
+      "@type": "@id"
+    },
+    "balanceDueAmount": {
+      "@id": "spoton:balanceDueAmount",
+      "@type": "xsd:string"
+    },
+    "checks": {
+      "@id": "spoton:checks",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "updatedAt": {
+      "@id": "spoton:updatedAt",
+      "@type": "xsd:dateTime"
+    },
+    "enabled": {
+      "@id": "spoton:enabled",
+      "@type": "xsd:boolean"
+    },
+    "wtmId": {
+      "@id": "spoton:wtmId",
+      "@type": "xsd:integer"
+    },
+    "voided": {
+      "@id": "spoton:voided",
+      "@type": "xsd:boolean"
+    },
+    "reason": {
+      "@id": "spoton:reason",
+      "@type": "xsd:string"
+    },
+    "notes": {
+      "@id": "spoton:notes",
+      "@type": "xsd:string"
+    },
+    "parentId": {
+      "@id": "spoton:parentId",
+      "@type": "xsd:string"
+    },
+    "payRateAmount": {
+      "@id": "spoton:payRateAmount",
+      "@type": "xsd:string"
+    },
+    "declaredCashTipsAmount": {
+      "@id": "spoton:declaredCashTipsAmount",
+      "@type": "xsd:string"
+    },
+    "declaredCashTipsToOthersAmount": {
+      "@id": "spoton:declaredCashTipsToOthersAmount",
+      "@type": "xsd:string"
+    },
+    "inAt": {
+      "@id": "spoton:inAt",
+      "@type": "xsd:dateTime"
+    },
+    "outAt": {
+      "@id": "spoton:outAt",
+      "@type": "xsd:dateTime"
+    },
+    "breaks": {
+      "@id": "spoton:breaks",
+      "@container": "@set",
+      "@type": "@id"
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "menuItemId": "abc123",
+  "name": "Smoke's Burgers",
+  "createdAt": "2025-03-15T14:30:00Z",
+  "quantity": "example",
+  "preDiscountsAmount": "12.50",
+  "discountsAmount": "12.50",
+  "postDiscountsAmount": "12.50",
+  "taxesAmount": "12.50",
+  "totalAmount": "12.50",
+  "discounts": [
+    {
+      "id": "abc123",
+      "discountId": "abc123",
+      "discountName": "Smoke's Burgers",
+      "createdAt": "2025-03-15T14:30:00Z",
+      "amount": "12.50"
+    }
+  ],
+  "taxes": [
+    {
+      "taxId": "abc123",
+      "taxName": "Smoke's Burgers",
+      "percentage": "8.25",
+      "amount": "12.50"
+    }
+  ],
+  "subItems": [
+    {
+      "menuItemId": "abc123",
+      "name": "Smoke's Burgers",
+      "createdAt": "2025-03-15T14:30:00Z",
+      "quantity": "example",
+      "preDiscountsAmount": "12.50",
+      "discountsAmount": "12.50",
+      "postDiscountsAmount": "12.50",
+      "taxesAmount": "12.50",
+      "totalAmount": "12.50",
+      "discounts": [
+        "example"
+      ],
+      "taxes": [
+        "example"
+      ],
+      "subItems": [
+        "example"
+      ],
+      "giftCardIssueReload": false,
+      "modifiers": [
+        "example"
+      ]
+    }
+  ],
+  "giftCardIssueReload": true,
+  "modifiers": [
+    {
+      "modifierId": "abc123",
+      "modifierOptionId": "abc123",
+      "text": "Extra Cheese",
+      "preDiscountsAmount": "12.50",
+      "discountsAmount": "12.50",
+      "postDiscountsAmount": "12.50",
+      "taxesAmount": "12.50",
+      "totalAmount": "12.50",
+      "discounts": [
+        "example"
+      ],
+      "taxes": [
+        "example"
+      ]
+    }
+  ]
+}

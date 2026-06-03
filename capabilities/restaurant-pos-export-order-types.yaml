@@ -1,0 +1,129 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SpotOn Restaurant POS Export API — Order Types
+  description: 'Order Types surface of the SpotOn Restaurant POS Export API. 2 operations. Lead operation: List Order Types. Self-contained Naftiko capability covering one SpotOn business surface.'
+  tags:
+  - SpotOn
+  - Restaurant
+  - Order Types
+  created: '2026-06-03'
+  modified: '2026-06-03'
+binds:
+- namespace: env
+  keys:
+    SPOTON_API_KEY: SPOTON_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: restaurant-pos-export-order-types
+    baseUri: https://restaurantapi.spoton.com/posexport/v1
+    description: SpotOn Restaurant POS Export API — Order Types business capability. Self-contained, no shared references.
+    authentication:
+      type: apikey
+      key: x-api-key
+      value: '{{env.SPOTON_API_KEY}}'
+      placement: header
+    resources:
+    - name: locations-locationid-order-types
+      path: /locations/{locationId}/order-types
+      operations:
+      - name: listOrderTypes
+        method: GET
+        description: SpotOn List Order Types
+        inputParameters:
+        - name: locationId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier for the location.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: locations-locationid-order-types-ordertypeid
+      path: /locations/{locationId}/order-types/{orderTypeId}
+      operations:
+      - name: getOrderType
+        method: GET
+        description: SpotOn Get Order Type
+        inputParameters:
+        - name: locationId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier for the location.
+        - name: orderTypeId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier for the order type.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: restaurant-pos-export-order-types-rest
+    port: 8080
+    description: REST adapter for SpotOn Restaurant POS Export API — Order Types. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/locations-locationid-order-types
+      name: locations-locationid-order-types
+      description: REST surface for SpotOn List Order Types.
+      operations:
+      - method: GET
+        name: listOrderTypes
+        description: SpotOn List Order Types
+        call: restaurant-pos-export-order-types.listOrderTypes
+        with:
+          locationId: rest.locationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/locations-locationid-order-types-ordertypeid
+      name: locations-locationid-order-types-ordertypeid
+      description: REST surface for SpotOn Get Order Type.
+      operations:
+      - method: GET
+        name: getOrderType
+        description: SpotOn Get Order Type
+        call: restaurant-pos-export-order-types.getOrderType
+        with:
+          locationId: rest.locationId
+          orderTypeId: rest.orderTypeId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: restaurant-pos-export-order-types-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SpotOn Restaurant POS Export API — Order Types. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: list-order-types
+      description: SpotOn List Order Types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-pos-export-order-types.listOrderTypes
+      with:
+        locationId: tools.locationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-order-type
+      description: SpotOn Get Order Type
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-pos-export-order-types.getOrderType
+      with:
+        locationId: tools.locationId
+        orderTypeId: tools.orderTypeId
+      outputParameters:
+      - type: object
+        mapping: $.

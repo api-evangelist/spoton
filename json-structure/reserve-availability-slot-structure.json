@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/reserve-availability-slot-structure.json",
+  "name": "AvailabilitySlot",
+  "description": "An available reservation time slot.",
+  "type": "object",
+  "properties": {
+    "time": {
+      "type": "datetime",
+      "description": "The available reservation date and time, in RFC 3339 format."
+    },
+    "available": {
+      "type": "boolean",
+      "description": "Whether the slot is available for booking."
+    }
+  }
+}

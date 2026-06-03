@@ -1,0 +1,8 @@
+{
+  "id": "abc123",
+  "organizationId": "abc123",
+  "name": "Smoke's Burgers",
+  "deleted": true,
+  "fiscalendofdaytime": 10800000,
+  "spotonmerchantid": "abc123"
+}

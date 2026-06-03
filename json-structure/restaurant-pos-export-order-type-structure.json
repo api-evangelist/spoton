@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/restaurant-pos-export-order-type-structure.json",
+  "name": "OrderType",
+  "description": "An order type configured at a location, such as Dine In or Takeout.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique order type identifier."
+    },
+    "locationId": {
+      "type": "string",
+      "description": "Unique location identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Order type name."
+    },
+    "deleted": {
+      "type": "boolean",
+      "description": "Whether the order type is marked as deleted."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the order type is enabled at the location."
+    },
+    "wtmId": {
+      "type": "int64",
+      "description": "Organization-level unique identifier for the order type."
+    }
+  }
+}

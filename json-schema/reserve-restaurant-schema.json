@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Restaurant",
+  "description": "A restaurant accessible with the API key.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-schema/reserve-restaurant-schema.json",
+  "type": "object",
+  "properties": {
+    "restaurantId": {
+      "type": "integer",
+      "format": "int32",
+      "description": "The unique identifier for the restaurant."
+    },
+    "name": {
+      "type": "string",
+      "description": "The restaurant name."
+    },
+    "timeZone": {
+      "type": "string",
+      "description": "The IANA time zone of the restaurant."
+    }
+  }
+}

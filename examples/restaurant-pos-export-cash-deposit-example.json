@@ -1,0 +1,12 @@
+{
+  "id": "abc123",
+  "locationId": "abc123",
+  "deleted": false,
+  "amount": "12.50",
+  "employeeId": "abc123",
+  "jobPositionId": "abc123",
+  "recordedAt": "2025-03-15T14:30:00Z",
+  "lastUpdatedByEmployeeId": "abc123",
+  "lastUpdatedByJobPositionId": "abc123",
+  "lastUpdatedAt": "2025-03-15T14:30:00Z"
+}

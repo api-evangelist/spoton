@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/restaurant-pos-export-address-structure.json",
+  "name": "Address",
+  "description": "A mailing address for an employee.",
+  "type": "object",
+  "properties": {
+    "street1": {
+      "type": "string",
+      "description": "First line of the street address."
+    },
+    "street2": {
+      "type": "string",
+      "description": "Second line of the street address."
+    },
+    "city": {
+      "type": "string",
+      "description": "City."
+    },
+    "state": {
+      "type": "string",
+      "description": "State or province."
+    },
+    "zip": {
+      "type": "string",
+      "description": "Postal code."
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number."
+    }
+  }
+}

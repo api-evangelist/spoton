@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/reserve-reservation-structure.json",
+  "name": "Reservation",
+  "description": "A created reservation.",
+  "type": "object",
+  "properties": {
+    "reservationId": {
+      "type": "string",
+      "description": "The unique identifier for the reservation."
+    },
+    "restaurantId": {
+      "type": "int32",
+      "description": "The restaurant the reservation belongs to."
+    },
+    "customerInformation": {
+      "type": "object",
+      "description": "Guest contact and identity details for a reservation or waitlist entry.",
+      "properties": {
+        "customerId": {
+          "type": "string",
+          "description": "Optional existing customer identifier."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "Guest first name."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Guest last name."
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "Guest phone number."
+        },
+        "email": {
+          "type": "string",
+          "description": "Guest email address."
+        },
+        "imageUrl": {
+          "type": "uri",
+          "description": "Optional URL of a guest image."
+        },
+        "memberNumber": {
+          "type": "string",
+          "description": "Optional loyalty member number."
+        },
+        "memberTier": {
+          "type": "string",
+          "description": "Optional loyalty member tier."
+        }
+      },
+      "required": [
+        "firstName",
+        "phoneNumber"
+      ]
+    },
+    "time": {
+      "type": "datetime",
+      "description": "The reserved date and time, in RFC 3339 format."
+    },
+    "partySize": {
+      "type": "int32",
+      "description": "The number of guests in the party."
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the reservation.",
+      "enum": [
+        "booked",
+        "confirmed",
+        "checked_in",
+        "cancelled"
+      ]
+    },
+    "notes": {
+      "type": "string",
+      "description": "Notes attached to the reservation."
+    }
+  }
+}

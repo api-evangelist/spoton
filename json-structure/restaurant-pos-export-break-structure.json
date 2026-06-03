@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/json-structure/restaurant-pos-export-break-structure.json",
+  "name": "Break",
+  "description": "A break taken during a time clock shift.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique break identifier."
+    },
+    "startedAt": {
+      "type": "datetime",
+      "description": "RFC 3339 timestamp when the break started."
+    },
+    "endedAt": {
+      "type": "datetime",
+      "description": "RFC 3339 timestamp when the break ended. May be null if the break is ongoing."
+    },
+    "kind": {
+      "type": "string",
+      "description": "Whether the break is paid or unpaid.",
+      "enum": [
+        "PAID",
+        "UNPAID"
+      ]
+    }
+  }
+}
