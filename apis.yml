@@ -134,49 +134,49 @@ apis:
         url: json-structure/restaurant-pos-export-report-category-structure.json
       - type: JSONStructure
         url: json-structure/restaurant-pos-export-time-clock-entry-structure.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-address-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-break-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-cash-deposit-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-employee-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-job-position-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-location-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-menu-item-catalog-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-order-check-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-order-discount-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-order-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-order-guest-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-order-menu-item-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-order-modifier-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-order-payment-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-order-surcharge-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-order-tax-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-order-type-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-owner-info-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-paid-in-out-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-payment-option-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-report-category-example.json
-      - type: Example
+      - type: Examples
         url: examples/restaurant-pos-export-time-clock-entry-example.json
       - type: JSONLD
         url: json-ld/spoton-restaurant-pos-export-context.jsonld
@@ -198,7 +198,7 @@ apis:
         url: https://developers.spoton.com/reserve/docs/getting-started
       - type: GettingStarted
         url: https://developers.spoton.com/reserve/docs/getting-started
-      - type: SDK
+      - type: SDKs
         url: https://developers.spoton.com/reserve/docs/javascript
         title: JavaScript SDK
       - type: OpenAPI
@@ -239,23 +239,23 @@ apis:
         url: json-structure/reserve-waitlist-entry-structure.json
       - type: JSONStructure
         url: json-structure/reserve-waitlist-request-structure.json
-      - type: Example
+      - type: Examples
         url: examples/reserve-availability-response-example.json
-      - type: Example
+      - type: Examples
         url: examples/reserve-availability-slot-example.json
-      - type: Example
+      - type: Examples
         url: examples/reserve-customer-information-example.json
-      - type: Example
+      - type: Examples
         url: examples/reserve-reservation-example.json
-      - type: Example
+      - type: Examples
         url: examples/reserve-reservation-request-example.json
-      - type: Example
+      - type: Examples
         url: examples/reserve-restaurant-example.json
-      - type: Example
+      - type: Examples
         url: examples/reserve-wait-time-response-example.json
-      - type: Example
+      - type: Examples
         url: examples/reserve-waitlist-entry-example.json
-      - type: Example
+      - type: Examples
         url: examples/reserve-waitlist-request-example.json
       - type: JSONLD
         url: json-ld/spoton-reserve-context.jsonld
