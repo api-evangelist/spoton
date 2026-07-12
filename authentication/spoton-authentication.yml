@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/spoton-reserve-openapi-original.yml, openapi/spoton-restaurant-pos-export-openapi-original.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  description: API key scoped to specific restaurants.
+  sources:
+  - openapi/spoton-reserve-openapi-original.yml
+  - openapi/spoton-restaurant-pos-export-openapi-original.yml

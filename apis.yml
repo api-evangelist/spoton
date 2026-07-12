@@ -260,6 +260,12 @@ apis:
       - type: JSONLD
         url: json-ld/spoton-reserve-context.jsonld
 common:
+  - type: TrustCenter
+    url: security/spoton-trust-center.yml
+  - type: DomainSecurity
+    url: security/spoton-domain-security.yml
+  - type: Authentication
+    url: authentication/spoton-authentication.yml
   - type: Website
     url: https://www.spoton.com
   - type: Documentation
@@ -288,6 +294,8 @@ common:
     url: rate-limits/spoton-rate-limits.yml
   - type: FinOps
     url: finops/spoton-finops.yml
+  - url: https://www.spoton.com/blog/rss/
+    type: Blog
   - type: Features
     data:
       - name: Restaurant POS
