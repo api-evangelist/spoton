@@ -260,6 +260,8 @@ apis:
       - type: JSONLD
         url: json-ld/spoton-reserve-context.jsonld
 common:
+  - type: AgenticAccess
+    url: agentic-access/spoton-agentic-access.yml
   - type: TrustCenter
     url: security/spoton-trust-center.yml
   - type: DomainSecurity
