@@ -1,0 +1,141 @@
+openapi: 3.0.3
+info:
+  title: SpotOn Reserve Availability Locations API
+  description: The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.
+  version: v2
+  contact:
+    name: SpotOn Reserve Developer Center
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  x-generated-from: documentation
+  x-last-validated: '2026-06-03'
+servers:
+- url: https://api.seatninja.com
+  description: Production
+- url: https://sandbox.seatninja.com
+  description: Sandbox
+security:
+- apiKeyAuth: []
+tags:
+- name: Locations
+  description: Location details for the SpotOn POS organization.
+paths:
+  /locations/{locationId}:
+    get:
+      operationId: getLocation
+      summary: SpotOn Get Location
+      description: Retrieve the details for a single location by its unique identifier.
+      tags:
+      - Locations
+      parameters:
+      - $ref: '#/components/parameters/LocationId'
+      responses:
+        '200':
+          description: The requested location.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+              examples:
+                GetLocation200Example:
+                  summary: Default getLocation 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    organizationId: abc123
+                    name: Smoke's Burgers
+                    deleted: false
+                    fiscalendofdaytime: 10800000
+                    spotonmerchantid: abc123
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    Forbidden:
+      description: The API key does not have access to the requested location.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Location:
+      type: object
+      description: A SpotOn POS location.
+      properties:
+        id:
+          type: string
+          description: Unique location identifier.
+          example: abc123
+        organizationId:
+          type: string
+          description: Unique organization identifier shared across all locations in the organization.
+          example: abc123
+        name:
+          type: string
+          description: Location name.
+          example: Smoke's Burgers
+        deleted:
+          type: boolean
+          description: Whether the location is marked as deleted.
+          example: false
+        fiscalendofdaytime:
+          type: integer
+          format: int64
+          description: Fiscal end-of-day time, in milliseconds from the start of the day.
+          example: 10800000
+        spotonmerchantid:
+          type: string
+          description: The SpotOn merchant identifier for the location.
+          example: abc123
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
+  parameters:
+    LocationId:
+      name: locationId
+      in: path
+      required: true
+      description: The unique identifier for the location.
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key scoped to specific restaurants.

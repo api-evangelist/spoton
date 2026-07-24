@@ -1,0 +1,306 @@
+openapi: 3.0.3
+info:
+  title: SpotOn Reserve Availability Time Clock Entries API
+  description: The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.
+  version: v2
+  contact:
+    name: SpotOn Reserve Developer Center
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  x-generated-from: documentation
+  x-last-validated: '2026-06-03'
+servers:
+- url: https://api.seatninja.com
+  description: Production
+- url: https://sandbox.seatninja.com
+  description: Sandbox
+security:
+- apiKeyAuth: []
+tags:
+- name: Time Clock Entries
+  description: Employee shift clock-in and clock-out records.
+paths:
+  /locations/{locationId}/time-clock-entries:
+    get:
+      operationId: listTimeClockEntries
+      summary: SpotOn List Time Clock Entries
+      description: Retrieve all time clock entries for a location within a specified date/time range, filtered by update time, clock-in time, or clock-out time.
+      tags:
+      - Time Clock Entries
+      parameters:
+      - $ref: '#/components/parameters/LocationId'
+      - name: updatedAtStart
+        in: query
+        description: Inclusive RFC 3339 start of the update range.
+        schema:
+          type: string
+          format: date-time
+      - name: updatedAtEnd
+        in: query
+        description: Exclusive RFC 3339 end of the update range.
+        schema:
+          type: string
+          format: date-time
+      - name: inStart
+        in: query
+        description: Inclusive RFC 3339 start for shift clock-in times.
+        schema:
+          type: string
+          format: date-time
+      - name: inEnd
+        in: query
+        description: Exclusive RFC 3339 end for shift clock-in times.
+        schema:
+          type: string
+          format: date-time
+      - name: outStart
+        in: query
+        description: Inclusive RFC 3339 start for shift clock-out times.
+        schema:
+          type: string
+          format: date-time
+      - name: outEnd
+        in: query
+        description: Exclusive RFC 3339 end for shift clock-out times.
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: A list of time clock entries for the location.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TimeClockEntry'
+              examples:
+                ListTimeClockEntries200Example:
+                  summary: Default listTimeClockEntries 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    locationId: abc123
+                    deleted: false
+                    voided: false
+                    employeeId: abc123
+                    jobPositionId: abc123
+                    payRateAmount: '12.50'
+                    declaredCashTipsAmount: '12.50'
+                    declaredCashTipsToOthersAmount: '12.50'
+                    inAt: '2025-03-15T14:30:00Z'
+                    outAt: '2025-03-15T14:30:00Z'
+                    breaks:
+                    - {}
+                    lastUpdatedAt: '2025-03-15T14:30:00Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /locations/{locationId}/time-clock-entries/{timeClockEntryId}:
+    get:
+      operationId: getTimeClockEntry
+      summary: SpotOn Get Time Clock Entry
+      description: Retrieve a single time clock entry by its unique identifier for a location.
+      tags:
+      - Time Clock Entries
+      parameters:
+      - $ref: '#/components/parameters/LocationId'
+      - name: timeClockEntryId
+        in: path
+        required: true
+        description: The unique identifier for the time clock entry.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The requested time clock entry.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeClockEntry'
+              examples:
+                GetTimeClockEntry200Example:
+                  summary: Default getTimeClockEntry 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    locationId: abc123
+                    deleted: false
+                    voided: false
+                    employeeId: abc123
+                    jobPositionId: abc123
+                    payRateAmount: '12.50'
+                    declaredCashTipsAmount: '12.50'
+                    declaredCashTipsToOthersAmount: '12.50'
+                    inAt: '2025-03-15T14:30:00Z'
+                    outAt: '2025-03-15T14:30:00Z'
+                    breaks:
+                    - id: example
+                      startedAt: example
+                      endedAt: example
+                      kind: example
+                    lastUpdatedAt: '2025-03-15T14:30:00Z'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Break:
+      type: object
+      description: A break taken during a time clock shift.
+      properties:
+        id:
+          type: string
+          description: Unique break identifier.
+          example: abc123
+        startedAt:
+          type: string
+          format: date-time
+          description: RFC 3339 timestamp when the break started.
+          example: '2025-03-15T14:30:00Z'
+        endedAt:
+          type: string
+          format: date-time
+          description: RFC 3339 timestamp when the break ended. May be null if the break is ongoing.
+          nullable: true
+          example: '2025-03-15T14:30:00Z'
+        kind:
+          type: string
+          description: Whether the break is paid or unpaid.
+          enum:
+          - PAID
+          - UNPAID
+          example: PAID
+    TimeClockEntry:
+      type: object
+      description: An employee shift clock-in and clock-out record.
+      properties:
+        id:
+          type: string
+          description: Unique time clock entry identifier.
+          example: abc123
+        locationId:
+          type: string
+          description: Associated location identifier.
+          example: abc123
+        deleted:
+          type: boolean
+          description: Whether the entry is marked as deleted.
+          example: false
+        voided:
+          type: boolean
+          description: Whether the entry is voided.
+          example: false
+        employeeId:
+          type: string
+          description: Associated employee identifier.
+          example: abc123
+        jobPositionId:
+          type: string
+          description: Associated job position identifier.
+          example: abc123
+        payRateAmount:
+          type: string
+          description: Hourly pay rate in US dollars, as a decimal string.
+          example: '12.50'
+        declaredCashTipsAmount:
+          type: string
+          description: Declared cash tips collected, as a decimal string.
+          example: '12.50'
+        declaredCashTipsToOthersAmount:
+          type: string
+          description: Declared cash tips given to others, as a decimal string.
+          example: '12.50'
+        inAt:
+          type: string
+          format: date-time
+          description: RFC 3339 shift start (clock-in) time.
+          example: '2025-03-15T14:30:00Z'
+        outAt:
+          type: string
+          format: date-time
+          description: RFC 3339 shift end (clock-out) time. May be null if the shift is open.
+          nullable: true
+          example: '2025-03-15T14:30:00Z'
+        breaks:
+          type: array
+          description: Break records taken during the shift.
+          items:
+            $ref: '#/components/schemas/Break'
+        lastUpdatedAt:
+          type: string
+          format: date-time
+          description: RFC 3339 timestamp of the last update.
+          example: '2025-03-15T14:30:00Z'
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
+  responses:
+    Forbidden:
+      description: The API key does not have access to the requested location.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or violated a documented constraint such as the date range limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    LocationId:
+      name: locationId
+      in: path
+      required: true
+      description: The unique identifier for the location.
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key scoped to specific restaurants.

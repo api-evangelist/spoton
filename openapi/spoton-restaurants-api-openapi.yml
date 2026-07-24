@@ -1,0 +1,110 @@
+openapi: 3.0.3
+info:
+  title: SpotOn Reserve Availability Restaurants API
+  description: The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.
+  version: v2
+  contact:
+    name: SpotOn Reserve Developer Center
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  x-generated-from: documentation
+  x-last-validated: '2026-06-03'
+servers:
+- url: https://api.seatninja.com
+  description: Production
+- url: https://sandbox.seatninja.com
+  description: Sandbox
+security:
+- apiKeyAuth: []
+tags:
+- name: Restaurants
+  description: Restaurants accessible with the API key.
+paths:
+  /restaurants:
+    get:
+      operationId: listRestaurants
+      summary: SpotOn List Restaurants
+      description: List the restaurants accessible with the supplied API key.
+      tags:
+      - Restaurants
+      responses:
+        '200':
+          description: A list of accessible restaurants.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Restaurant'
+              examples:
+                ListRestaurants200Example:
+                  summary: Default listRestaurants 200 response
+                  x-microcks-default: true
+                  value:
+                  - restaurantId: 152
+                    name: Smoke's Burgers
+                    timeZone: America/Detroit
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    Forbidden:
+      description: The API key does not have access to the requested restaurant.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Restaurant:
+      type: object
+      description: A restaurant accessible with the API key.
+      properties:
+        restaurantId:
+          type: integer
+          format: int32
+          description: The unique identifier for the restaurant.
+          example: 152
+        name:
+          type: string
+          description: The restaurant name.
+          example: Smoke's Burgers
+        timeZone:
+          type: string
+          description: The IANA time zone of the restaurant.
+          example: America/Detroit
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key scoped to specific restaurants.

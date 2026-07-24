@@ -1,0 +1,244 @@
+openapi: 3.0.3
+info:
+  title: SpotOn Reserve Availability Paid In Outs API
+  description: The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.
+  version: v2
+  contact:
+    name: SpotOn Reserve Developer Center
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  x-generated-from: documentation
+  x-last-validated: '2026-06-03'
+servers:
+- url: https://api.seatninja.com
+  description: Production
+- url: https://sandbox.seatninja.com
+  description: Sandbox
+security:
+- apiKeyAuth: []
+tags:
+- name: Paid In Outs
+  description: Cash paid in and paid out records for a location.
+paths:
+  /locations/{locationId}/paid-in-outs:
+    get:
+      operationId: listPaidInOuts
+      summary: SpotOn List Paid in Outs
+      description: Retrieve all paid in/out records created within a specified date range for a location. A single date range cannot exceed 7 days.
+      tags:
+      - Paid In Outs
+      parameters:
+      - $ref: '#/components/parameters/LocationId'
+      - name: createdAtStart
+        in: query
+        description: Inclusive RFC 3339 start of the creation range. Max 7-day range.
+        schema:
+          type: string
+          format: date-time
+      - name: createdAtEnd
+        in: query
+        description: Exclusive RFC 3339 end of the creation range. Must be at least 5 minutes in the past.
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: A list of paid in/out records for the location.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaidInOut'
+              examples:
+                ListPaidInOuts200Example:
+                  summary: Default listPaidInOuts 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    locationId: abc123
+                    deleted: false
+                    voided: false
+                    paymentOptionId: abc123
+                    amount: '12.50'
+                    employeeId: abc123
+                    employeeName: Smoke's Burgers
+                    createdAt: '2025-03-15T14:30:00Z'
+                    kind: IN
+                    reason: Cash Low
+                    notes: Operator note
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /locations/{locationId}/paid-in-outs/{paidInOutId}:
+    get:
+      operationId: getPaidInOut
+      summary: SpotOn Get Paid in Out
+      description: Retrieve a single paid in/out record by its unique identifier for a location.
+      tags:
+      - Paid In Outs
+      parameters:
+      - $ref: '#/components/parameters/LocationId'
+      - name: paidInOutId
+        in: path
+        required: true
+        description: The unique identifier for the paid in/out record.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The requested paid in/out record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaidInOut'
+              examples:
+                GetPaidInOut200Example:
+                  summary: Default getPaidInOut 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    locationId: abc123
+                    deleted: false
+                    voided: false
+                    paymentOptionId: abc123
+                    amount: '12.50'
+                    employeeId: abc123
+                    employeeName: Smoke's Burgers
+                    createdAt: '2025-03-15T14:30:00Z'
+                    kind: IN
+                    reason: Cash Low
+                    notes: Operator note
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    Forbidden:
+      description: The API key does not have access to the requested location.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or violated a documented constraint such as the date range limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    PaidInOut:
+      type: object
+      description: A cash paid in or paid out record at a location.
+      properties:
+        id:
+          type: string
+          description: Unique paid in/out identifier.
+          example: abc123
+        locationId:
+          type: string
+          description: Associated location identifier.
+          example: abc123
+        deleted:
+          type: boolean
+          description: Whether the record is marked as deleted.
+          example: false
+        voided:
+          type: boolean
+          description: Whether the record is voided.
+          example: false
+        paymentOptionId:
+          type: string
+          description: Associated payment option identifier.
+          example: abc123
+        amount:
+          type: string
+          description: Amount in US dollars, as a decimal string.
+          example: '12.50'
+        employeeId:
+          type: string
+          description: Identifier of the employee who recorded the entry.
+          example: abc123
+        employeeName:
+          type: string
+          description: Full name of the employee who recorded the entry.
+          example: Smoke's Burgers
+        createdAt:
+          type: string
+          format: date-time
+          description: RFC 3339 creation timestamp.
+          example: '2025-03-15T14:30:00Z'
+        kind:
+          type: string
+          description: Whether cash was paid in or paid out.
+          enum:
+          - IN
+          - OUT
+          example: IN
+        reason:
+          type: string
+          description: Predefined reason for the entry.
+          example: Cash Low
+        notes:
+          type: string
+          description: Operator notes.
+          example: Operator note
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
+  parameters:
+    LocationId:
+      name: locationId
+      in: path
+      required: true
+      description: The unique identifier for the location.
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key scoped to specific restaurants.

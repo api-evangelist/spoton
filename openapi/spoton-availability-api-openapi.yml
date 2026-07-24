@@ -1,0 +1,237 @@
+openapi: 3.0.3
+info:
+  title: SpotOn Reserve Availability API
+  description: The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.
+  version: v2
+  contact:
+    name: SpotOn Reserve Developer Center
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  x-generated-from: documentation
+  x-last-validated: '2026-06-03'
+servers:
+- url: https://api.seatninja.com
+  description: Production
+- url: https://sandbox.seatninja.com
+  description: Sandbox
+security:
+- apiKeyAuth: []
+tags:
+- name: Availability
+  description: Available reservation times and wait-time lookups.
+paths:
+  /v2/reservations/{restaurantId}/availability:
+    get:
+      operationId: getAvailableReservationTimes
+      summary: SpotOn Get Available Reservation Times
+      description: Retrieve the open reservation time slots for a restaurant filtered by date and party size.
+      tags:
+      - Availability
+      parameters:
+      - $ref: '#/components/parameters/RestaurantId'
+      - name: date
+        in: query
+        required: true
+        description: The date to check availability for, in YYYY-MM-DD format.
+        schema:
+          type: string
+          format: date
+      - name: partySize
+        in: query
+        required: true
+        description: The number of guests in the party.
+        schema:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 99
+      responses:
+        '200':
+          description: Available reservation time slots.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailabilityResponse'
+              examples:
+                GetAvailableReservationTimes200Example:
+                  summary: Default getAvailableReservationTimes 200 response
+                  x-microcks-default: true
+                  value:
+                    restaurantId: 152
+                    date: '2025-03-15'
+                    partySize: 4
+                    slots:
+                    - time: example
+                      available: example
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/reservations/{restaurantId}/wait-time:
+    get:
+      operationId: getWaitTime
+      summary: SpotOn Get Wait Time
+      description: Retrieve the current wait time for a restaurant.
+      tags:
+      - Availability
+      parameters:
+      - $ref: '#/components/parameters/RestaurantId'
+      - name: partySize
+        in: query
+        required: false
+        description: Optional party size to retrieve a size-specific wait time.
+        schema:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 99
+      responses:
+        '200':
+          description: The current wait time.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WaitTimeResponse'
+              examples:
+                GetWaitTime200Example:
+                  summary: Default getWaitTime 200 response
+                  x-microcks-default: true
+                  value:
+                    restaurantId: 152
+                    partySize: 4
+                    quotedWaitMinutes: 15
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    Forbidden:
+      description: The API key does not have access to the requested restaurant.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or violated a documented constraint.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    WaitTimeResponse:
+      type: object
+      description: The current wait time for a restaurant.
+      properties:
+        restaurantId:
+          type: integer
+          format: int32
+          description: The restaurant the wait time applies to.
+          example: 152
+        partySize:
+          type: integer
+          format: int32
+          description: The party size the wait time applies to, if requested.
+          example: 4
+        quotedWaitMinutes:
+          type: integer
+          format: int32
+          description: The current quoted wait time in minutes.
+          example: 15
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
+    AvailabilityResponse:
+      type: object
+      description: The set of available reservation time slots for a date and party size.
+      properties:
+        restaurantId:
+          type: integer
+          format: int32
+          description: The restaurant the availability applies to.
+          example: 152
+        date:
+          type: string
+          format: date
+          description: The date the availability applies to.
+          example: '2025-03-15'
+        partySize:
+          type: integer
+          format: int32
+          description: The party size the availability applies to.
+          example: 4
+        slots:
+          type: array
+          description: The available time slots.
+          items:
+            $ref: '#/components/schemas/AvailabilitySlot'
+    AvailabilitySlot:
+      type: object
+      description: An available reservation time slot.
+      properties:
+        time:
+          type: string
+          format: date-time
+          description: The available reservation date and time, in RFC 3339 format.
+          example: '2025-03-15T14:30:00Z'
+        available:
+          type: boolean
+          description: Whether the slot is available for booking.
+          example: false
+  parameters:
+    RestaurantId:
+      name: restaurantId
+      in: path
+      required: true
+      description: The unique identifier for the restaurant.
+      schema:
+        type: integer
+        format: int32
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key scoped to specific restaurants.

@@ -1,0 +1,230 @@
+openapi: 3.0.3
+info:
+  title: SpotOn Reserve Availability Cash Deposits API
+  description: The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.
+  version: v2
+  contact:
+    name: SpotOn Reserve Developer Center
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  x-generated-from: documentation
+  x-last-validated: '2026-06-03'
+servers:
+- url: https://api.seatninja.com
+  description: Production
+- url: https://sandbox.seatninja.com
+  description: Sandbox
+security:
+- apiKeyAuth: []
+tags:
+- name: Cash Deposits
+  description: Cash deposit records recorded at a location.
+paths:
+  /locations/{locationId}/cash-deposits:
+    get:
+      operationId: listCashDeposits
+      summary: SpotOn List Cash Deposits
+      description: Retrieve all cash deposits updated within a specified date range for a location.
+      tags:
+      - Cash Deposits
+      parameters:
+      - $ref: '#/components/parameters/LocationId'
+      - name: updatedAtStart
+        in: query
+        description: Inclusive RFC 3339 start of the update range.
+        schema:
+          type: string
+          format: date-time
+      - name: updatedAtEnd
+        in: query
+        description: Exclusive RFC 3339 end of the update range.
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: A list of cash deposit records for the location.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CashDeposit'
+              examples:
+                ListCashDeposits200Example:
+                  summary: Default listCashDeposits 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    locationId: abc123
+                    deleted: false
+                    amount: '12.50'
+                    employeeId: abc123
+                    jobPositionId: abc123
+                    recordedAt: '2025-03-15T14:30:00Z'
+                    lastUpdatedByEmployeeId: abc123
+                    lastUpdatedByJobPositionId: abc123
+                    lastUpdatedAt: '2025-03-15T14:30:00Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /locations/{locationId}/cash-deposits/{cashDepositId}:
+    get:
+      operationId: getCashDeposit
+      summary: SpotOn Get Cash Deposit
+      description: Retrieve a single cash deposit by its unique identifier for a location.
+      tags:
+      - Cash Deposits
+      parameters:
+      - $ref: '#/components/parameters/LocationId'
+      - name: cashDepositId
+        in: path
+        required: true
+        description: The unique identifier for the cash deposit.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The requested cash deposit.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CashDeposit'
+              examples:
+                GetCashDeposit200Example:
+                  summary: Default getCashDeposit 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    locationId: abc123
+                    deleted: false
+                    amount: '12.50'
+                    employeeId: abc123
+                    jobPositionId: abc123
+                    recordedAt: '2025-03-15T14:30:00Z'
+                    lastUpdatedByEmployeeId: abc123
+                    lastUpdatedByJobPositionId: abc123
+                    lastUpdatedAt: '2025-03-15T14:30:00Z'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    CashDeposit:
+      type: object
+      description: A cash deposit recorded at a location.
+      properties:
+        id:
+          type: string
+          description: Unique cash deposit identifier.
+          example: abc123
+        locationId:
+          type: string
+          description: Associated location identifier.
+          example: abc123
+        deleted:
+          type: boolean
+          description: Whether the deposit is marked as deleted.
+          example: false
+        amount:
+          type: string
+          description: Deposit amount in US dollars, as a decimal string.
+          example: '12.50'
+        employeeId:
+          type: string
+          description: Identifier of the employee who recorded the deposit.
+          example: abc123
+        jobPositionId:
+          type: string
+          description: Job position of the employee during recording.
+          example: abc123
+        recordedAt:
+          type: string
+          format: date-time
+          description: RFC 3339 timestamp when the deposit was recorded.
+          example: '2025-03-15T14:30:00Z'
+        lastUpdatedByEmployeeId:
+          type: string
+          description: Identifier of the employee who last updated the deposit.
+          example: abc123
+        lastUpdatedByJobPositionId:
+          type: string
+          description: Job position of the employee during the last update.
+          example: abc123
+        lastUpdatedAt:
+          type: string
+          format: date-time
+          description: RFC 3339 timestamp of the last update.
+          example: '2025-03-15T14:30:00Z'
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
+  responses:
+    Forbidden:
+      description: The API key does not have access to the requested location.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or violated a documented constraint such as the date range limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    LocationId:
+      name: locationId
+      in: path
+      required: true
+      description: The unique identifier for the location.
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key scoped to specific restaurants.

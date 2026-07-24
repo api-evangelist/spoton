@@ -1,0 +1,185 @@
+openapi: 3.0.3
+info:
+  title: SpotOn Reserve Availability Order Types API
+  description: The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.
+  version: v2
+  contact:
+    name: SpotOn Reserve Developer Center
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  x-generated-from: documentation
+  x-last-validated: '2026-06-03'
+servers:
+- url: https://api.seatninja.com
+  description: Production
+- url: https://sandbox.seatninja.com
+  description: Sandbox
+security:
+- apiKeyAuth: []
+tags:
+- name: Order Types
+  description: Order type definitions for a location, such as Dine In or Takeout.
+paths:
+  /locations/{locationId}/order-types:
+    get:
+      operationId: listOrderTypes
+      summary: SpotOn List Order Types
+      description: Retrieve all order types configured for a location.
+      tags:
+      - Order Types
+      parameters:
+      - $ref: '#/components/parameters/LocationId'
+      responses:
+        '200':
+          description: A list of order types for the location.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderType'
+              examples:
+                ListOrderTypes200Example:
+                  summary: Default listOrderTypes 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    locationId: abc123
+                    name: Smoke's Burgers
+                    deleted: false
+                    enabled: false
+                    wtmId: 6543
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /locations/{locationId}/order-types/{orderTypeId}:
+    get:
+      operationId: getOrderType
+      summary: SpotOn Get Order Type
+      description: Retrieve a single order type by its unique identifier for a location.
+      tags:
+      - Order Types
+      parameters:
+      - $ref: '#/components/parameters/LocationId'
+      - name: orderTypeId
+        in: path
+        required: true
+        description: The unique identifier for the order type.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The requested order type.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderType'
+              examples:
+                GetOrderType200Example:
+                  summary: Default getOrderType 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    locationId: abc123
+                    name: Smoke's Burgers
+                    deleted: false
+                    enabled: false
+                    wtmId: 6543
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    Forbidden:
+      description: The API key does not have access to the requested location.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    OrderType:
+      type: object
+      description: An order type configured at a location, such as Dine In or Takeout.
+      properties:
+        id:
+          type: string
+          description: Unique order type identifier.
+          example: abc123
+        locationId:
+          type: string
+          description: Unique location identifier.
+          example: abc123
+        name:
+          type: string
+          description: Order type name.
+          example: Smoke's Burgers
+        deleted:
+          type: boolean
+          description: Whether the order type is marked as deleted.
+          example: false
+        enabled:
+          type: boolean
+          description: Whether the order type is enabled at the location.
+          example: false
+        wtmId:
+          type: integer
+          format: int64
+          description: Organization-level unique identifier for the order type.
+          example: 6543
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
+  parameters:
+    LocationId:
+      name: locationId
+      in: path
+      required: true
+      description: The unique identifier for the location.
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key scoped to specific restaurants.

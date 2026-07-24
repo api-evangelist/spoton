@@ -1,0 +1,178 @@
+openapi: 3.0.3
+info:
+  title: SpotOn Reserve Availability Report Categories API
+  description: The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.
+  version: v2
+  contact:
+    name: SpotOn Reserve Developer Center
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  x-generated-from: documentation
+  x-last-validated: '2026-06-03'
+servers:
+- url: https://api.seatninja.com
+  description: Production
+- url: https://sandbox.seatninja.com
+  description: Sandbox
+security:
+- apiKeyAuth: []
+tags:
+- name: Report Categories
+  description: Hierarchical report categories used to group menu items.
+paths:
+  /locations/{locationId}/report-categories:
+    get:
+      operationId: listReportCategories
+      summary: SpotOn List Report Categories
+      description: Retrieve all report categories configured for a location.
+      tags:
+      - Report Categories
+      parameters:
+      - $ref: '#/components/parameters/LocationId'
+      responses:
+        '200':
+          description: A list of report categories for the location.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReportCategory'
+              examples:
+                ListReportCategories200Example:
+                  summary: Default listReportCategories 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    locationId: abc123
+                    name: Smoke's Burgers
+                    parentId: abc123
+                    deleted: false
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /locations/{locationId}/report-categories/{reportCategoryId}:
+    get:
+      operationId: getReportCategory
+      summary: SpotOn Get Report Category
+      description: Retrieve a single report category by its unique identifier for a location.
+      tags:
+      - Report Categories
+      parameters:
+      - $ref: '#/components/parameters/LocationId'
+      - name: reportCategoryId
+        in: path
+        required: true
+        description: The unique identifier for the report category.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The requested report category.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportCategory'
+              examples:
+                GetReportCategory200Example:
+                  summary: Default getReportCategory 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    locationId: abc123
+                    name: Smoke's Burgers
+                    parentId: abc123
+                    deleted: false
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    Forbidden:
+      description: The API key does not have access to the requested location.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
+    ReportCategory:
+      type: object
+      description: A hierarchical report category used to group menu items.
+      properties:
+        id:
+          type: string
+          description: Unique report category identifier.
+          example: abc123
+        locationId:
+          type: string
+          description: Associated location identifier.
+          example: abc123
+        name:
+          type: string
+          description: Report category name.
+          example: Smoke's Burgers
+        parentId:
+          type: string
+          description: Parent category identifier for hierarchical organization.
+          example: abc123
+        deleted:
+          type: boolean
+          description: Whether the report category is marked as deleted.
+          example: false
+  parameters:
+    LocationId:
+      name: locationId
+      in: path
+      required: true
+      description: The unique identifier for the location.
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key scoped to specific restaurants.

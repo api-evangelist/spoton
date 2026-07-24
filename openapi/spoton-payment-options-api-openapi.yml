@@ -1,0 +1,188 @@
+openapi: 3.0.3
+info:
+  title: SpotOn Reserve Availability Payment Options API
+  description: The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.
+  version: v2
+  contact:
+    name: SpotOn Reserve Developer Center
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  x-generated-from: documentation
+  x-last-validated: '2026-06-03'
+servers:
+- url: https://api.seatninja.com
+  description: Production
+- url: https://sandbox.seatninja.com
+  description: Sandbox
+security:
+- apiKeyAuth: []
+tags:
+- name: Payment Options
+  description: Payment methods configured at a location.
+paths:
+  /locations/{locationId}/payment-options:
+    get:
+      operationId: listPaymentOptions
+      summary: SpotOn List Payment Options
+      description: Retrieve all payment options configured for a location.
+      tags:
+      - Payment Options
+      parameters:
+      - $ref: '#/components/parameters/LocationId'
+      responses:
+        '200':
+          description: A list of payment options for the location.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentOption'
+              examples:
+                ListPaymentOptions200Example:
+                  summary: Default listPaymentOptions 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    locationId: abc123
+                    name: Smoke's Burgers
+                    deleted: false
+                    enabled: false
+                    kind: CASH
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /locations/{locationId}/payment-options/{paymentOptionId}:
+    get:
+      operationId: getPaymentOption
+      summary: SpotOn Get Payment Option
+      description: Retrieve a single payment option by its unique identifier for a location.
+      tags:
+      - Payment Options
+      parameters:
+      - $ref: '#/components/parameters/LocationId'
+      - name: paymentOptionId
+        in: path
+        required: true
+        description: The unique identifier for the payment option.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The requested payment option.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentOption'
+              examples:
+                GetPaymentOption200Example:
+                  summary: Default getPaymentOption 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    locationId: abc123
+                    name: Smoke's Burgers
+                    deleted: false
+                    enabled: false
+                    kind: CASH
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    PaymentOption:
+      type: object
+      description: A payment method configured at a location.
+      properties:
+        id:
+          type: string
+          description: Unique payment option identifier.
+          example: abc123
+        locationId:
+          type: string
+          description: Unique location identifier.
+          example: abc123
+        name:
+          type: string
+          description: Payment option name.
+          example: Smoke's Burgers
+        deleted:
+          type: boolean
+          description: Whether the payment option is marked as deleted.
+          example: false
+        enabled:
+          type: boolean
+          description: Whether the payment option is enabled at the location.
+          example: false
+        kind:
+          type: string
+          description: The category of payment option.
+          enum:
+          - CASH
+          - CC
+          - OTHER
+          example: CASH
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
+  responses:
+    Forbidden:
+      description: The API key does not have access to the requested location.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    LocationId:
+      name: locationId
+      in: path
+      required: true
+      description: The unique identifier for the location.
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key scoped to specific restaurants.
