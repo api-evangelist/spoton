@@ -9,7 +9,20 @@ description: >-
   an API key supplied via the x-api-key request header, with access granted on a per-location basis. SpotOn also
   publishes the Reserve API (powered by SeatNinja) for its reservations and waitlist product.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/spoton.png
 tags:
   - Restaurant
   - Point of Sale
@@ -22,244 +35,3189 @@ created: '2026-06-02'
 modified: '2026-06-03'
 specificationVersion: '0.19'
 apis:
-  - aid: spoton:rest-api
-    name: SpotOn Restaurant POS Export API
-    description: >-
-      A location-centric REST API providing close-to-realtime data export from the SpotOn Restaurant POS System.
-      Resources include orders, order types, menu items, payment options, employees, job positions, time clock entries,
-      paid in/outs, cash deposits, locations, and report categories. Authentication uses an API key passed in the
-      x-api-key request header, with access scoped per location.
-    humanURL: https://developers.spoton.com/restaurant/docs/introduction
-    baseURL: https://restaurantapi.spoton.com/posexport/v1
-    tags:
-      - Point of Sale
-      - Orders
-      - Menu
-      - Employees
-      - Reporting
-    properties:
-      - type: Documentation
-        url: https://developers.spoton.com/restaurant/docs/introduction
-      - type: APIReference
-        url: https://developers.spoton.com/restaurant/reference
-      - type: Authentication
-        url: https://developers.spoton.com/restaurant/docs/api-access
-      - type: OpenAPI
-        url: openapi/spoton-restaurant-pos-export-openapi-original.yml
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-address-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-break-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-cash-deposit-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-employee-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-job-position-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-location-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-menu-item-catalog-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-order-check-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-order-discount-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-order-guest-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-order-menu-item-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-order-modifier-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-order-payment-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-order-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-order-surcharge-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-order-tax-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-order-type-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-owner-info-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-paid-in-out-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-payment-option-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-report-category-schema.json
-      - type: JSONSchema
-        url: json-schema/restaurant-pos-export-time-clock-entry-schema.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-address-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-break-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-cash-deposit-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-employee-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-job-position-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-location-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-menu-item-catalog-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-order-check-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-order-discount-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-order-guest-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-order-menu-item-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-order-modifier-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-order-payment-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-order-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-order-surcharge-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-order-tax-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-order-type-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-owner-info-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-paid-in-out-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-payment-option-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-report-category-structure.json
-      - type: JSONStructure
-        url: json-structure/restaurant-pos-export-time-clock-entry-structure.json
-      - type: Examples
-        url: examples/restaurant-pos-export-address-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-break-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-cash-deposit-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-employee-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-job-position-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-location-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-menu-item-catalog-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-order-check-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-order-discount-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-order-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-order-guest-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-order-menu-item-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-order-modifier-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-order-payment-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-order-surcharge-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-order-tax-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-order-type-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-owner-info-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-paid-in-out-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-payment-option-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-report-category-example.json
-      - type: Examples
-        url: examples/restaurant-pos-export-time-clock-entry-example.json
-      - type: JSONLD
-        url: json-ld/spoton-restaurant-pos-export-context.jsonld
-  - aid: spoton:reserve-api
-    name: SpotOn Reserve API
-    description: >-
-      An API for SpotOn Reserve (powered by SeatNinja), the company's reservations and waitlist product, allowing
-      partners to list accessible restaurants, check available reservation times and wait times, create reservations,
-      and add guests to a waitlist. Authentication uses an API key passed in the x-api-key request header, scoped per
-      restaurant.
-    humanURL: https://developers.spoton.com/reserve/docs/getting-started
-    baseURL: https://api.seatninja.com
-    tags:
-      - Reservations
-      - Waitlist
-      - Availability
-    properties:
-      - type: Documentation
-        url: https://developers.spoton.com/reserve/docs/getting-started
-      - type: GettingStarted
-        url: https://developers.spoton.com/reserve/docs/getting-started
-      - type: SDKs
-        url: https://developers.spoton.com/reserve/docs/javascript
-        title: JavaScript SDK
-      - type: OpenAPI
-        url: openapi/spoton-reserve-openapi-original.yml
-      - type: JSONSchema
-        url: json-schema/reserve-availability-response-schema.json
-      - type: JSONSchema
-        url: json-schema/reserve-availability-slot-schema.json
-      - type: JSONSchema
-        url: json-schema/reserve-customer-information-schema.json
-      - type: JSONSchema
-        url: json-schema/reserve-reservation-request-schema.json
-      - type: JSONSchema
-        url: json-schema/reserve-reservation-schema.json
-      - type: JSONSchema
-        url: json-schema/reserve-restaurant-schema.json
-      - type: JSONSchema
-        url: json-schema/reserve-wait-time-response-schema.json
-      - type: JSONSchema
-        url: json-schema/reserve-waitlist-entry-schema.json
-      - type: JSONSchema
-        url: json-schema/reserve-waitlist-request-schema.json
-      - type: JSONStructure
-        url: json-structure/reserve-availability-response-structure.json
-      - type: JSONStructure
-        url: json-structure/reserve-availability-slot-structure.json
-      - type: JSONStructure
-        url: json-structure/reserve-customer-information-structure.json
-      - type: JSONStructure
-        url: json-structure/reserve-reservation-request-structure.json
-      - type: JSONStructure
-        url: json-structure/reserve-reservation-structure.json
-      - type: JSONStructure
-        url: json-structure/reserve-restaurant-structure.json
-      - type: JSONStructure
-        url: json-structure/reserve-wait-time-response-structure.json
-      - type: JSONStructure
-        url: json-structure/reserve-waitlist-entry-structure.json
-      - type: JSONStructure
-        url: json-structure/reserve-waitlist-request-structure.json
-      - type: Examples
-        url: examples/reserve-availability-response-example.json
-      - type: Examples
-        url: examples/reserve-availability-slot-example.json
-      - type: Examples
-        url: examples/reserve-customer-information-example.json
-      - type: Examples
-        url: examples/reserve-reservation-example.json
-      - type: Examples
-        url: examples/reserve-reservation-request-example.json
-      - type: Examples
-        url: examples/reserve-restaurant-example.json
-      - type: Examples
-        url: examples/reserve-wait-time-response-example.json
-      - type: Examples
-        url: examples/reserve-waitlist-entry-example.json
-      - type: Examples
-        url: examples/reserve-waitlist-request-example.json
-      - type: JSONLD
-        url: json-ld/spoton-reserve-context.jsonld
+- aid: spoton:spoton-availability-api
+  name: SpotOn Availability API
+  description: Available reservation times and wait-time lookups.
+  humanURL: https://developers.spoton.com/restaurant/docs/introduction
+  baseURL: https://restaurantapi.spoton.com/posexport/v1
+  tags:
+  - Availability
+  properties:
+  - type: OpenAPI
+    url: openapi/spoton-availability-api-openapi.yml
+  - type: Documentation
+    url: https://developers.spoton.com/restaurant/docs/introduction
+  - type: APIReference
+    url: https://developers.spoton.com/restaurant/reference
+  - type: Authentication
+    url: https://developers.spoton.com/restaurant/docs/api-access
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-address-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-break-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-cash-deposit-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-employee-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-job-position-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-location-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-menu-item-catalog-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-check-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-discount-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-guest-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-menu-item-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-modifier-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-surcharge-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-tax-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-type-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-owner-info-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-paid-in-out-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-payment-option-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-report-category-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-time-clock-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-address-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-break-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-cash-deposit-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-employee-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-job-position-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-location-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-menu-item-catalog-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-check-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-discount-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-guest-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-menu-item-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-modifier-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-surcharge-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-tax-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-type-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-owner-info-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-paid-in-out-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-payment-option-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-report-category-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-time-clock-entry-structure.json
+  - type: Examples
+    url: examples/restaurant-pos-export-address-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-break-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-cash-deposit-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-employee-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-job-position-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-location-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-menu-item-catalog-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-check-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-discount-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-guest-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-menu-item-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-modifier-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-payment-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-surcharge-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-tax-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-type-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-owner-info-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-paid-in-out-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-payment-option-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-report-category-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-time-clock-entry-example.json
+  - type: JSONLD
+    url: json-ld/spoton-restaurant-pos-export-context.jsonld
+  - type: Documentation
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: GettingStarted
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: SDKs
+    url: https://developers.spoton.com/reserve/docs/javascript
+  - type: JSONSchema
+    url: json-schema/reserve-availability-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-availability-slot-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-customer-information-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-request-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-restaurant-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-wait-time-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-request-schema.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-slot-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-customer-information-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-request-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-restaurant-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-wait-time-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-request-structure.json
+  - type: Examples
+    url: examples/reserve-availability-response-example.json
+  - type: Examples
+    url: examples/reserve-availability-slot-example.json
+  - type: Examples
+    url: examples/reserve-customer-information-example.json
+  - type: Examples
+    url: examples/reserve-reservation-example.json
+  - type: Examples
+    url: examples/reserve-reservation-request-example.json
+  - type: Examples
+    url: examples/reserve-restaurant-example.json
+  - type: Examples
+    url: examples/reserve-wait-time-response-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-entry-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-request-example.json
+  - type: JSONLD
+    url: json-ld/spoton-reserve-context.jsonld
+- aid: spoton:spoton-cash-deposits-api
+  name: SpotOn Cash Deposits API
+  description: Cash deposit records recorded at a location.
+  humanURL: https://developers.spoton.com/restaurant/docs/introduction
+  baseURL: https://restaurantapi.spoton.com/posexport/v1
+  tags:
+  - Cash Deposits
+  properties:
+  - type: OpenAPI
+    url: openapi/spoton-cash-deposits-api-openapi.yml
+  - type: Documentation
+    url: https://developers.spoton.com/restaurant/docs/introduction
+  - type: APIReference
+    url: https://developers.spoton.com/restaurant/reference
+  - type: Authentication
+    url: https://developers.spoton.com/restaurant/docs/api-access
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-address-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-break-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-cash-deposit-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-employee-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-job-position-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-location-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-menu-item-catalog-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-check-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-discount-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-guest-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-menu-item-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-modifier-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-surcharge-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-tax-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-type-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-owner-info-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-paid-in-out-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-payment-option-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-report-category-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-time-clock-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-address-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-break-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-cash-deposit-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-employee-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-job-position-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-location-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-menu-item-catalog-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-check-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-discount-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-guest-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-menu-item-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-modifier-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-surcharge-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-tax-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-type-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-owner-info-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-paid-in-out-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-payment-option-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-report-category-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-time-clock-entry-structure.json
+  - type: Examples
+    url: examples/restaurant-pos-export-address-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-break-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-cash-deposit-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-employee-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-job-position-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-location-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-menu-item-catalog-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-check-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-discount-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-guest-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-menu-item-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-modifier-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-payment-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-surcharge-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-tax-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-type-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-owner-info-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-paid-in-out-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-payment-option-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-report-category-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-time-clock-entry-example.json
+  - type: JSONLD
+    url: json-ld/spoton-restaurant-pos-export-context.jsonld
+  - type: Documentation
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: GettingStarted
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: SDKs
+    url: https://developers.spoton.com/reserve/docs/javascript
+  - type: JSONSchema
+    url: json-schema/reserve-availability-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-availability-slot-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-customer-information-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-request-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-restaurant-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-wait-time-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-request-schema.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-slot-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-customer-information-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-request-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-restaurant-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-wait-time-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-request-structure.json
+  - type: Examples
+    url: examples/reserve-availability-response-example.json
+  - type: Examples
+    url: examples/reserve-availability-slot-example.json
+  - type: Examples
+    url: examples/reserve-customer-information-example.json
+  - type: Examples
+    url: examples/reserve-reservation-example.json
+  - type: Examples
+    url: examples/reserve-reservation-request-example.json
+  - type: Examples
+    url: examples/reserve-restaurant-example.json
+  - type: Examples
+    url: examples/reserve-wait-time-response-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-entry-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-request-example.json
+  - type: JSONLD
+    url: json-ld/spoton-reserve-context.jsonld
+- aid: spoton:spoton-employees-api
+  name: SpotOn Employees API
+  description: Employee records and their job positions for a location.
+  humanURL: https://developers.spoton.com/restaurant/docs/introduction
+  baseURL: https://restaurantapi.spoton.com/posexport/v1
+  tags:
+  - Employees
+  properties:
+  - type: OpenAPI
+    url: openapi/spoton-employees-api-openapi.yml
+  - type: Documentation
+    url: https://developers.spoton.com/restaurant/docs/introduction
+  - type: APIReference
+    url: https://developers.spoton.com/restaurant/reference
+  - type: Authentication
+    url: https://developers.spoton.com/restaurant/docs/api-access
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-address-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-break-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-cash-deposit-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-employee-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-job-position-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-location-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-menu-item-catalog-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-check-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-discount-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-guest-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-menu-item-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-modifier-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-surcharge-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-tax-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-type-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-owner-info-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-paid-in-out-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-payment-option-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-report-category-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-time-clock-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-address-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-break-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-cash-deposit-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-employee-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-job-position-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-location-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-menu-item-catalog-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-check-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-discount-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-guest-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-menu-item-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-modifier-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-surcharge-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-tax-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-type-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-owner-info-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-paid-in-out-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-payment-option-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-report-category-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-time-clock-entry-structure.json
+  - type: Examples
+    url: examples/restaurant-pos-export-address-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-break-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-cash-deposit-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-employee-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-job-position-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-location-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-menu-item-catalog-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-check-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-discount-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-guest-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-menu-item-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-modifier-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-payment-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-surcharge-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-tax-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-type-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-owner-info-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-paid-in-out-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-payment-option-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-report-category-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-time-clock-entry-example.json
+  - type: JSONLD
+    url: json-ld/spoton-restaurant-pos-export-context.jsonld
+  - type: Documentation
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: GettingStarted
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: SDKs
+    url: https://developers.spoton.com/reserve/docs/javascript
+  - type: JSONSchema
+    url: json-schema/reserve-availability-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-availability-slot-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-customer-information-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-request-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-restaurant-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-wait-time-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-request-schema.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-slot-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-customer-information-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-request-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-restaurant-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-wait-time-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-request-structure.json
+  - type: Examples
+    url: examples/reserve-availability-response-example.json
+  - type: Examples
+    url: examples/reserve-availability-slot-example.json
+  - type: Examples
+    url: examples/reserve-customer-information-example.json
+  - type: Examples
+    url: examples/reserve-reservation-example.json
+  - type: Examples
+    url: examples/reserve-reservation-request-example.json
+  - type: Examples
+    url: examples/reserve-restaurant-example.json
+  - type: Examples
+    url: examples/reserve-wait-time-response-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-entry-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-request-example.json
+  - type: JSONLD
+    url: json-ld/spoton-reserve-context.jsonld
+- aid: spoton:spoton-job-positions-api
+  name: SpotOn Job Positions API
+  description: Job position definitions for a location.
+  humanURL: https://developers.spoton.com/restaurant/docs/introduction
+  baseURL: https://restaurantapi.spoton.com/posexport/v1
+  tags:
+  - Job Positions
+  properties:
+  - type: OpenAPI
+    url: openapi/spoton-job-positions-api-openapi.yml
+  - type: Documentation
+    url: https://developers.spoton.com/restaurant/docs/introduction
+  - type: APIReference
+    url: https://developers.spoton.com/restaurant/reference
+  - type: Authentication
+    url: https://developers.spoton.com/restaurant/docs/api-access
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-address-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-break-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-cash-deposit-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-employee-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-job-position-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-location-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-menu-item-catalog-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-check-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-discount-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-guest-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-menu-item-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-modifier-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-surcharge-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-tax-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-type-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-owner-info-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-paid-in-out-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-payment-option-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-report-category-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-time-clock-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-address-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-break-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-cash-deposit-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-employee-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-job-position-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-location-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-menu-item-catalog-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-check-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-discount-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-guest-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-menu-item-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-modifier-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-surcharge-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-tax-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-type-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-owner-info-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-paid-in-out-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-payment-option-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-report-category-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-time-clock-entry-structure.json
+  - type: Examples
+    url: examples/restaurant-pos-export-address-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-break-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-cash-deposit-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-employee-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-job-position-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-location-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-menu-item-catalog-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-check-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-discount-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-guest-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-menu-item-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-modifier-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-payment-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-surcharge-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-tax-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-type-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-owner-info-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-paid-in-out-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-payment-option-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-report-category-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-time-clock-entry-example.json
+  - type: JSONLD
+    url: json-ld/spoton-restaurant-pos-export-context.jsonld
+  - type: Documentation
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: GettingStarted
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: SDKs
+    url: https://developers.spoton.com/reserve/docs/javascript
+  - type: JSONSchema
+    url: json-schema/reserve-availability-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-availability-slot-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-customer-information-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-request-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-restaurant-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-wait-time-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-request-schema.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-slot-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-customer-information-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-request-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-restaurant-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-wait-time-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-request-structure.json
+  - type: Examples
+    url: examples/reserve-availability-response-example.json
+  - type: Examples
+    url: examples/reserve-availability-slot-example.json
+  - type: Examples
+    url: examples/reserve-customer-information-example.json
+  - type: Examples
+    url: examples/reserve-reservation-example.json
+  - type: Examples
+    url: examples/reserve-reservation-request-example.json
+  - type: Examples
+    url: examples/reserve-restaurant-example.json
+  - type: Examples
+    url: examples/reserve-wait-time-response-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-entry-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-request-example.json
+  - type: JSONLD
+    url: json-ld/spoton-reserve-context.jsonld
+- aid: spoton:spoton-locations-api
+  name: SpotOn Locations API
+  description: Location details for the SpotOn POS organization.
+  humanURL: https://developers.spoton.com/restaurant/docs/introduction
+  baseURL: https://restaurantapi.spoton.com/posexport/v1
+  tags:
+  - Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/spoton-locations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.spoton.com/restaurant/docs/introduction
+  - type: APIReference
+    url: https://developers.spoton.com/restaurant/reference
+  - type: Authentication
+    url: https://developers.spoton.com/restaurant/docs/api-access
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-address-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-break-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-cash-deposit-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-employee-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-job-position-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-location-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-menu-item-catalog-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-check-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-discount-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-guest-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-menu-item-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-modifier-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-surcharge-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-tax-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-type-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-owner-info-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-paid-in-out-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-payment-option-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-report-category-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-time-clock-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-address-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-break-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-cash-deposit-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-employee-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-job-position-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-location-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-menu-item-catalog-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-check-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-discount-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-guest-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-menu-item-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-modifier-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-surcharge-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-tax-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-type-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-owner-info-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-paid-in-out-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-payment-option-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-report-category-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-time-clock-entry-structure.json
+  - type: Examples
+    url: examples/restaurant-pos-export-address-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-break-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-cash-deposit-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-employee-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-job-position-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-location-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-menu-item-catalog-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-check-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-discount-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-guest-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-menu-item-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-modifier-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-payment-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-surcharge-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-tax-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-type-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-owner-info-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-paid-in-out-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-payment-option-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-report-category-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-time-clock-entry-example.json
+  - type: JSONLD
+    url: json-ld/spoton-restaurant-pos-export-context.jsonld
+  - type: Documentation
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: GettingStarted
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: SDKs
+    url: https://developers.spoton.com/reserve/docs/javascript
+  - type: JSONSchema
+    url: json-schema/reserve-availability-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-availability-slot-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-customer-information-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-request-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-restaurant-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-wait-time-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-request-schema.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-slot-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-customer-information-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-request-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-restaurant-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-wait-time-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-request-structure.json
+  - type: Examples
+    url: examples/reserve-availability-response-example.json
+  - type: Examples
+    url: examples/reserve-availability-slot-example.json
+  - type: Examples
+    url: examples/reserve-customer-information-example.json
+  - type: Examples
+    url: examples/reserve-reservation-example.json
+  - type: Examples
+    url: examples/reserve-reservation-request-example.json
+  - type: Examples
+    url: examples/reserve-restaurant-example.json
+  - type: Examples
+    url: examples/reserve-wait-time-response-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-entry-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-request-example.json
+  - type: JSONLD
+    url: json-ld/spoton-reserve-context.jsonld
+- aid: spoton:spoton-menu-items-api
+  name: SpotOn Menu Items API
+  description: Menu item catalog for a location.
+  humanURL: https://developers.spoton.com/restaurant/docs/introduction
+  baseURL: https://restaurantapi.spoton.com/posexport/v1
+  tags:
+  - Menu Items
+  properties:
+  - type: OpenAPI
+    url: openapi/spoton-menu-items-api-openapi.yml
+  - type: Documentation
+    url: https://developers.spoton.com/restaurant/docs/introduction
+  - type: APIReference
+    url: https://developers.spoton.com/restaurant/reference
+  - type: Authentication
+    url: https://developers.spoton.com/restaurant/docs/api-access
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-address-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-break-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-cash-deposit-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-employee-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-job-position-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-location-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-menu-item-catalog-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-check-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-discount-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-guest-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-menu-item-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-modifier-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-surcharge-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-tax-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-type-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-owner-info-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-paid-in-out-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-payment-option-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-report-category-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-time-clock-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-address-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-break-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-cash-deposit-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-employee-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-job-position-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-location-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-menu-item-catalog-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-check-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-discount-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-guest-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-menu-item-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-modifier-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-surcharge-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-tax-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-type-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-owner-info-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-paid-in-out-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-payment-option-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-report-category-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-time-clock-entry-structure.json
+  - type: Examples
+    url: examples/restaurant-pos-export-address-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-break-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-cash-deposit-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-employee-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-job-position-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-location-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-menu-item-catalog-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-check-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-discount-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-guest-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-menu-item-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-modifier-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-payment-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-surcharge-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-tax-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-type-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-owner-info-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-paid-in-out-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-payment-option-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-report-category-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-time-clock-entry-example.json
+  - type: JSONLD
+    url: json-ld/spoton-restaurant-pos-export-context.jsonld
+  - type: Documentation
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: GettingStarted
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: SDKs
+    url: https://developers.spoton.com/reserve/docs/javascript
+  - type: JSONSchema
+    url: json-schema/reserve-availability-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-availability-slot-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-customer-information-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-request-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-restaurant-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-wait-time-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-request-schema.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-slot-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-customer-information-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-request-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-restaurant-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-wait-time-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-request-structure.json
+  - type: Examples
+    url: examples/reserve-availability-response-example.json
+  - type: Examples
+    url: examples/reserve-availability-slot-example.json
+  - type: Examples
+    url: examples/reserve-customer-information-example.json
+  - type: Examples
+    url: examples/reserve-reservation-example.json
+  - type: Examples
+    url: examples/reserve-reservation-request-example.json
+  - type: Examples
+    url: examples/reserve-restaurant-example.json
+  - type: Examples
+    url: examples/reserve-wait-time-response-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-entry-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-request-example.json
+  - type: JSONLD
+    url: json-ld/spoton-reserve-context.jsonld
+- aid: spoton:spoton-order-types-api
+  name: SpotOn Order Types API
+  description: Order type definitions for a location, such as Dine In or Takeout.
+  humanURL: https://developers.spoton.com/restaurant/docs/introduction
+  baseURL: https://restaurantapi.spoton.com/posexport/v1
+  tags:
+  - Order Types
+  properties:
+  - type: OpenAPI
+    url: openapi/spoton-order-types-api-openapi.yml
+  - type: Documentation
+    url: https://developers.spoton.com/restaurant/docs/introduction
+  - type: APIReference
+    url: https://developers.spoton.com/restaurant/reference
+  - type: Authentication
+    url: https://developers.spoton.com/restaurant/docs/api-access
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-address-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-break-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-cash-deposit-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-employee-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-job-position-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-location-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-menu-item-catalog-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-check-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-discount-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-guest-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-menu-item-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-modifier-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-surcharge-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-tax-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-type-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-owner-info-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-paid-in-out-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-payment-option-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-report-category-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-time-clock-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-address-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-break-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-cash-deposit-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-employee-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-job-position-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-location-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-menu-item-catalog-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-check-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-discount-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-guest-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-menu-item-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-modifier-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-surcharge-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-tax-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-type-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-owner-info-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-paid-in-out-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-payment-option-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-report-category-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-time-clock-entry-structure.json
+  - type: Examples
+    url: examples/restaurant-pos-export-address-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-break-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-cash-deposit-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-employee-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-job-position-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-location-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-menu-item-catalog-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-check-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-discount-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-guest-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-menu-item-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-modifier-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-payment-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-surcharge-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-tax-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-type-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-owner-info-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-paid-in-out-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-payment-option-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-report-category-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-time-clock-entry-example.json
+  - type: JSONLD
+    url: json-ld/spoton-restaurant-pos-export-context.jsonld
+  - type: Documentation
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: GettingStarted
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: SDKs
+    url: https://developers.spoton.com/reserve/docs/javascript
+  - type: JSONSchema
+    url: json-schema/reserve-availability-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-availability-slot-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-customer-information-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-request-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-restaurant-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-wait-time-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-request-schema.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-slot-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-customer-information-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-request-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-restaurant-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-wait-time-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-request-structure.json
+  - type: Examples
+    url: examples/reserve-availability-response-example.json
+  - type: Examples
+    url: examples/reserve-availability-slot-example.json
+  - type: Examples
+    url: examples/reserve-customer-information-example.json
+  - type: Examples
+    url: examples/reserve-reservation-example.json
+  - type: Examples
+    url: examples/reserve-reservation-request-example.json
+  - type: Examples
+    url: examples/reserve-restaurant-example.json
+  - type: Examples
+    url: examples/reserve-wait-time-response-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-entry-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-request-example.json
+  - type: JSONLD
+    url: json-ld/spoton-reserve-context.jsonld
+- aid: spoton:spoton-orders-api
+  name: SpotOn Orders API
+  description: Order and check data export, including items, modifiers, payments, and taxes.
+  humanURL: https://developers.spoton.com/restaurant/docs/introduction
+  baseURL: https://restaurantapi.spoton.com/posexport/v1
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/spoton-orders-api-openapi.yml
+  - type: Documentation
+    url: https://developers.spoton.com/restaurant/docs/introduction
+  - type: APIReference
+    url: https://developers.spoton.com/restaurant/reference
+  - type: Authentication
+    url: https://developers.spoton.com/restaurant/docs/api-access
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-address-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-break-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-cash-deposit-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-employee-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-job-position-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-location-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-menu-item-catalog-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-check-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-discount-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-guest-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-menu-item-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-modifier-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-surcharge-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-tax-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-type-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-owner-info-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-paid-in-out-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-payment-option-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-report-category-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-time-clock-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-address-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-break-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-cash-deposit-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-employee-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-job-position-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-location-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-menu-item-catalog-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-check-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-discount-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-guest-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-menu-item-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-modifier-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-surcharge-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-tax-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-type-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-owner-info-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-paid-in-out-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-payment-option-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-report-category-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-time-clock-entry-structure.json
+  - type: Examples
+    url: examples/restaurant-pos-export-address-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-break-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-cash-deposit-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-employee-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-job-position-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-location-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-menu-item-catalog-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-check-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-discount-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-guest-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-menu-item-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-modifier-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-payment-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-surcharge-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-tax-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-type-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-owner-info-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-paid-in-out-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-payment-option-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-report-category-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-time-clock-entry-example.json
+  - type: JSONLD
+    url: json-ld/spoton-restaurant-pos-export-context.jsonld
+  - type: Documentation
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: GettingStarted
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: SDKs
+    url: https://developers.spoton.com/reserve/docs/javascript
+  - type: JSONSchema
+    url: json-schema/reserve-availability-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-availability-slot-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-customer-information-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-request-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-restaurant-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-wait-time-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-request-schema.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-slot-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-customer-information-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-request-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-restaurant-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-wait-time-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-request-structure.json
+  - type: Examples
+    url: examples/reserve-availability-response-example.json
+  - type: Examples
+    url: examples/reserve-availability-slot-example.json
+  - type: Examples
+    url: examples/reserve-customer-information-example.json
+  - type: Examples
+    url: examples/reserve-reservation-example.json
+  - type: Examples
+    url: examples/reserve-reservation-request-example.json
+  - type: Examples
+    url: examples/reserve-restaurant-example.json
+  - type: Examples
+    url: examples/reserve-wait-time-response-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-entry-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-request-example.json
+  - type: JSONLD
+    url: json-ld/spoton-reserve-context.jsonld
+- aid: spoton:spoton-paid-in-outs-api
+  name: SpotOn Paid In Outs API
+  description: Cash paid in and paid out records for a location.
+  humanURL: https://developers.spoton.com/restaurant/docs/introduction
+  baseURL: https://restaurantapi.spoton.com/posexport/v1
+  tags:
+  - Paid In Outs
+  properties:
+  - type: OpenAPI
+    url: openapi/spoton-paid-in-outs-api-openapi.yml
+  - type: Documentation
+    url: https://developers.spoton.com/restaurant/docs/introduction
+  - type: APIReference
+    url: https://developers.spoton.com/restaurant/reference
+  - type: Authentication
+    url: https://developers.spoton.com/restaurant/docs/api-access
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-address-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-break-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-cash-deposit-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-employee-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-job-position-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-location-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-menu-item-catalog-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-check-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-discount-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-guest-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-menu-item-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-modifier-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-surcharge-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-tax-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-type-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-owner-info-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-paid-in-out-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-payment-option-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-report-category-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-time-clock-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-address-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-break-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-cash-deposit-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-employee-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-job-position-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-location-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-menu-item-catalog-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-check-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-discount-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-guest-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-menu-item-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-modifier-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-surcharge-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-tax-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-type-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-owner-info-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-paid-in-out-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-payment-option-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-report-category-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-time-clock-entry-structure.json
+  - type: Examples
+    url: examples/restaurant-pos-export-address-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-break-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-cash-deposit-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-employee-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-job-position-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-location-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-menu-item-catalog-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-check-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-discount-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-guest-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-menu-item-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-modifier-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-payment-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-surcharge-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-tax-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-type-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-owner-info-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-paid-in-out-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-payment-option-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-report-category-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-time-clock-entry-example.json
+  - type: JSONLD
+    url: json-ld/spoton-restaurant-pos-export-context.jsonld
+  - type: Documentation
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: GettingStarted
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: SDKs
+    url: https://developers.spoton.com/reserve/docs/javascript
+  - type: JSONSchema
+    url: json-schema/reserve-availability-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-availability-slot-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-customer-information-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-request-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-restaurant-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-wait-time-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-request-schema.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-slot-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-customer-information-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-request-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-restaurant-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-wait-time-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-request-structure.json
+  - type: Examples
+    url: examples/reserve-availability-response-example.json
+  - type: Examples
+    url: examples/reserve-availability-slot-example.json
+  - type: Examples
+    url: examples/reserve-customer-information-example.json
+  - type: Examples
+    url: examples/reserve-reservation-example.json
+  - type: Examples
+    url: examples/reserve-reservation-request-example.json
+  - type: Examples
+    url: examples/reserve-restaurant-example.json
+  - type: Examples
+    url: examples/reserve-wait-time-response-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-entry-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-request-example.json
+  - type: JSONLD
+    url: json-ld/spoton-reserve-context.jsonld
+- aid: spoton:spoton-payment-options-api
+  name: SpotOn Payment Options API
+  description: Payment methods configured at a location.
+  humanURL: https://developers.spoton.com/restaurant/docs/introduction
+  baseURL: https://restaurantapi.spoton.com/posexport/v1
+  tags:
+  - Payment Options
+  properties:
+  - type: OpenAPI
+    url: openapi/spoton-payment-options-api-openapi.yml
+  - type: Documentation
+    url: https://developers.spoton.com/restaurant/docs/introduction
+  - type: APIReference
+    url: https://developers.spoton.com/restaurant/reference
+  - type: Authentication
+    url: https://developers.spoton.com/restaurant/docs/api-access
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-address-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-break-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-cash-deposit-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-employee-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-job-position-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-location-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-menu-item-catalog-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-check-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-discount-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-guest-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-menu-item-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-modifier-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-surcharge-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-tax-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-type-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-owner-info-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-paid-in-out-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-payment-option-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-report-category-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-time-clock-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-address-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-break-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-cash-deposit-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-employee-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-job-position-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-location-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-menu-item-catalog-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-check-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-discount-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-guest-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-menu-item-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-modifier-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-surcharge-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-tax-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-type-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-owner-info-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-paid-in-out-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-payment-option-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-report-category-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-time-clock-entry-structure.json
+  - type: Examples
+    url: examples/restaurant-pos-export-address-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-break-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-cash-deposit-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-employee-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-job-position-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-location-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-menu-item-catalog-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-check-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-discount-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-guest-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-menu-item-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-modifier-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-payment-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-surcharge-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-tax-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-type-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-owner-info-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-paid-in-out-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-payment-option-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-report-category-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-time-clock-entry-example.json
+  - type: JSONLD
+    url: json-ld/spoton-restaurant-pos-export-context.jsonld
+  - type: Documentation
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: GettingStarted
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: SDKs
+    url: https://developers.spoton.com/reserve/docs/javascript
+  - type: JSONSchema
+    url: json-schema/reserve-availability-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-availability-slot-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-customer-information-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-request-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-restaurant-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-wait-time-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-request-schema.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-slot-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-customer-information-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-request-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-restaurant-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-wait-time-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-request-structure.json
+  - type: Examples
+    url: examples/reserve-availability-response-example.json
+  - type: Examples
+    url: examples/reserve-availability-slot-example.json
+  - type: Examples
+    url: examples/reserve-customer-information-example.json
+  - type: Examples
+    url: examples/reserve-reservation-example.json
+  - type: Examples
+    url: examples/reserve-reservation-request-example.json
+  - type: Examples
+    url: examples/reserve-restaurant-example.json
+  - type: Examples
+    url: examples/reserve-wait-time-response-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-entry-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-request-example.json
+  - type: JSONLD
+    url: json-ld/spoton-reserve-context.jsonld
+- aid: spoton:spoton-report-categories-api
+  name: SpotOn Report Categories API
+  description: Hierarchical report categories used to group menu items.
+  humanURL: https://developers.spoton.com/restaurant/docs/introduction
+  baseURL: https://restaurantapi.spoton.com/posexport/v1
+  tags:
+  - Report Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/spoton-report-categories-api-openapi.yml
+  - type: Documentation
+    url: https://developers.spoton.com/restaurant/docs/introduction
+  - type: APIReference
+    url: https://developers.spoton.com/restaurant/reference
+  - type: Authentication
+    url: https://developers.spoton.com/restaurant/docs/api-access
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-address-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-break-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-cash-deposit-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-employee-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-job-position-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-location-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-menu-item-catalog-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-check-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-discount-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-guest-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-menu-item-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-modifier-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-surcharge-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-tax-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-type-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-owner-info-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-paid-in-out-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-payment-option-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-report-category-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-time-clock-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-address-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-break-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-cash-deposit-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-employee-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-job-position-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-location-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-menu-item-catalog-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-check-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-discount-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-guest-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-menu-item-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-modifier-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-surcharge-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-tax-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-type-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-owner-info-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-paid-in-out-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-payment-option-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-report-category-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-time-clock-entry-structure.json
+  - type: Examples
+    url: examples/restaurant-pos-export-address-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-break-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-cash-deposit-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-employee-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-job-position-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-location-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-menu-item-catalog-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-check-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-discount-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-guest-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-menu-item-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-modifier-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-payment-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-surcharge-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-tax-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-type-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-owner-info-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-paid-in-out-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-payment-option-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-report-category-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-time-clock-entry-example.json
+  - type: JSONLD
+    url: json-ld/spoton-restaurant-pos-export-context.jsonld
+  - type: Documentation
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: GettingStarted
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: SDKs
+    url: https://developers.spoton.com/reserve/docs/javascript
+  - type: JSONSchema
+    url: json-schema/reserve-availability-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-availability-slot-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-customer-information-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-request-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-restaurant-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-wait-time-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-request-schema.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-slot-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-customer-information-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-request-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-restaurant-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-wait-time-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-request-structure.json
+  - type: Examples
+    url: examples/reserve-availability-response-example.json
+  - type: Examples
+    url: examples/reserve-availability-slot-example.json
+  - type: Examples
+    url: examples/reserve-customer-information-example.json
+  - type: Examples
+    url: examples/reserve-reservation-example.json
+  - type: Examples
+    url: examples/reserve-reservation-request-example.json
+  - type: Examples
+    url: examples/reserve-restaurant-example.json
+  - type: Examples
+    url: examples/reserve-wait-time-response-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-entry-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-request-example.json
+  - type: JSONLD
+    url: json-ld/spoton-reserve-context.jsonld
+- aid: spoton:spoton-reservations-api
+  name: SpotOn Reservations API
+  description: Create and manage guest reservations.
+  humanURL: https://developers.spoton.com/restaurant/docs/introduction
+  baseURL: https://restaurantapi.spoton.com/posexport/v1
+  tags:
+  - Reservations
+  properties:
+  - type: OpenAPI
+    url: openapi/spoton-reservations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.spoton.com/restaurant/docs/introduction
+  - type: APIReference
+    url: https://developers.spoton.com/restaurant/reference
+  - type: Authentication
+    url: https://developers.spoton.com/restaurant/docs/api-access
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-address-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-break-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-cash-deposit-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-employee-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-job-position-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-location-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-menu-item-catalog-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-check-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-discount-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-guest-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-menu-item-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-modifier-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-surcharge-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-tax-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-type-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-owner-info-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-paid-in-out-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-payment-option-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-report-category-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-time-clock-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-address-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-break-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-cash-deposit-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-employee-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-job-position-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-location-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-menu-item-catalog-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-check-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-discount-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-guest-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-menu-item-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-modifier-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-surcharge-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-tax-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-type-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-owner-info-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-paid-in-out-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-payment-option-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-report-category-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-time-clock-entry-structure.json
+  - type: Examples
+    url: examples/restaurant-pos-export-address-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-break-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-cash-deposit-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-employee-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-job-position-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-location-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-menu-item-catalog-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-check-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-discount-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-guest-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-menu-item-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-modifier-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-payment-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-surcharge-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-tax-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-type-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-owner-info-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-paid-in-out-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-payment-option-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-report-category-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-time-clock-entry-example.json
+  - type: JSONLD
+    url: json-ld/spoton-restaurant-pos-export-context.jsonld
+  - type: Documentation
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: GettingStarted
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: SDKs
+    url: https://developers.spoton.com/reserve/docs/javascript
+  - type: JSONSchema
+    url: json-schema/reserve-availability-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-availability-slot-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-customer-information-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-request-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-restaurant-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-wait-time-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-request-schema.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-slot-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-customer-information-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-request-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-restaurant-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-wait-time-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-request-structure.json
+  - type: Examples
+    url: examples/reserve-availability-response-example.json
+  - type: Examples
+    url: examples/reserve-availability-slot-example.json
+  - type: Examples
+    url: examples/reserve-customer-information-example.json
+  - type: Examples
+    url: examples/reserve-reservation-example.json
+  - type: Examples
+    url: examples/reserve-reservation-request-example.json
+  - type: Examples
+    url: examples/reserve-restaurant-example.json
+  - type: Examples
+    url: examples/reserve-wait-time-response-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-entry-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-request-example.json
+  - type: JSONLD
+    url: json-ld/spoton-reserve-context.jsonld
+- aid: spoton:spoton-restaurants-api
+  name: SpotOn Restaurants API
+  description: Restaurants accessible with the API key.
+  humanURL: https://developers.spoton.com/restaurant/docs/introduction
+  baseURL: https://restaurantapi.spoton.com/posexport/v1
+  tags:
+  - Restaurants
+  properties:
+  - type: OpenAPI
+    url: openapi/spoton-restaurants-api-openapi.yml
+  - type: Documentation
+    url: https://developers.spoton.com/restaurant/docs/introduction
+  - type: APIReference
+    url: https://developers.spoton.com/restaurant/reference
+  - type: Authentication
+    url: https://developers.spoton.com/restaurant/docs/api-access
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-address-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-break-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-cash-deposit-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-employee-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-job-position-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-location-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-menu-item-catalog-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-check-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-discount-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-guest-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-menu-item-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-modifier-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-surcharge-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-tax-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-type-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-owner-info-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-paid-in-out-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-payment-option-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-report-category-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-time-clock-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-address-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-break-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-cash-deposit-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-employee-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-job-position-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-location-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-menu-item-catalog-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-check-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-discount-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-guest-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-menu-item-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-modifier-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-surcharge-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-tax-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-type-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-owner-info-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-paid-in-out-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-payment-option-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-report-category-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-time-clock-entry-structure.json
+  - type: Examples
+    url: examples/restaurant-pos-export-address-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-break-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-cash-deposit-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-employee-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-job-position-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-location-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-menu-item-catalog-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-check-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-discount-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-guest-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-menu-item-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-modifier-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-payment-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-surcharge-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-tax-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-type-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-owner-info-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-paid-in-out-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-payment-option-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-report-category-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-time-clock-entry-example.json
+  - type: JSONLD
+    url: json-ld/spoton-restaurant-pos-export-context.jsonld
+  - type: Documentation
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: GettingStarted
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: SDKs
+    url: https://developers.spoton.com/reserve/docs/javascript
+  - type: JSONSchema
+    url: json-schema/reserve-availability-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-availability-slot-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-customer-information-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-request-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-restaurant-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-wait-time-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-request-schema.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-slot-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-customer-information-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-request-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-restaurant-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-wait-time-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-request-structure.json
+  - type: Examples
+    url: examples/reserve-availability-response-example.json
+  - type: Examples
+    url: examples/reserve-availability-slot-example.json
+  - type: Examples
+    url: examples/reserve-customer-information-example.json
+  - type: Examples
+    url: examples/reserve-reservation-example.json
+  - type: Examples
+    url: examples/reserve-reservation-request-example.json
+  - type: Examples
+    url: examples/reserve-restaurant-example.json
+  - type: Examples
+    url: examples/reserve-wait-time-response-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-entry-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-request-example.json
+  - type: JSONLD
+    url: json-ld/spoton-reserve-context.jsonld
+- aid: spoton:spoton-time-clock-entries-api
+  name: SpotOn Time Clock Entries API
+  description: Employee shift clock-in and clock-out records.
+  humanURL: https://developers.spoton.com/restaurant/docs/introduction
+  baseURL: https://restaurantapi.spoton.com/posexport/v1
+  tags:
+  - Time Clock Entries
+  properties:
+  - type: OpenAPI
+    url: openapi/spoton-time-clock-entries-api-openapi.yml
+  - type: Documentation
+    url: https://developers.spoton.com/restaurant/docs/introduction
+  - type: APIReference
+    url: https://developers.spoton.com/restaurant/reference
+  - type: Authentication
+    url: https://developers.spoton.com/restaurant/docs/api-access
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-address-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-break-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-cash-deposit-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-employee-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-job-position-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-location-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-menu-item-catalog-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-check-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-discount-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-guest-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-menu-item-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-modifier-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-surcharge-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-tax-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-type-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-owner-info-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-paid-in-out-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-payment-option-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-report-category-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-time-clock-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-address-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-break-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-cash-deposit-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-employee-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-job-position-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-location-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-menu-item-catalog-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-check-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-discount-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-guest-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-menu-item-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-modifier-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-surcharge-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-tax-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-type-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-owner-info-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-paid-in-out-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-payment-option-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-report-category-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-time-clock-entry-structure.json
+  - type: Examples
+    url: examples/restaurant-pos-export-address-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-break-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-cash-deposit-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-employee-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-job-position-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-location-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-menu-item-catalog-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-check-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-discount-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-guest-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-menu-item-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-modifier-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-payment-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-surcharge-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-tax-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-type-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-owner-info-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-paid-in-out-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-payment-option-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-report-category-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-time-clock-entry-example.json
+  - type: JSONLD
+    url: json-ld/spoton-restaurant-pos-export-context.jsonld
+  - type: Documentation
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: GettingStarted
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: SDKs
+    url: https://developers.spoton.com/reserve/docs/javascript
+  - type: JSONSchema
+    url: json-schema/reserve-availability-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-availability-slot-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-customer-information-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-request-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-restaurant-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-wait-time-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-request-schema.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-slot-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-customer-information-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-request-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-restaurant-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-wait-time-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-request-structure.json
+  - type: Examples
+    url: examples/reserve-availability-response-example.json
+  - type: Examples
+    url: examples/reserve-availability-slot-example.json
+  - type: Examples
+    url: examples/reserve-customer-information-example.json
+  - type: Examples
+    url: examples/reserve-reservation-example.json
+  - type: Examples
+    url: examples/reserve-reservation-request-example.json
+  - type: Examples
+    url: examples/reserve-restaurant-example.json
+  - type: Examples
+    url: examples/reserve-wait-time-response-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-entry-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-request-example.json
+  - type: JSONLD
+    url: json-ld/spoton-reserve-context.jsonld
+- aid: spoton:spoton-waitlist-api
+  name: SpotOn Waitlist API
+  description: Add guests to a restaurant waitlist.
+  humanURL: https://developers.spoton.com/restaurant/docs/introduction
+  baseURL: https://restaurantapi.spoton.com/posexport/v1
+  tags:
+  - Waitlist
+  properties:
+  - type: OpenAPI
+    url: openapi/spoton-waitlist-api-openapi.yml
+  - type: Documentation
+    url: https://developers.spoton.com/restaurant/docs/introduction
+  - type: APIReference
+    url: https://developers.spoton.com/restaurant/reference
+  - type: Authentication
+    url: https://developers.spoton.com/restaurant/docs/api-access
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-address-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-break-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-cash-deposit-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-employee-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-job-position-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-location-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-menu-item-catalog-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-check-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-discount-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-guest-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-menu-item-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-modifier-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-surcharge-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-tax-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-order-type-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-owner-info-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-paid-in-out-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-payment-option-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-report-category-schema.json
+  - type: JSONSchema
+    url: json-schema/restaurant-pos-export-time-clock-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-address-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-break-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-cash-deposit-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-employee-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-job-position-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-location-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-menu-item-catalog-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-check-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-discount-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-guest-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-menu-item-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-modifier-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-surcharge-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-tax-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-order-type-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-owner-info-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-paid-in-out-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-payment-option-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-report-category-structure.json
+  - type: JSONStructure
+    url: json-structure/restaurant-pos-export-time-clock-entry-structure.json
+  - type: Examples
+    url: examples/restaurant-pos-export-address-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-break-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-cash-deposit-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-employee-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-job-position-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-location-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-menu-item-catalog-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-check-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-discount-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-guest-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-menu-item-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-modifier-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-payment-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-surcharge-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-tax-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-order-type-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-owner-info-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-paid-in-out-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-payment-option-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-report-category-example.json
+  - type: Examples
+    url: examples/restaurant-pos-export-time-clock-entry-example.json
+  - type: JSONLD
+    url: json-ld/spoton-restaurant-pos-export-context.jsonld
+  - type: Documentation
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: GettingStarted
+    url: https://developers.spoton.com/reserve/docs/getting-started
+  - type: SDKs
+    url: https://developers.spoton.com/reserve/docs/javascript
+  - type: JSONSchema
+    url: json-schema/reserve-availability-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-availability-slot-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-customer-information-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-request-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-reservation-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-restaurant-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-wait-time-response-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/reserve-waitlist-request-schema.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-availability-slot-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-customer-information-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-request-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-reservation-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-restaurant-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-wait-time-response-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/reserve-waitlist-request-structure.json
+  - type: Examples
+    url: examples/reserve-availability-response-example.json
+  - type: Examples
+    url: examples/reserve-availability-slot-example.json
+  - type: Examples
+    url: examples/reserve-customer-information-example.json
+  - type: Examples
+    url: examples/reserve-reservation-example.json
+  - type: Examples
+    url: examples/reserve-reservation-request-example.json
+  - type: Examples
+    url: examples/reserve-restaurant-example.json
+  - type: Examples
+    url: examples/reserve-wait-time-response-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-entry-example.json
+  - type: Examples
+    url: examples/reserve-waitlist-request-example.json
+  - type: JSONLD
+    url: json-ld/spoton-reserve-context.jsonld
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/spoton/overview
   - type: AgenticAccess
     url: agentic-access/spoton-agentic-access.yml
   - type: TrustCenter
