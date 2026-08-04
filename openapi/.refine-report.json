@@ -1,0 +1,42 @@
+{
+  "provider": "spoton",
+  "sources": [
+    "spoton-availability-api-openapi.yml",
+    "spoton-cash-deposits-api-openapi.yml",
+    "spoton-employees-api-openapi.yml",
+    "spoton-job-positions-api-openapi.yml",
+    "spoton-locations-api-openapi.yml",
+    "spoton-menu-items-api-openapi.yml",
+    "spoton-order-types-api-openapi.yml",
+    "spoton-orders-api-openapi.yml",
+    "spoton-paid-in-outs-api-openapi.yml",
+    "spoton-payment-options-api-openapi.yml",
+    "spoton-report-categories-api-openapi.yml",
+    "spoton-reservations-api-openapi.yml",
+    "spoton-restaurants-api-openapi.yml",
+    "spoton-time-clock-entries-api-openapi.yml",
+    "spoton-waitlist-api-openapi.yml"
+  ],
+  "outputs": [
+    "spoton-availability-api-openapi.yml",
+    "spoton-cash-deposits-api-openapi.yml",
+    "spoton-employees-api-openapi.yml",
+    "spoton-job-positions-api-openapi.yml",
+    "spoton-locations-api-openapi.yml",
+    "spoton-menu-items-api-openapi.yml",
+    "spoton-order-types-api-openapi.yml",
+    "spoton-orders-api-openapi.yml",
+    "spoton-paid-in-outs-api-openapi.yml",
+    "spoton-payment-options-api-openapi.yml",
+    "spoton-report-categories-api-openapi.yml",
+    "spoton-reservations-api-openapi.yml",
+    "spoton-restaurants-api-openapi.yml",
+    "spoton-time-clock-entries-api-openapi.yml",
+    "spoton-waitlist-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

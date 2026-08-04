@@ -1,0 +1,747 @@
+{
+  "info": {
+    "_postman_id": "d1ef837e-24ff-46ee-a259-299944d20df9",
+    "name": "SpotOn Reserve Availability Cash Deposits API",
+    "description": "The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.\n\nContact Support:\n Name: SpotOn Reserve Developer Center",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:01:06.000Z",
+    "updatedAt": "2026-07-28T03:01:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d1ef837e-24ff-46ee-a259-299944d20df9"
+  },
+  "item": [
+    {
+      "name": "locations",
+      "item": [
+        {
+          "name": "{locationId}",
+          "item": [
+            {
+              "name": "cash-deposits",
+              "item": [
+                {
+                  "name": "{cashDepositId}",
+                  "item": [
+                    {
+                      "name": "SpotOn Get Cash Deposit",
+                      "id": "74a1d94e-dcf8-42ac-9f69-fb0347764196",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/cash-deposits/:cashDepositId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "cash-deposits",
+                            ":cashDepositId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ebcedda4-8e8a-4f50-b772-1660bce0aa20",
+                              "key": "locationId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the location."
+                            },
+                            {
+                              "id": "0645fab8-7136-484e-aada-b3c84674e7ac",
+                              "key": "cashDepositId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the cash deposit."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a single cash deposit by its unique identifier for a location."
+                      },
+                      "response": [
+                        {
+                          "id": "741be89b-b9f7-4078-a3e0-9e7698e47a28",
+                          "name": "The requested cash deposit.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/cash-deposits/:cashDepositId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "cash-deposits",
+                                ":cashDepositId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "cashDepositId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"locationId\": \"<string>\",\n  \"deleted\": \"<boolean>\",\n  \"amount\": \"<string>\",\n  \"employeeId\": \"<string>\",\n  \"jobPositionId\": \"<string>\",\n  \"recordedAt\": \"<dateTime>\",\n  \"lastUpdatedByEmployeeId\": \"<string>\",\n  \"lastUpdatedByJobPositionId\": \"<string>\",\n  \"lastUpdatedAt\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T03:01:06.000Z",
+                          "updatedAt": "2026-07-28T03:01:06.000Z",
+                          "uid": "35240-741be89b-b9f7-4078-a3e0-9e7698e47a28"
+                        },
+                        {
+                          "id": "37e9b2ea-52c2-4f2b-b531-16ee660bd6dd",
+                          "name": "The API key is missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/cash-deposits/:cashDepositId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "cash-deposits",
+                                ":cashDepositId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "cashDepositId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:06.000Z",
+                          "updatedAt": "2026-07-28T03:01:06.000Z",
+                          "uid": "35240-37e9b2ea-52c2-4f2b-b531-16ee660bd6dd"
+                        },
+                        {
+                          "id": "81a678a4-064a-4bd9-98da-cdc5110e493f",
+                          "name": "The API key does not have access to the requested location.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/cash-deposits/:cashDepositId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "cash-deposits",
+                                ":cashDepositId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "cashDepositId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:06.000Z",
+                          "updatedAt": "2026-07-28T03:01:06.000Z",
+                          "uid": "35240-81a678a4-064a-4bd9-98da-cdc5110e493f"
+                        },
+                        {
+                          "id": "cacf9b27-c7bc-400a-b7cb-665e18425227",
+                          "name": "The requested resource does not exist.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/cash-deposits/:cashDepositId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "cash-deposits",
+                                ":cashDepositId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "cashDepositId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:06.000Z",
+                          "updatedAt": "2026-07-28T03:01:06.000Z",
+                          "uid": "35240-cacf9b27-c7bc-400a-b7cb-665e18425227"
+                        },
+                        {
+                          "id": "fade20cd-7713-47aa-86d0-700355688bd0",
+                          "name": "An unexpected server error occurred.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/cash-deposits/:cashDepositId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "cash-deposits",
+                                ":cashDepositId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "cashDepositId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:06.000Z",
+                          "updatedAt": "2026-07-28T03:01:06.000Z",
+                          "uid": "35240-fade20cd-7713-47aa-86d0-700355688bd0"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:01:06.000Z",
+                      "updatedAt": "2026-07-28T03:01:06.000Z",
+                      "uid": "35240-74a1d94e-dcf8-42ac-9f69-fb0347764196"
+                    }
+                  ],
+                  "id": "b7e36b3c-dfaf-45dc-b00b-6e073b64d2bf",
+                  "createdAt": "2026-07-28T03:01:06.000Z",
+                  "updatedAt": "2026-07-28T03:01:06.000Z",
+                  "uid": "35240-b7e36b3c-dfaf-45dc-b00b-6e073b64d2bf"
+                },
+                {
+                  "name": "SpotOn List Cash Deposits",
+                  "id": "a04a0c13-a4e7-4ef4-bd30-8936ed4ab30c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/locations/:locationId/cash-deposits?updatedAtStart=<dateTime>&updatedAtEnd=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "locations",
+                        ":locationId",
+                        "cash-deposits"
+                      ],
+                      "query": [
+                        {
+                          "description": "Inclusive RFC 3339 start of the update range.",
+                          "key": "updatedAtStart",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Exclusive RFC 3339 end of the update range.",
+                          "key": "updatedAtEnd",
+                          "value": "<dateTime>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "4ef1b180-846f-48d5-bb61-fd48afaf4adb",
+                          "key": "locationId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the location."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all cash deposits updated within a specified date range for a location."
+                  },
+                  "response": [
+                    {
+                      "id": "701c642e-04ab-4ab0-bf03-4653e3a78902",
+                      "name": "A list of cash deposit records for the location.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/cash-deposits?updatedAtStart=<dateTime>&updatedAtEnd=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "cash-deposits"
+                          ],
+                          "query": [
+                            {
+                              "description": "Inclusive RFC 3339 start of the update range.",
+                              "key": "updatedAtStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end of the update range.",
+                              "key": "updatedAtEnd",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"deleted\": \"<boolean>\",\n    \"amount\": \"<string>\",\n    \"employeeId\": \"<string>\",\n    \"jobPositionId\": \"<string>\",\n    \"recordedAt\": \"<dateTime>\",\n    \"lastUpdatedByEmployeeId\": \"<string>\",\n    \"lastUpdatedByJobPositionId\": \"<string>\",\n    \"lastUpdatedAt\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"deleted\": \"<boolean>\",\n    \"amount\": \"<string>\",\n    \"employeeId\": \"<string>\",\n    \"jobPositionId\": \"<string>\",\n    \"recordedAt\": \"<dateTime>\",\n    \"lastUpdatedByEmployeeId\": \"<string>\",\n    \"lastUpdatedByJobPositionId\": \"<string>\",\n    \"lastUpdatedAt\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-07-28T03:01:06.000Z",
+                      "updatedAt": "2026-07-28T03:01:06.000Z",
+                      "uid": "35240-701c642e-04ab-4ab0-bf03-4653e3a78902"
+                    },
+                    {
+                      "id": "e9b61d28-44ca-416d-b0c5-371758c1d710",
+                      "name": "The request was malformed or violated a documented constraint such as the date range limit.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/cash-deposits?updatedAtStart=<dateTime>&updatedAtEnd=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "cash-deposits"
+                          ],
+                          "query": [
+                            {
+                              "description": "Inclusive RFC 3339 start of the update range.",
+                              "key": "updatedAtStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end of the update range.",
+                              "key": "updatedAtEnd",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:06.000Z",
+                      "updatedAt": "2026-07-28T03:01:06.000Z",
+                      "uid": "35240-e9b61d28-44ca-416d-b0c5-371758c1d710"
+                    },
+                    {
+                      "id": "09f6f522-a846-4b17-a5b2-7bd1087eb70d",
+                      "name": "The API key is missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/cash-deposits?updatedAtStart=<dateTime>&updatedAtEnd=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "cash-deposits"
+                          ],
+                          "query": [
+                            {
+                              "description": "Inclusive RFC 3339 start of the update range.",
+                              "key": "updatedAtStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end of the update range.",
+                              "key": "updatedAtEnd",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:06.000Z",
+                      "updatedAt": "2026-07-28T03:01:06.000Z",
+                      "uid": "35240-09f6f522-a846-4b17-a5b2-7bd1087eb70d"
+                    },
+                    {
+                      "id": "973b606e-fbab-48e3-bd3e-690c5c086b6a",
+                      "name": "The API key does not have access to the requested location.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/cash-deposits?updatedAtStart=<dateTime>&updatedAtEnd=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "cash-deposits"
+                          ],
+                          "query": [
+                            {
+                              "description": "Inclusive RFC 3339 start of the update range.",
+                              "key": "updatedAtStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end of the update range.",
+                              "key": "updatedAtEnd",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:06.000Z",
+                      "updatedAt": "2026-07-28T03:01:06.000Z",
+                      "uid": "35240-973b606e-fbab-48e3-bd3e-690c5c086b6a"
+                    },
+                    {
+                      "id": "b743b8d6-bce0-4b97-8c8c-44958d938369",
+                      "name": "An unexpected server error occurred.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/cash-deposits?updatedAtStart=<dateTime>&updatedAtEnd=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "cash-deposits"
+                          ],
+                          "query": [
+                            {
+                              "description": "Inclusive RFC 3339 start of the update range.",
+                              "key": "updatedAtStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end of the update range.",
+                              "key": "updatedAtEnd",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:06.000Z",
+                      "updatedAt": "2026-07-28T03:01:06.000Z",
+                      "uid": "35240-b743b8d6-bce0-4b97-8c8c-44958d938369"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:01:06.000Z",
+                  "updatedAt": "2026-07-28T03:01:06.000Z",
+                  "uid": "35240-a04a0c13-a4e7-4ef4-bd30-8936ed4ab30c"
+                }
+              ],
+              "id": "21e4f6f0-d966-4c32-8d8e-8b4f0c6373ba",
+              "createdAt": "2026-07-28T03:01:06.000Z",
+              "updatedAt": "2026-07-28T03:01:06.000Z",
+              "uid": "35240-21e4f6f0-d966-4c32-8d8e-8b4f0c6373ba"
+            }
+          ],
+          "id": "d21fcdcb-540c-4cd7-8080-dce043656ea0",
+          "createdAt": "2026-07-28T03:01:06.000Z",
+          "updatedAt": "2026-07-28T03:01:06.000Z",
+          "uid": "35240-d21fcdcb-540c-4cd7-8080-dce043656ea0"
+        }
+      ],
+      "id": "c30873d7-312c-428f-aa73-86b2291ef47e",
+      "createdAt": "2026-07-28T03:01:06.000Z",
+      "updatedAt": "2026-07-28T03:01:06.000Z",
+      "uid": "35240-c30873d7-312c-428f-aa73-86b2291ef47e"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.seatninja.com"
+    }
+  ]
+}

@@ -1,0 +1,626 @@
+{
+  "info": {
+    "_postman_id": "244925a0-400b-40e3-a911-9ae55758b0c1",
+    "name": "SpotOn Reserve Availability Payment Options API",
+    "description": "The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.\n\nContact Support:\n Name: SpotOn Reserve Developer Center",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:01:20.000Z",
+    "updatedAt": "2026-07-28T03:01:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-244925a0-400b-40e3-a911-9ae55758b0c1"
+  },
+  "item": [
+    {
+      "name": "locations",
+      "item": [
+        {
+          "name": "{locationId}",
+          "item": [
+            {
+              "name": "payment-options",
+              "item": [
+                {
+                  "name": "{paymentOptionId}",
+                  "item": [
+                    {
+                      "name": "SpotOn Get Payment Option",
+                      "id": "939f7210-94ed-4b66-95a5-67b251f95fa9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/payment-options/:paymentOptionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "payment-options",
+                            ":paymentOptionId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9aa3f2f2-3cf1-46ce-a223-86e01d0bce3b",
+                              "key": "locationId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the location."
+                            },
+                            {
+                              "id": "37706a60-e105-446f-aadd-691324bd517d",
+                              "key": "paymentOptionId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the payment option."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a single payment option by its unique identifier for a location."
+                      },
+                      "response": [
+                        {
+                          "id": "4740e005-68c9-4a23-9186-887454486b21",
+                          "name": "The requested payment option.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/payment-options/:paymentOptionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "payment-options",
+                                ":paymentOptionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "paymentOptionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"locationId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"deleted\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"kind\": \"OTHER\"\n}",
+                          "createdAt": "2026-07-28T03:01:20.000Z",
+                          "updatedAt": "2026-07-28T03:01:20.000Z",
+                          "uid": "35240-4740e005-68c9-4a23-9186-887454486b21"
+                        },
+                        {
+                          "id": "8a32265c-321a-43c7-888a-27af51372372",
+                          "name": "The API key is missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/payment-options/:paymentOptionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "payment-options",
+                                ":paymentOptionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "paymentOptionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:20.000Z",
+                          "updatedAt": "2026-07-28T03:01:20.000Z",
+                          "uid": "35240-8a32265c-321a-43c7-888a-27af51372372"
+                        },
+                        {
+                          "id": "f9488b24-7e03-4336-8e58-ecb0d017fc58",
+                          "name": "The API key does not have access to the requested location.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/payment-options/:paymentOptionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "payment-options",
+                                ":paymentOptionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "paymentOptionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:20.000Z",
+                          "updatedAt": "2026-07-28T03:01:20.000Z",
+                          "uid": "35240-f9488b24-7e03-4336-8e58-ecb0d017fc58"
+                        },
+                        {
+                          "id": "103acb15-28c0-44c2-bc2d-0ed82b7fc700",
+                          "name": "The requested resource does not exist.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/payment-options/:paymentOptionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "payment-options",
+                                ":paymentOptionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "paymentOptionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:20.000Z",
+                          "updatedAt": "2026-07-28T03:01:20.000Z",
+                          "uid": "35240-103acb15-28c0-44c2-bc2d-0ed82b7fc700"
+                        },
+                        {
+                          "id": "f37a3f95-47b5-4bab-9721-61121555bd3f",
+                          "name": "An unexpected server error occurred.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/payment-options/:paymentOptionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "payment-options",
+                                ":paymentOptionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "paymentOptionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:20.000Z",
+                          "updatedAt": "2026-07-28T03:01:20.000Z",
+                          "uid": "35240-f37a3f95-47b5-4bab-9721-61121555bd3f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:01:20.000Z",
+                      "updatedAt": "2026-07-28T03:01:20.000Z",
+                      "uid": "35240-939f7210-94ed-4b66-95a5-67b251f95fa9"
+                    }
+                  ],
+                  "id": "a0372846-e4f3-483d-8f96-6831f1ef3ffc",
+                  "createdAt": "2026-07-28T03:01:20.000Z",
+                  "updatedAt": "2026-07-28T03:01:20.000Z",
+                  "uid": "35240-a0372846-e4f3-483d-8f96-6831f1ef3ffc"
+                },
+                {
+                  "name": "SpotOn List Payment Options",
+                  "id": "8cbacf15-b623-4a2b-80ef-1ecf3dd455fc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/locations/:locationId/payment-options",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "locations",
+                        ":locationId",
+                        "payment-options"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a6f2dc18-d06a-40d5-95c1-bafc57f36780",
+                          "key": "locationId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the location."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all payment options configured for a location."
+                  },
+                  "response": [
+                    {
+                      "id": "1a38fb83-5064-48cf-8d69-bff6975741f1",
+                      "name": "A list of payment options for the location.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/payment-options",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "payment-options"
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"deleted\": \"<boolean>\",\n    \"enabled\": \"<boolean>\",\n    \"kind\": \"OTHER\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"deleted\": \"<boolean>\",\n    \"enabled\": \"<boolean>\",\n    \"kind\": \"CASH\"\n  }\n]",
+                      "createdAt": "2026-07-28T03:01:20.000Z",
+                      "updatedAt": "2026-07-28T03:01:20.000Z",
+                      "uid": "35240-1a38fb83-5064-48cf-8d69-bff6975741f1"
+                    },
+                    {
+                      "id": "ea6b792c-3b31-49df-8fbd-53f2c958b6f0",
+                      "name": "The API key is missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/payment-options",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "payment-options"
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:20.000Z",
+                      "updatedAt": "2026-07-28T03:01:20.000Z",
+                      "uid": "35240-ea6b792c-3b31-49df-8fbd-53f2c958b6f0"
+                    },
+                    {
+                      "id": "cc5c5216-beef-49ea-b8d0-b5a0e46db100",
+                      "name": "The API key does not have access to the requested location.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/payment-options",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "payment-options"
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:20.000Z",
+                      "updatedAt": "2026-07-28T03:01:20.000Z",
+                      "uid": "35240-cc5c5216-beef-49ea-b8d0-b5a0e46db100"
+                    },
+                    {
+                      "id": "35a4b8e4-de3f-42e5-a449-ee1141cd38d6",
+                      "name": "An unexpected server error occurred.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/payment-options",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "payment-options"
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:20.000Z",
+                      "updatedAt": "2026-07-28T03:01:20.000Z",
+                      "uid": "35240-35a4b8e4-de3f-42e5-a449-ee1141cd38d6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:01:20.000Z",
+                  "updatedAt": "2026-07-28T03:01:20.000Z",
+                  "uid": "35240-8cbacf15-b623-4a2b-80ef-1ecf3dd455fc"
+                }
+              ],
+              "id": "399ff1fe-4b41-4476-8ac7-47697e2025f5",
+              "createdAt": "2026-07-28T03:01:20.000Z",
+              "updatedAt": "2026-07-28T03:01:20.000Z",
+              "uid": "35240-399ff1fe-4b41-4476-8ac7-47697e2025f5"
+            }
+          ],
+          "id": "8863da9c-6254-4d15-a3a1-36cf5879d9ac",
+          "createdAt": "2026-07-28T03:01:20.000Z",
+          "updatedAt": "2026-07-28T03:01:20.000Z",
+          "uid": "35240-8863da9c-6254-4d15-a3a1-36cf5879d9ac"
+        }
+      ],
+      "id": "df2119df-ca86-4673-8992-0148e9495bfb",
+      "createdAt": "2026-07-28T03:01:20.000Z",
+      "updatedAt": "2026-07-28T03:01:20.000Z",
+      "uid": "35240-df2119df-ca86-4673-8992-0148e9495bfb"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.seatninja.com"
+    }
+  ]
+}

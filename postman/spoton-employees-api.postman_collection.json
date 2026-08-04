@@ -1,0 +1,626 @@
+{
+  "info": {
+    "_postman_id": "4b81a075-0de2-4d2b-a6ff-f2f46707673a",
+    "name": "SpotOn Reserve Availability Employees API",
+    "description": "The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.\n\nContact Support:\n Name: SpotOn Reserve Developer Center",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:01:10.000Z",
+    "updatedAt": "2026-07-28T03:01:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4b81a075-0de2-4d2b-a6ff-f2f46707673a"
+  },
+  "item": [
+    {
+      "name": "locations",
+      "item": [
+        {
+          "name": "{locationId}",
+          "item": [
+            {
+              "name": "employees",
+              "item": [
+                {
+                  "name": "{employeeId}",
+                  "item": [
+                    {
+                      "name": "SpotOn Get Employee",
+                      "id": "91b871a7-541a-429a-b650-ffda4f5455c7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/employees/:employeeId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "employees",
+                            ":employeeId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c4e0592c-270d-4c80-a551-6a76d209f076",
+                              "key": "locationId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the location."
+                            },
+                            {
+                              "id": "3335c52b-1398-47d9-a90e-32ed4864722c",
+                              "key": "employeeId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the employee."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a single employee by its unique identifier for a location."
+                      },
+                      "response": [
+                        {
+                          "id": "3a1c3778-9caa-4ebc-87d4-edb4b689dbaa",
+                          "name": "The requested employee.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/employees/:employeeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "employees",
+                                ":employeeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "employeeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"locationID\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"nickName\": \"<string>\",\n  \"address\": {\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"birthDate\": \"<dateTime>\",\n  \"hireDate\": \"<dateTime>\",\n  \"terminationDate\": \"<dateTime>\",\n  \"loginCode\": \"<string>\",\n  \"payrollId\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"posUserId\": \"<string>\",\n  \"deleted\": \"<boolean>\",\n  \"excludeFromReporting\": \"<boolean>\",\n  \"jobPositions\": [\n    {\n      \"id\": \"<string>\",\n      \"locationId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"deleted\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"locationId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"deleted\": \"<boolean>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T03:01:10.000Z",
+                          "updatedAt": "2026-07-28T03:01:10.000Z",
+                          "uid": "35240-3a1c3778-9caa-4ebc-87d4-edb4b689dbaa"
+                        },
+                        {
+                          "id": "fefeb2a4-4b1d-4794-bcfa-4d45b9bc0448",
+                          "name": "The API key is missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/employees/:employeeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "employees",
+                                ":employeeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "employeeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:10.000Z",
+                          "updatedAt": "2026-07-28T03:01:10.000Z",
+                          "uid": "35240-fefeb2a4-4b1d-4794-bcfa-4d45b9bc0448"
+                        },
+                        {
+                          "id": "7dd81a87-0feb-43d3-9a51-47afcccc7180",
+                          "name": "The API key does not have access to the requested location.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/employees/:employeeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "employees",
+                                ":employeeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "employeeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:10.000Z",
+                          "updatedAt": "2026-07-28T03:01:10.000Z",
+                          "uid": "35240-7dd81a87-0feb-43d3-9a51-47afcccc7180"
+                        },
+                        {
+                          "id": "4e3a0ace-b320-49f9-a153-38ccb63958bb",
+                          "name": "The requested resource does not exist.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/employees/:employeeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "employees",
+                                ":employeeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "employeeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:10.000Z",
+                          "updatedAt": "2026-07-28T03:01:10.000Z",
+                          "uid": "35240-4e3a0ace-b320-49f9-a153-38ccb63958bb"
+                        },
+                        {
+                          "id": "788e2bc8-57c2-4b2d-9856-7b4796a52ce1",
+                          "name": "An unexpected server error occurred.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/employees/:employeeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "employees",
+                                ":employeeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "employeeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:10.000Z",
+                          "updatedAt": "2026-07-28T03:01:10.000Z",
+                          "uid": "35240-788e2bc8-57c2-4b2d-9856-7b4796a52ce1"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:01:10.000Z",
+                      "updatedAt": "2026-07-28T03:01:10.000Z",
+                      "uid": "35240-91b871a7-541a-429a-b650-ffda4f5455c7"
+                    }
+                  ],
+                  "id": "930ff777-94a5-4d6b-8df8-6b2b4bf9414d",
+                  "createdAt": "2026-07-28T03:01:10.000Z",
+                  "updatedAt": "2026-07-28T03:01:10.000Z",
+                  "uid": "35240-930ff777-94a5-4d6b-8df8-6b2b4bf9414d"
+                },
+                {
+                  "name": "SpotOn List Employees",
+                  "id": "016ce3af-961f-4b87-8a1a-c3cc53aad360",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/locations/:locationId/employees",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "locations",
+                        ":locationId",
+                        "employees"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7e1699e4-5f8f-4c36-8e6c-9b0bf39cae28",
+                          "key": "locationId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the location."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all employees for a location, including the job positions each holds."
+                  },
+                  "response": [
+                    {
+                      "id": "173b44d5-890c-42ba-88ba-fec5cb5ec369",
+                      "name": "A list of employees for the location.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/employees",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "employees"
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"locationID\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"nickName\": \"<string>\",\n    \"address\": {\n      \"street1\": \"<string>\",\n      \"street2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"phone\": \"<string>\"\n    },\n    \"birthDate\": \"<dateTime>\",\n    \"hireDate\": \"<dateTime>\",\n    \"terminationDate\": \"<dateTime>\",\n    \"loginCode\": \"<string>\",\n    \"payrollId\": \"<string>\",\n    \"active\": \"<boolean>\",\n    \"posUserId\": \"<string>\",\n    \"deleted\": \"<boolean>\",\n    \"excludeFromReporting\": \"<boolean>\",\n    \"jobPositions\": [\n      {\n        \"id\": \"<string>\",\n        \"locationId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"deleted\": \"<boolean>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"locationId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"deleted\": \"<boolean>\"\n      }\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"locationID\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"nickName\": \"<string>\",\n    \"address\": {\n      \"street1\": \"<string>\",\n      \"street2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"phone\": \"<string>\"\n    },\n    \"birthDate\": \"<dateTime>\",\n    \"hireDate\": \"<dateTime>\",\n    \"terminationDate\": \"<dateTime>\",\n    \"loginCode\": \"<string>\",\n    \"payrollId\": \"<string>\",\n    \"active\": \"<boolean>\",\n    \"posUserId\": \"<string>\",\n    \"deleted\": \"<boolean>\",\n    \"excludeFromReporting\": \"<boolean>\",\n    \"jobPositions\": [\n      {\n        \"id\": \"<string>\",\n        \"locationId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"deleted\": \"<boolean>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"locationId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"deleted\": \"<boolean>\"\n      }\n    ]\n  }\n]",
+                      "createdAt": "2026-07-28T03:01:10.000Z",
+                      "updatedAt": "2026-07-28T03:01:10.000Z",
+                      "uid": "35240-173b44d5-890c-42ba-88ba-fec5cb5ec369"
+                    },
+                    {
+                      "id": "318d708a-94b5-445a-8c69-bf117ca21ff7",
+                      "name": "The API key is missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/employees",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "employees"
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:10.000Z",
+                      "updatedAt": "2026-07-28T03:01:10.000Z",
+                      "uid": "35240-318d708a-94b5-445a-8c69-bf117ca21ff7"
+                    },
+                    {
+                      "id": "aa3c828d-1868-4c51-a749-c3f336202705",
+                      "name": "The API key does not have access to the requested location.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/employees",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "employees"
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:10.000Z",
+                      "updatedAt": "2026-07-28T03:01:10.000Z",
+                      "uid": "35240-aa3c828d-1868-4c51-a749-c3f336202705"
+                    },
+                    {
+                      "id": "a5c5ddff-7486-4163-9601-54c376c0abb3",
+                      "name": "An unexpected server error occurred.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/employees",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "employees"
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:10.000Z",
+                      "updatedAt": "2026-07-28T03:01:10.000Z",
+                      "uid": "35240-a5c5ddff-7486-4163-9601-54c376c0abb3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:01:10.000Z",
+                  "updatedAt": "2026-07-28T03:01:10.000Z",
+                  "uid": "35240-016ce3af-961f-4b87-8a1a-c3cc53aad360"
+                }
+              ],
+              "id": "4ca99492-a8ed-4caa-9170-5e1a9e9273b7",
+              "createdAt": "2026-07-28T03:01:10.000Z",
+              "updatedAt": "2026-07-28T03:01:10.000Z",
+              "uid": "35240-4ca99492-a8ed-4caa-9170-5e1a9e9273b7"
+            }
+          ],
+          "id": "719268e5-56db-4e92-9dfe-a95152b4edf3",
+          "createdAt": "2026-07-28T03:01:10.000Z",
+          "updatedAt": "2026-07-28T03:01:10.000Z",
+          "uid": "35240-719268e5-56db-4e92-9dfe-a95152b4edf3"
+        }
+      ],
+      "id": "e0278ce1-fb63-4ac2-86fd-3b7cd8a152d4",
+      "createdAt": "2026-07-28T03:01:10.000Z",
+      "updatedAt": "2026-07-28T03:01:10.000Z",
+      "uid": "35240-e0278ce1-fb63-4ac2-86fd-3b7cd8a152d4"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.seatninja.com"
+    }
+  ]
+}

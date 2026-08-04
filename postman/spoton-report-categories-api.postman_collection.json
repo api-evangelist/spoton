@@ -1,0 +1,626 @@
+{
+  "info": {
+    "_postman_id": "5d3a2efe-3a84-42d8-83d3-524b5802b556",
+    "name": "SpotOn Reserve Availability Report Categories API",
+    "description": "The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.\n\nContact Support:\n Name: SpotOn Reserve Developer Center",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:01:22.000Z",
+    "updatedAt": "2026-07-28T03:01:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5d3a2efe-3a84-42d8-83d3-524b5802b556"
+  },
+  "item": [
+    {
+      "name": "locations",
+      "item": [
+        {
+          "name": "{locationId}",
+          "item": [
+            {
+              "name": "report-categories",
+              "item": [
+                {
+                  "name": "{reportCategoryId}",
+                  "item": [
+                    {
+                      "name": "SpotOn Get Report Category",
+                      "id": "f65164dd-8452-4a61-84c0-1eaa3843a2f4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/report-categories/:reportCategoryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "report-categories",
+                            ":reportCategoryId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "79cf7236-5469-4f06-bed2-7e55b690201c",
+                              "key": "locationId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the location."
+                            },
+                            {
+                              "id": "86e175a0-5383-440f-859e-d3fe6ddf5aa0",
+                              "key": "reportCategoryId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the report category."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a single report category by its unique identifier for a location."
+                      },
+                      "response": [
+                        {
+                          "id": "e0f3f4f3-2198-46b5-97e7-3138090c3b38",
+                          "name": "The requested report category.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/report-categories/:reportCategoryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "report-categories",
+                                ":reportCategoryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "reportCategoryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"locationId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"parentId\": \"<string>\",\n  \"deleted\": \"<boolean>\"\n}",
+                          "createdAt": "2026-07-28T03:01:22.000Z",
+                          "updatedAt": "2026-07-28T03:01:22.000Z",
+                          "uid": "35240-e0f3f4f3-2198-46b5-97e7-3138090c3b38"
+                        },
+                        {
+                          "id": "89a9f93f-f423-46da-8ba1-4e72a91c1906",
+                          "name": "The API key is missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/report-categories/:reportCategoryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "report-categories",
+                                ":reportCategoryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "reportCategoryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:22.000Z",
+                          "updatedAt": "2026-07-28T03:01:22.000Z",
+                          "uid": "35240-89a9f93f-f423-46da-8ba1-4e72a91c1906"
+                        },
+                        {
+                          "id": "2a4e8286-be06-4f2b-9d71-9cb690a6f54f",
+                          "name": "The API key does not have access to the requested location.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/report-categories/:reportCategoryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "report-categories",
+                                ":reportCategoryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "reportCategoryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:22.000Z",
+                          "updatedAt": "2026-07-28T03:01:22.000Z",
+                          "uid": "35240-2a4e8286-be06-4f2b-9d71-9cb690a6f54f"
+                        },
+                        {
+                          "id": "366962f2-5d56-4fed-ae93-ab6315374496",
+                          "name": "The requested resource does not exist.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/report-categories/:reportCategoryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "report-categories",
+                                ":reportCategoryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "reportCategoryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:22.000Z",
+                          "updatedAt": "2026-07-28T03:01:22.000Z",
+                          "uid": "35240-366962f2-5d56-4fed-ae93-ab6315374496"
+                        },
+                        {
+                          "id": "a6069152-675c-48e9-8d95-514364dd8570",
+                          "name": "An unexpected server error occurred.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/report-categories/:reportCategoryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "report-categories",
+                                ":reportCategoryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "reportCategoryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:22.000Z",
+                          "updatedAt": "2026-07-28T03:01:22.000Z",
+                          "uid": "35240-a6069152-675c-48e9-8d95-514364dd8570"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:01:22.000Z",
+                      "updatedAt": "2026-07-28T03:01:22.000Z",
+                      "uid": "35240-f65164dd-8452-4a61-84c0-1eaa3843a2f4"
+                    }
+                  ],
+                  "id": "beab5c6e-9314-4eff-8386-b32b17fe0088",
+                  "createdAt": "2026-07-28T03:01:22.000Z",
+                  "updatedAt": "2026-07-28T03:01:22.000Z",
+                  "uid": "35240-beab5c6e-9314-4eff-8386-b32b17fe0088"
+                },
+                {
+                  "name": "SpotOn List Report Categories",
+                  "id": "f49838af-e4f1-4750-955e-c107a2ad6a9e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/locations/:locationId/report-categories",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "locations",
+                        ":locationId",
+                        "report-categories"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fa6df176-cb34-497e-bc23-83f0a2ac80bc",
+                          "key": "locationId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the location."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all report categories configured for a location."
+                  },
+                  "response": [
+                    {
+                      "id": "2e61a3f7-4884-43e0-8218-84d78f0bf0b3",
+                      "name": "A list of report categories for the location.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/report-categories",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "report-categories"
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"parentId\": \"<string>\",\n    \"deleted\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"parentId\": \"<string>\",\n    \"deleted\": \"<boolean>\"\n  }\n]",
+                      "createdAt": "2026-07-28T03:01:22.000Z",
+                      "updatedAt": "2026-07-28T03:01:22.000Z",
+                      "uid": "35240-2e61a3f7-4884-43e0-8218-84d78f0bf0b3"
+                    },
+                    {
+                      "id": "ba0cb43e-ed6c-4dcc-9ca3-0327e9d57c37",
+                      "name": "The API key is missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/report-categories",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "report-categories"
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:22.000Z",
+                      "updatedAt": "2026-07-28T03:01:22.000Z",
+                      "uid": "35240-ba0cb43e-ed6c-4dcc-9ca3-0327e9d57c37"
+                    },
+                    {
+                      "id": "d524c500-8421-4ece-b839-08b795699713",
+                      "name": "The API key does not have access to the requested location.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/report-categories",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "report-categories"
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:22.000Z",
+                      "updatedAt": "2026-07-28T03:01:22.000Z",
+                      "uid": "35240-d524c500-8421-4ece-b839-08b795699713"
+                    },
+                    {
+                      "id": "084bd45c-252a-413f-82b6-df6c67d6fecb",
+                      "name": "An unexpected server error occurred.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/report-categories",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "report-categories"
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:22.000Z",
+                      "updatedAt": "2026-07-28T03:01:22.000Z",
+                      "uid": "35240-084bd45c-252a-413f-82b6-df6c67d6fecb"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:01:22.000Z",
+                  "updatedAt": "2026-07-28T03:01:22.000Z",
+                  "uid": "35240-f49838af-e4f1-4750-955e-c107a2ad6a9e"
+                }
+              ],
+              "id": "a5d46494-5b4d-4670-b040-87d59da6003c",
+              "createdAt": "2026-07-28T03:01:22.000Z",
+              "updatedAt": "2026-07-28T03:01:22.000Z",
+              "uid": "35240-a5d46494-5b4d-4670-b040-87d59da6003c"
+            }
+          ],
+          "id": "25279cc8-ba09-4e47-a87c-5feb398f5480",
+          "createdAt": "2026-07-28T03:01:22.000Z",
+          "updatedAt": "2026-07-28T03:01:22.000Z",
+          "uid": "35240-25279cc8-ba09-4e47-a87c-5feb398f5480"
+        }
+      ],
+      "id": "703cf257-9ccd-4ab2-a5c5-3181bc27c39e",
+      "createdAt": "2026-07-28T03:01:22.000Z",
+      "updatedAt": "2026-07-28T03:01:22.000Z",
+      "uid": "35240-703cf257-9ccd-4ab2-a5c5-3181bc27c39e"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.seatninja.com"
+    }
+  ]
+}

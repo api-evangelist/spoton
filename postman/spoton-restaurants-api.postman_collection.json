@@ -1,0 +1,248 @@
+{
+  "info": {
+    "_postman_id": "4db185c2-8e83-43de-b356-adf28d326d90",
+    "name": "SpotOn Reserve Availability Restaurants API",
+    "description": "The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.\n\nContact Support:\n Name: SpotOn Reserve Developer Center",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:01:29.000Z",
+    "updatedAt": "2026-07-28T03:01:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4db185c2-8e83-43de-b356-adf28d326d90"
+  },
+  "item": [
+    {
+      "name": "restaurants",
+      "item": [
+        {
+          "name": "SpotOn List Restaurants",
+          "id": "0a0bc964-cec3-4eb4-b016-dba9969cd4a3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "restaurants"
+              ]
+            },
+            "description": "List the restaurants accessible with the supplied API key."
+          },
+          "response": [
+            {
+              "id": "88ee27b5-30a6-4ee4-be19-b639ff530466",
+              "name": "A list of accessible restaurants.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/restaurants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "restaurants"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"restaurantId\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"timeZone\": \"<string>\"\n  },\n  {\n    \"restaurantId\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"timeZone\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-07-28T03:01:29.000Z",
+              "updatedAt": "2026-07-28T03:01:29.000Z",
+              "uid": "35240-88ee27b5-30a6-4ee4-be19-b639ff530466"
+            },
+            {
+              "id": "a593b870-8fb7-4948-a566-15ad839e4c25",
+              "name": "The API key is missing or invalid.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/restaurants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "restaurants"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:01:29.000Z",
+              "updatedAt": "2026-07-28T03:01:29.000Z",
+              "uid": "35240-a593b870-8fb7-4948-a566-15ad839e4c25"
+            },
+            {
+              "id": "44c65e43-3aee-4c7a-b5f5-eb64d6f1a760",
+              "name": "The API key does not have access to the requested restaurant.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/restaurants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "restaurants"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:01:29.000Z",
+              "updatedAt": "2026-07-28T03:01:29.000Z",
+              "uid": "35240-44c65e43-3aee-4c7a-b5f5-eb64d6f1a760"
+            },
+            {
+              "id": "8f19f191-23e8-49fe-ad2a-254aaa359530",
+              "name": "An unexpected server error occurred.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/restaurants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "restaurants"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:01:29.000Z",
+              "updatedAt": "2026-07-28T03:01:29.000Z",
+              "uid": "35240-8f19f191-23e8-49fe-ad2a-254aaa359530"
+            }
+          ],
+          "createdAt": "2026-07-28T03:01:29.000Z",
+          "updatedAt": "2026-07-28T03:01:29.000Z",
+          "uid": "35240-0a0bc964-cec3-4eb4-b016-dba9969cd4a3"
+        }
+      ],
+      "id": "d9e10d2a-7aa9-416d-83b9-57a18b14aa4e",
+      "createdAt": "2026-07-28T03:01:29.000Z",
+      "updatedAt": "2026-07-28T03:01:29.000Z",
+      "uid": "35240-d9e10d2a-7aa9-416d-83b9-57a18b14aa4e"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.seatninja.com"
+    }
+  ]
+}

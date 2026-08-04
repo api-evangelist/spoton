@@ -1,0 +1,867 @@
+{
+  "info": {
+    "_postman_id": "a6480082-985c-4737-8b9d-39f911cf92bd",
+    "name": "SpotOn Reserve Availability Time Clock Entries API",
+    "description": "The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.\n\nContact Support:\n Name: SpotOn Reserve Developer Center",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:01:30.000Z",
+    "updatedAt": "2026-07-28T03:01:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a6480082-985c-4737-8b9d-39f911cf92bd"
+  },
+  "item": [
+    {
+      "name": "locations",
+      "item": [
+        {
+          "name": "{locationId}",
+          "item": [
+            {
+              "name": "time-clock-entries",
+              "item": [
+                {
+                  "name": "{timeClockEntryId}",
+                  "item": [
+                    {
+                      "name": "SpotOn Get Time Clock Entry",
+                      "id": "e1c7bba5-cd42-4fe6-9363-98d84eee8898",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/time-clock-entries/:timeClockEntryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "time-clock-entries",
+                            ":timeClockEntryId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "64d1fdd4-c27f-4810-bfb4-1f801ba78c5c",
+                              "key": "locationId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the location."
+                            },
+                            {
+                              "id": "69b0df71-c3eb-41c5-b859-ec7210640708",
+                              "key": "timeClockEntryId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the time clock entry."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a single time clock entry by its unique identifier for a location."
+                      },
+                      "response": [
+                        {
+                          "id": "872dcd67-e0b7-49cf-a594-4587a2bbd971",
+                          "name": "The requested time clock entry.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/time-clock-entries/:timeClockEntryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "time-clock-entries",
+                                ":timeClockEntryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "timeClockEntryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"locationId\": \"<string>\",\n  \"deleted\": \"<boolean>\",\n  \"voided\": \"<boolean>\",\n  \"employeeId\": \"<string>\",\n  \"jobPositionId\": \"<string>\",\n  \"payRateAmount\": \"<string>\",\n  \"declaredCashTipsAmount\": \"<string>\",\n  \"declaredCashTipsToOthersAmount\": \"<string>\",\n  \"inAt\": \"<dateTime>\",\n  \"outAt\": \"<dateTime>\",\n  \"breaks\": [\n    {\n      \"id\": \"<string>\",\n      \"startedAt\": \"<dateTime>\",\n      \"endedAt\": \"<dateTime>\",\n      \"kind\": \"PAID\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"startedAt\": \"<dateTime>\",\n      \"endedAt\": \"<dateTime>\",\n      \"kind\": \"PAID\"\n    }\n  ],\n  \"lastUpdatedAt\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T03:01:31.000Z",
+                          "updatedAt": "2026-07-28T03:01:31.000Z",
+                          "uid": "35240-872dcd67-e0b7-49cf-a594-4587a2bbd971"
+                        },
+                        {
+                          "id": "25ccfc41-ade9-4431-97bf-d6e9a14e4337",
+                          "name": "The API key is missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/time-clock-entries/:timeClockEntryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "time-clock-entries",
+                                ":timeClockEntryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "timeClockEntryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:31.000Z",
+                          "updatedAt": "2026-07-28T03:01:31.000Z",
+                          "uid": "35240-25ccfc41-ade9-4431-97bf-d6e9a14e4337"
+                        },
+                        {
+                          "id": "3f8059bc-d2d1-4be6-a8da-ea6e0dc804e9",
+                          "name": "The API key does not have access to the requested location.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/time-clock-entries/:timeClockEntryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "time-clock-entries",
+                                ":timeClockEntryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "timeClockEntryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:31.000Z",
+                          "updatedAt": "2026-07-28T03:01:31.000Z",
+                          "uid": "35240-3f8059bc-d2d1-4be6-a8da-ea6e0dc804e9"
+                        },
+                        {
+                          "id": "d05044ed-f065-4dda-b50f-db5827ac2fa6",
+                          "name": "The requested resource does not exist.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/time-clock-entries/:timeClockEntryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "time-clock-entries",
+                                ":timeClockEntryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "timeClockEntryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:31.000Z",
+                          "updatedAt": "2026-07-28T03:01:31.000Z",
+                          "uid": "35240-d05044ed-f065-4dda-b50f-db5827ac2fa6"
+                        },
+                        {
+                          "id": "af595a90-d0c9-42a6-a577-55462042208e",
+                          "name": "An unexpected server error occurred.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/time-clock-entries/:timeClockEntryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "time-clock-entries",
+                                ":timeClockEntryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "timeClockEntryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:31.000Z",
+                          "updatedAt": "2026-07-28T03:01:31.000Z",
+                          "uid": "35240-af595a90-d0c9-42a6-a577-55462042208e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:01:30.000Z",
+                      "updatedAt": "2026-07-28T03:01:30.000Z",
+                      "uid": "35240-e1c7bba5-cd42-4fe6-9363-98d84eee8898"
+                    }
+                  ],
+                  "id": "81b66ede-17ce-47cb-8865-48b76a93a520",
+                  "createdAt": "2026-07-28T03:01:30.000Z",
+                  "updatedAt": "2026-07-28T03:01:30.000Z",
+                  "uid": "35240-81b66ede-17ce-47cb-8865-48b76a93a520"
+                },
+                {
+                  "name": "SpotOn List Time Clock Entries",
+                  "id": "fa9e54de-49df-4db0-a2f7-00a50630ed1d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/locations/:locationId/time-clock-entries?updatedAtStart=<dateTime>&updatedAtEnd=<dateTime>&inStart=<dateTime>&inEnd=<dateTime>&outStart=<dateTime>&outEnd=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "locations",
+                        ":locationId",
+                        "time-clock-entries"
+                      ],
+                      "query": [
+                        {
+                          "description": "Inclusive RFC 3339 start of the update range.",
+                          "key": "updatedAtStart",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Exclusive RFC 3339 end of the update range.",
+                          "key": "updatedAtEnd",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Inclusive RFC 3339 start for shift clock-in times.",
+                          "key": "inStart",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Exclusive RFC 3339 end for shift clock-in times.",
+                          "key": "inEnd",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Inclusive RFC 3339 start for shift clock-out times.",
+                          "key": "outStart",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Exclusive RFC 3339 end for shift clock-out times.",
+                          "key": "outEnd",
+                          "value": "<dateTime>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "8a19b3cc-45cc-41c1-bc14-5acd661f3130",
+                          "key": "locationId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the location."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all time clock entries for a location within a specified date/time range, filtered by update time, clock-in time, or clock-out time."
+                  },
+                  "response": [
+                    {
+                      "id": "d1879c94-670d-4786-aca8-9881a34bd218",
+                      "name": "A list of time clock entries for the location.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/time-clock-entries?updatedAtStart=<dateTime>&updatedAtEnd=<dateTime>&inStart=<dateTime>&inEnd=<dateTime>&outStart=<dateTime>&outEnd=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "time-clock-entries"
+                          ],
+                          "query": [
+                            {
+                              "description": "Inclusive RFC 3339 start of the update range.",
+                              "key": "updatedAtStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end of the update range.",
+                              "key": "updatedAtEnd",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Inclusive RFC 3339 start for shift clock-in times.",
+                              "key": "inStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end for shift clock-in times.",
+                              "key": "inEnd",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Inclusive RFC 3339 start for shift clock-out times.",
+                              "key": "outStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end for shift clock-out times.",
+                              "key": "outEnd",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"deleted\": \"<boolean>\",\n    \"voided\": \"<boolean>\",\n    \"employeeId\": \"<string>\",\n    \"jobPositionId\": \"<string>\",\n    \"payRateAmount\": \"<string>\",\n    \"declaredCashTipsAmount\": \"<string>\",\n    \"declaredCashTipsToOthersAmount\": \"<string>\",\n    \"inAt\": \"<dateTime>\",\n    \"outAt\": \"<dateTime>\",\n    \"breaks\": [\n      {\n        \"id\": \"<string>\",\n        \"startedAt\": \"<dateTime>\",\n        \"endedAt\": \"<dateTime>\",\n        \"kind\": \"PAID\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"startedAt\": \"<dateTime>\",\n        \"endedAt\": \"<dateTime>\",\n        \"kind\": \"UNPAID\"\n      }\n    ],\n    \"lastUpdatedAt\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"deleted\": \"<boolean>\",\n    \"voided\": \"<boolean>\",\n    \"employeeId\": \"<string>\",\n    \"jobPositionId\": \"<string>\",\n    \"payRateAmount\": \"<string>\",\n    \"declaredCashTipsAmount\": \"<string>\",\n    \"declaredCashTipsToOthersAmount\": \"<string>\",\n    \"inAt\": \"<dateTime>\",\n    \"outAt\": \"<dateTime>\",\n    \"breaks\": [\n      {\n        \"id\": \"<string>\",\n        \"startedAt\": \"<dateTime>\",\n        \"endedAt\": \"<dateTime>\",\n        \"kind\": \"UNPAID\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"startedAt\": \"<dateTime>\",\n        \"endedAt\": \"<dateTime>\",\n        \"kind\": \"PAID\"\n      }\n    ],\n    \"lastUpdatedAt\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-07-28T03:01:31.000Z",
+                      "updatedAt": "2026-07-28T03:01:31.000Z",
+                      "uid": "35240-d1879c94-670d-4786-aca8-9881a34bd218"
+                    },
+                    {
+                      "id": "25a49582-414b-4c04-a8ff-7a0e47628c88",
+                      "name": "The request was malformed or violated a documented constraint such as the date range limit.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/time-clock-entries?updatedAtStart=<dateTime>&updatedAtEnd=<dateTime>&inStart=<dateTime>&inEnd=<dateTime>&outStart=<dateTime>&outEnd=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "time-clock-entries"
+                          ],
+                          "query": [
+                            {
+                              "description": "Inclusive RFC 3339 start of the update range.",
+                              "key": "updatedAtStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end of the update range.",
+                              "key": "updatedAtEnd",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Inclusive RFC 3339 start for shift clock-in times.",
+                              "key": "inStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end for shift clock-in times.",
+                              "key": "inEnd",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Inclusive RFC 3339 start for shift clock-out times.",
+                              "key": "outStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end for shift clock-out times.",
+                              "key": "outEnd",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:31.000Z",
+                      "updatedAt": "2026-07-28T03:01:31.000Z",
+                      "uid": "35240-25a49582-414b-4c04-a8ff-7a0e47628c88"
+                    },
+                    {
+                      "id": "3b767685-9670-470e-9ffd-91093c3d015f",
+                      "name": "The API key is missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/time-clock-entries?updatedAtStart=<dateTime>&updatedAtEnd=<dateTime>&inStart=<dateTime>&inEnd=<dateTime>&outStart=<dateTime>&outEnd=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "time-clock-entries"
+                          ],
+                          "query": [
+                            {
+                              "description": "Inclusive RFC 3339 start of the update range.",
+                              "key": "updatedAtStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end of the update range.",
+                              "key": "updatedAtEnd",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Inclusive RFC 3339 start for shift clock-in times.",
+                              "key": "inStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end for shift clock-in times.",
+                              "key": "inEnd",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Inclusive RFC 3339 start for shift clock-out times.",
+                              "key": "outStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end for shift clock-out times.",
+                              "key": "outEnd",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:31.000Z",
+                      "updatedAt": "2026-07-28T03:01:31.000Z",
+                      "uid": "35240-3b767685-9670-470e-9ffd-91093c3d015f"
+                    },
+                    {
+                      "id": "73e89033-48a3-4876-add2-26d7b1498e98",
+                      "name": "The API key does not have access to the requested location.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/time-clock-entries?updatedAtStart=<dateTime>&updatedAtEnd=<dateTime>&inStart=<dateTime>&inEnd=<dateTime>&outStart=<dateTime>&outEnd=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "time-clock-entries"
+                          ],
+                          "query": [
+                            {
+                              "description": "Inclusive RFC 3339 start of the update range.",
+                              "key": "updatedAtStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end of the update range.",
+                              "key": "updatedAtEnd",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Inclusive RFC 3339 start for shift clock-in times.",
+                              "key": "inStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end for shift clock-in times.",
+                              "key": "inEnd",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Inclusive RFC 3339 start for shift clock-out times.",
+                              "key": "outStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end for shift clock-out times.",
+                              "key": "outEnd",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:31.000Z",
+                      "updatedAt": "2026-07-28T03:01:31.000Z",
+                      "uid": "35240-73e89033-48a3-4876-add2-26d7b1498e98"
+                    },
+                    {
+                      "id": "10b687c9-e534-4c50-b7e9-4873311d5a48",
+                      "name": "An unexpected server error occurred.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/time-clock-entries?updatedAtStart=<dateTime>&updatedAtEnd=<dateTime>&inStart=<dateTime>&inEnd=<dateTime>&outStart=<dateTime>&outEnd=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "time-clock-entries"
+                          ],
+                          "query": [
+                            {
+                              "description": "Inclusive RFC 3339 start of the update range.",
+                              "key": "updatedAtStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end of the update range.",
+                              "key": "updatedAtEnd",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Inclusive RFC 3339 start for shift clock-in times.",
+                              "key": "inStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end for shift clock-in times.",
+                              "key": "inEnd",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Inclusive RFC 3339 start for shift clock-out times.",
+                              "key": "outStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end for shift clock-out times.",
+                              "key": "outEnd",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:31.000Z",
+                      "updatedAt": "2026-07-28T03:01:31.000Z",
+                      "uid": "35240-10b687c9-e534-4c50-b7e9-4873311d5a48"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:01:30.000Z",
+                  "updatedAt": "2026-07-28T03:01:30.000Z",
+                  "uid": "35240-fa9e54de-49df-4db0-a2f7-00a50630ed1d"
+                }
+              ],
+              "id": "24d34d5f-0f9a-419b-9856-5e0a08453ca5",
+              "createdAt": "2026-07-28T03:01:30.000Z",
+              "updatedAt": "2026-07-28T03:01:30.000Z",
+              "uid": "35240-24d34d5f-0f9a-419b-9856-5e0a08453ca5"
+            }
+          ],
+          "id": "c2fcecef-169a-41f6-b79a-7371c08b9736",
+          "createdAt": "2026-07-28T03:01:30.000Z",
+          "updatedAt": "2026-07-28T03:01:30.000Z",
+          "uid": "35240-c2fcecef-169a-41f6-b79a-7371c08b9736"
+        }
+      ],
+      "id": "ecd1e8ab-2f46-4a8d-9edb-106ed4d056fb",
+      "createdAt": "2026-07-28T03:01:30.000Z",
+      "updatedAt": "2026-07-28T03:01:30.000Z",
+      "uid": "35240-ecd1e8ab-2f46-4a8d-9edb-106ed4d056fb"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.seatninja.com"
+    }
+  ]
+}

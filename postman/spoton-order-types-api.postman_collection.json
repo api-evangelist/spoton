@@ -1,0 +1,626 @@
+{
+  "info": {
+    "_postman_id": "79a6b453-c28a-455a-ba9c-819722d91726",
+    "name": "SpotOn Reserve Availability Order Types API",
+    "description": "The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.\n\nContact Support:\n Name: SpotOn Reserve Developer Center",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:01:16.000Z",
+    "updatedAt": "2026-07-28T03:01:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-79a6b453-c28a-455a-ba9c-819722d91726"
+  },
+  "item": [
+    {
+      "name": "locations",
+      "item": [
+        {
+          "name": "{locationId}",
+          "item": [
+            {
+              "name": "order-types",
+              "item": [
+                {
+                  "name": "{orderTypeId}",
+                  "item": [
+                    {
+                      "name": "SpotOn Get Order Type",
+                      "id": "2ee8ad7b-d847-448f-821d-e3447daf1e76",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/order-types/:orderTypeId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "order-types",
+                            ":orderTypeId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4921ba43-2085-4b78-b47d-2bcdebe6a070",
+                              "key": "locationId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the location."
+                            },
+                            {
+                              "id": "30ab9feb-2d8d-4b1a-bd7a-e70a5ffa222a",
+                              "key": "orderTypeId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the order type."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a single order type by its unique identifier for a location."
+                      },
+                      "response": [
+                        {
+                          "id": "d2f44ada-7fdd-452f-874e-4884a2bd4cc2",
+                          "name": "The requested order type.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/order-types/:orderTypeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "order-types",
+                                ":orderTypeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "orderTypeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"locationId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"deleted\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"wtmId\": \"<long>\"\n}",
+                          "createdAt": "2026-07-28T03:01:16.000Z",
+                          "updatedAt": "2026-07-28T03:01:16.000Z",
+                          "uid": "35240-d2f44ada-7fdd-452f-874e-4884a2bd4cc2"
+                        },
+                        {
+                          "id": "fd61f433-8522-4c44-944e-5dfcdfc25df9",
+                          "name": "The API key is missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/order-types/:orderTypeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "order-types",
+                                ":orderTypeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "orderTypeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:16.000Z",
+                          "updatedAt": "2026-07-28T03:01:16.000Z",
+                          "uid": "35240-fd61f433-8522-4c44-944e-5dfcdfc25df9"
+                        },
+                        {
+                          "id": "c4571029-91eb-4945-b0c8-18b69b872e19",
+                          "name": "The API key does not have access to the requested location.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/order-types/:orderTypeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "order-types",
+                                ":orderTypeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "orderTypeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:16.000Z",
+                          "updatedAt": "2026-07-28T03:01:16.000Z",
+                          "uid": "35240-c4571029-91eb-4945-b0c8-18b69b872e19"
+                        },
+                        {
+                          "id": "b928e51f-bddd-4a0a-9832-62f1f6690569",
+                          "name": "The requested resource does not exist.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/order-types/:orderTypeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "order-types",
+                                ":orderTypeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "orderTypeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:16.000Z",
+                          "updatedAt": "2026-07-28T03:01:16.000Z",
+                          "uid": "35240-b928e51f-bddd-4a0a-9832-62f1f6690569"
+                        },
+                        {
+                          "id": "e35aa27c-ae46-471c-b9a7-b0513760450a",
+                          "name": "An unexpected server error occurred.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/order-types/:orderTypeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "order-types",
+                                ":orderTypeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "orderTypeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:16.000Z",
+                          "updatedAt": "2026-07-28T03:01:16.000Z",
+                          "uid": "35240-e35aa27c-ae46-471c-b9a7-b0513760450a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:01:16.000Z",
+                      "updatedAt": "2026-07-28T03:01:16.000Z",
+                      "uid": "35240-2ee8ad7b-d847-448f-821d-e3447daf1e76"
+                    }
+                  ],
+                  "id": "ecc04897-c85a-4175-b205-2be4a676770b",
+                  "createdAt": "2026-07-28T03:01:16.000Z",
+                  "updatedAt": "2026-07-28T03:01:16.000Z",
+                  "uid": "35240-ecc04897-c85a-4175-b205-2be4a676770b"
+                },
+                {
+                  "name": "SpotOn List Order Types",
+                  "id": "0c003e89-9790-4cc0-8221-83008aca3020",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/locations/:locationId/order-types",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "locations",
+                        ":locationId",
+                        "order-types"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6e6dc688-5340-4183-8fce-705b702838dd",
+                          "key": "locationId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the location."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all order types configured for a location."
+                  },
+                  "response": [
+                    {
+                      "id": "c1eabc9b-9426-443f-88fc-0dc930dd57d0",
+                      "name": "A list of order types for the location.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/order-types",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "order-types"
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"deleted\": \"<boolean>\",\n    \"enabled\": \"<boolean>\",\n    \"wtmId\": \"<long>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"deleted\": \"<boolean>\",\n    \"enabled\": \"<boolean>\",\n    \"wtmId\": \"<long>\"\n  }\n]",
+                      "createdAt": "2026-07-28T03:01:16.000Z",
+                      "updatedAt": "2026-07-28T03:01:16.000Z",
+                      "uid": "35240-c1eabc9b-9426-443f-88fc-0dc930dd57d0"
+                    },
+                    {
+                      "id": "a122dae2-d576-404b-96bd-11ef3ac347d7",
+                      "name": "The API key is missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/order-types",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "order-types"
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:16.000Z",
+                      "updatedAt": "2026-07-28T03:01:16.000Z",
+                      "uid": "35240-a122dae2-d576-404b-96bd-11ef3ac347d7"
+                    },
+                    {
+                      "id": "ff108d8e-b5ee-4cbb-a77d-b048802a7b59",
+                      "name": "The API key does not have access to the requested location.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/order-types",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "order-types"
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:16.000Z",
+                      "updatedAt": "2026-07-28T03:01:16.000Z",
+                      "uid": "35240-ff108d8e-b5ee-4cbb-a77d-b048802a7b59"
+                    },
+                    {
+                      "id": "3491fdf5-567d-40dd-8b94-433b6f1806e4",
+                      "name": "An unexpected server error occurred.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/order-types",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "order-types"
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:16.000Z",
+                      "updatedAt": "2026-07-28T03:01:16.000Z",
+                      "uid": "35240-3491fdf5-567d-40dd-8b94-433b6f1806e4"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:01:16.000Z",
+                  "updatedAt": "2026-07-28T03:01:16.000Z",
+                  "uid": "35240-0c003e89-9790-4cc0-8221-83008aca3020"
+                }
+              ],
+              "id": "23e39cb4-1bda-402d-8f21-1d6f5e87388b",
+              "createdAt": "2026-07-28T03:01:16.000Z",
+              "updatedAt": "2026-07-28T03:01:16.000Z",
+              "uid": "35240-23e39cb4-1bda-402d-8f21-1d6f5e87388b"
+            }
+          ],
+          "id": "0e0a32ad-3495-4aba-b246-c597b64ddd51",
+          "createdAt": "2026-07-28T03:01:16.000Z",
+          "updatedAt": "2026-07-28T03:01:16.000Z",
+          "uid": "35240-0e0a32ad-3495-4aba-b246-c597b64ddd51"
+        }
+      ],
+      "id": "71521d78-3988-44bd-9ff2-1c2eb7a1b59a",
+      "createdAt": "2026-07-28T03:01:16.000Z",
+      "updatedAt": "2026-07-28T03:01:16.000Z",
+      "uid": "35240-71521d78-3988-44bd-9ff2-1c2eb7a1b59a"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.seatninja.com"
+    }
+  ]
+}

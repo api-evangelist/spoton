@@ -1,0 +1,516 @@
+{
+  "info": {
+    "_postman_id": "1fd0a8ca-ebde-4047-b920-3215542c571e",
+    "name": "SpotOn Reserve Availability Reservations API",
+    "description": "The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.\n\nContact Support:\n Name: SpotOn Reserve Developer Center",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:01:28.000Z",
+    "updatedAt": "2026-07-28T03:01:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1fd0a8ca-ebde-4047-b920-3215542c571e"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "reservations",
+          "item": [
+            {
+              "name": "{restaurantId}",
+              "item": [
+                {
+                  "name": "reservation",
+                  "item": [
+                    {
+                      "name": "SpotOn Create Reservation",
+                      "id": "d29b94cd-529c-4c0d-8c7c-707cfa724c13",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"customerInformation\": {\n    \"firstName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"imageUrl\": \"<uri>\",\n    \"memberNumber\": \"<string>\",\n    \"memberTier\": \"<string>\"\n  },\n  \"time\": \"<dateTime>\",\n  \"partySize\": \"<integer>\",\n  \"notes\": \"<string>\",\n  \"partyFlags\": \"<long>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/reservations/:restaurantId/reservation",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "reservations",
+                            ":restaurantId",
+                            "reservation"
+                          ],
+                          "variable": [
+                            {
+                              "id": "10a60fb7-390e-4a68-b31f-afb3cf7a2054",
+                              "key": "restaurantId",
+                              "value": "<integer>",
+                              "description": "(Required) The unique identifier for the restaurant."
+                            }
+                          ]
+                        },
+                        "description": "Create a reservation for a guest at the specified restaurant."
+                      },
+                      "response": [
+                        {
+                          "id": "b167591d-7cb0-4f87-9ba9-98554749b5fc",
+                          "name": "The created reservation.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"customerInformation\": {\n    \"firstName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"imageUrl\": \"<uri>\",\n    \"memberNumber\": \"<string>\",\n    \"memberTier\": \"<string>\"\n  },\n  \"time\": \"<dateTime>\",\n  \"partySize\": \"<integer>\",\n  \"notes\": \"<string>\",\n  \"partyFlags\": \"<long>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/reservations/:restaurantId/reservation",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "reservations",
+                                ":restaurantId",
+                                "reservation"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "restaurantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"reservationId\": \"<string>\",\n  \"restaurantId\": \"<integer>\",\n  \"customerInformation\": {\n    \"firstName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"imageUrl\": \"<uri>\",\n    \"memberNumber\": \"<string>\",\n    \"memberTier\": \"<string>\"\n  },\n  \"time\": \"<dateTime>\",\n  \"partySize\": \"<integer>\",\n  \"status\": \"confirmed\",\n  \"notes\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:28.000Z",
+                          "updatedAt": "2026-07-28T03:01:28.000Z",
+                          "uid": "35240-b167591d-7cb0-4f87-9ba9-98554749b5fc"
+                        },
+                        {
+                          "id": "01670697-7840-467b-86e8-4cc3f2968045",
+                          "name": "The request was malformed or violated a documented constraint.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"customerInformation\": {\n    \"firstName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"imageUrl\": \"<uri>\",\n    \"memberNumber\": \"<string>\",\n    \"memberTier\": \"<string>\"\n  },\n  \"time\": \"<dateTime>\",\n  \"partySize\": \"<integer>\",\n  \"notes\": \"<string>\",\n  \"partyFlags\": \"<long>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/reservations/:restaurantId/reservation",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "reservations",
+                                ":restaurantId",
+                                "reservation"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "restaurantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:28.000Z",
+                          "updatedAt": "2026-07-28T03:01:28.000Z",
+                          "uid": "35240-01670697-7840-467b-86e8-4cc3f2968045"
+                        },
+                        {
+                          "id": "2568dc43-b894-40d7-8916-9efab3c37d30",
+                          "name": "The API key is missing or invalid.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"customerInformation\": {\n    \"firstName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"imageUrl\": \"<uri>\",\n    \"memberNumber\": \"<string>\",\n    \"memberTier\": \"<string>\"\n  },\n  \"time\": \"<dateTime>\",\n  \"partySize\": \"<integer>\",\n  \"notes\": \"<string>\",\n  \"partyFlags\": \"<long>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/reservations/:restaurantId/reservation",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "reservations",
+                                ":restaurantId",
+                                "reservation"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "restaurantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:28.000Z",
+                          "updatedAt": "2026-07-28T03:01:28.000Z",
+                          "uid": "35240-2568dc43-b894-40d7-8916-9efab3c37d30"
+                        },
+                        {
+                          "id": "86f5a306-9943-4937-8491-dd24bbec0da5",
+                          "name": "The API key does not have access to the requested restaurant.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"customerInformation\": {\n    \"firstName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"imageUrl\": \"<uri>\",\n    \"memberNumber\": \"<string>\",\n    \"memberTier\": \"<string>\"\n  },\n  \"time\": \"<dateTime>\",\n  \"partySize\": \"<integer>\",\n  \"notes\": \"<string>\",\n  \"partyFlags\": \"<long>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/reservations/:restaurantId/reservation",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "reservations",
+                                ":restaurantId",
+                                "reservation"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "restaurantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:28.000Z",
+                          "updatedAt": "2026-07-28T03:01:28.000Z",
+                          "uid": "35240-86f5a306-9943-4937-8491-dd24bbec0da5"
+                        },
+                        {
+                          "id": "fde8e9a8-879c-4c1b-8881-21297388d20d",
+                          "name": "The requested resource does not exist.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"customerInformation\": {\n    \"firstName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"imageUrl\": \"<uri>\",\n    \"memberNumber\": \"<string>\",\n    \"memberTier\": \"<string>\"\n  },\n  \"time\": \"<dateTime>\",\n  \"partySize\": \"<integer>\",\n  \"notes\": \"<string>\",\n  \"partyFlags\": \"<long>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/reservations/:restaurantId/reservation",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "reservations",
+                                ":restaurantId",
+                                "reservation"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "restaurantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:28.000Z",
+                          "updatedAt": "2026-07-28T03:01:28.000Z",
+                          "uid": "35240-fde8e9a8-879c-4c1b-8881-21297388d20d"
+                        },
+                        {
+                          "id": "1686dda7-db75-4a71-853c-8ba5f4a52b38",
+                          "name": "An unexpected server error occurred.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"customerInformation\": {\n    \"firstName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"imageUrl\": \"<uri>\",\n    \"memberNumber\": \"<string>\",\n    \"memberTier\": \"<string>\"\n  },\n  \"time\": \"<dateTime>\",\n  \"partySize\": \"<integer>\",\n  \"notes\": \"<string>\",\n  \"partyFlags\": \"<long>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/reservations/:restaurantId/reservation",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "reservations",
+                                ":restaurantId",
+                                "reservation"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "restaurantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:28.000Z",
+                          "updatedAt": "2026-07-28T03:01:28.000Z",
+                          "uid": "35240-1686dda7-db75-4a71-853c-8ba5f4a52b38"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:01:28.000Z",
+                      "updatedAt": "2026-07-28T03:01:28.000Z",
+                      "uid": "35240-d29b94cd-529c-4c0d-8c7c-707cfa724c13"
+                    }
+                  ],
+                  "id": "6fd7e391-46f3-41ac-8b3e-8bd7c9cf34dc",
+                  "createdAt": "2026-07-28T03:01:28.000Z",
+                  "updatedAt": "2026-07-28T03:01:28.000Z",
+                  "uid": "35240-6fd7e391-46f3-41ac-8b3e-8bd7c9cf34dc"
+                }
+              ],
+              "id": "d9f87f01-851c-4609-a9c6-2f26f8d06f35",
+              "createdAt": "2026-07-28T03:01:28.000Z",
+              "updatedAt": "2026-07-28T03:01:28.000Z",
+              "uid": "35240-d9f87f01-851c-4609-a9c6-2f26f8d06f35"
+            }
+          ],
+          "id": "bc706dae-8461-4487-b931-a68ec7b06b0d",
+          "createdAt": "2026-07-28T03:01:28.000Z",
+          "updatedAt": "2026-07-28T03:01:28.000Z",
+          "uid": "35240-bc706dae-8461-4487-b931-a68ec7b06b0d"
+        }
+      ],
+      "id": "556fae5e-171c-4fb7-8811-5ae9a3224356",
+      "createdAt": "2026-07-28T03:01:28.000Z",
+      "updatedAt": "2026-07-28T03:01:28.000Z",
+      "uid": "35240-556fae5e-171c-4fb7-8811-5ae9a3224356"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.seatninja.com"
+    }
+  ]
+}

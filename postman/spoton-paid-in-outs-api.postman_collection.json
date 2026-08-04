@@ -1,0 +1,747 @@
+{
+  "info": {
+    "_postman_id": "9177ac4b-10f7-474c-ae4d-8e96304e2cc5",
+    "name": "SpotOn Reserve Availability Paid In Outs API",
+    "description": "The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.\n\nContact Support:\n Name: SpotOn Reserve Developer Center",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:01:19.000Z",
+    "updatedAt": "2026-07-28T03:01:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9177ac4b-10f7-474c-ae4d-8e96304e2cc5"
+  },
+  "item": [
+    {
+      "name": "locations",
+      "item": [
+        {
+          "name": "{locationId}",
+          "item": [
+            {
+              "name": "paid-in-outs",
+              "item": [
+                {
+                  "name": "{paidInOutId}",
+                  "item": [
+                    {
+                      "name": "SpotOn Get Paid in Out",
+                      "id": "99a31c1e-1ebf-4d1e-805c-06a8bf468494",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/paid-in-outs/:paidInOutId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "paid-in-outs",
+                            ":paidInOutId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "12746a47-0601-4e61-8e9a-3cbf69552377",
+                              "key": "locationId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the location."
+                            },
+                            {
+                              "id": "99183cab-ca24-4c6d-bc94-1977311075c6",
+                              "key": "paidInOutId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier for the paid in/out record."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a single paid in/out record by its unique identifier for a location."
+                      },
+                      "response": [
+                        {
+                          "id": "c7c7c6b6-d17f-481e-9714-839854c28b26",
+                          "name": "The requested paid in/out record.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/paid-in-outs/:paidInOutId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "paid-in-outs",
+                                ":paidInOutId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "paidInOutId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"locationId\": \"<string>\",\n  \"deleted\": \"<boolean>\",\n  \"voided\": \"<boolean>\",\n  \"paymentOptionId\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"employeeId\": \"<string>\",\n  \"employeeName\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"kind\": \"IN\",\n  \"reason\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:20.000Z",
+                          "updatedAt": "2026-07-28T03:01:20.000Z",
+                          "uid": "35240-c7c7c6b6-d17f-481e-9714-839854c28b26"
+                        },
+                        {
+                          "id": "4524b199-58f1-4792-817f-bfe2b12a471c",
+                          "name": "The API key is missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/paid-in-outs/:paidInOutId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "paid-in-outs",
+                                ":paidInOutId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "paidInOutId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:20.000Z",
+                          "updatedAt": "2026-07-28T03:01:20.000Z",
+                          "uid": "35240-4524b199-58f1-4792-817f-bfe2b12a471c"
+                        },
+                        {
+                          "id": "896c4945-c25f-4bb6-84e5-e35642142ae3",
+                          "name": "The API key does not have access to the requested location.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/paid-in-outs/:paidInOutId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "paid-in-outs",
+                                ":paidInOutId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "paidInOutId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:20.000Z",
+                          "updatedAt": "2026-07-28T03:01:20.000Z",
+                          "uid": "35240-896c4945-c25f-4bb6-84e5-e35642142ae3"
+                        },
+                        {
+                          "id": "71ea8453-c2b7-4e0b-ad64-59d74e048caa",
+                          "name": "The requested resource does not exist.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/paid-in-outs/:paidInOutId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "paid-in-outs",
+                                ":paidInOutId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "paidInOutId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:20.000Z",
+                          "updatedAt": "2026-07-28T03:01:20.000Z",
+                          "uid": "35240-71ea8453-c2b7-4e0b-ad64-59d74e048caa"
+                        },
+                        {
+                          "id": "f518274e-4000-40ba-ace9-e882d5b8c95b",
+                          "name": "An unexpected server error occurred.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/locations/:locationId/paid-in-outs/:paidInOutId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "locations",
+                                ":locationId",
+                                "paid-in-outs",
+                                ":paidInOutId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "locationId"
+                                },
+                                {
+                                  "key": "paidInOutId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:20.000Z",
+                          "updatedAt": "2026-07-28T03:01:20.000Z",
+                          "uid": "35240-f518274e-4000-40ba-ace9-e882d5b8c95b"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:01:19.000Z",
+                      "updatedAt": "2026-07-28T03:01:19.000Z",
+                      "uid": "35240-99a31c1e-1ebf-4d1e-805c-06a8bf468494"
+                    }
+                  ],
+                  "id": "c96d9978-eafb-4a36-a40d-3e1b05b5f130",
+                  "createdAt": "2026-07-28T03:01:19.000Z",
+                  "updatedAt": "2026-07-28T03:01:19.000Z",
+                  "uid": "35240-c96d9978-eafb-4a36-a40d-3e1b05b5f130"
+                },
+                {
+                  "name": "SpotOn List Paid in Outs",
+                  "id": "f6e6e6c0-7b5d-4cc3-9806-311bd1270527",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/locations/:locationId/paid-in-outs?createdAtStart=<dateTime>&createdAtEnd=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "locations",
+                        ":locationId",
+                        "paid-in-outs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Inclusive RFC 3339 start of the creation range. Max 7-day range.",
+                          "key": "createdAtStart",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Exclusive RFC 3339 end of the creation range. Must be at least 5 minutes in the past.",
+                          "key": "createdAtEnd",
+                          "value": "<dateTime>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "8f5c2969-915d-44d2-9a83-baa5bbbb0a94",
+                          "key": "locationId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier for the location."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all paid in/out records created within a specified date range for a location. A single date range cannot exceed 7 days."
+                  },
+                  "response": [
+                    {
+                      "id": "001aa17e-22b0-448d-9649-4318124a6ffb",
+                      "name": "A list of paid in/out records for the location.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/paid-in-outs?createdAtStart=<dateTime>&createdAtEnd=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "paid-in-outs"
+                          ],
+                          "query": [
+                            {
+                              "description": "Inclusive RFC 3339 start of the creation range. Max 7-day range.",
+                              "key": "createdAtStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end of the creation range. Must be at least 5 minutes in the past.",
+                              "key": "createdAtEnd",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"deleted\": \"<boolean>\",\n    \"voided\": \"<boolean>\",\n    \"paymentOptionId\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"employeeId\": \"<string>\",\n    \"employeeName\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"kind\": \"OUT\",\n    \"reason\": \"<string>\",\n    \"notes\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"deleted\": \"<boolean>\",\n    \"voided\": \"<boolean>\",\n    \"paymentOptionId\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"employeeId\": \"<string>\",\n    \"employeeName\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"kind\": \"OUT\",\n    \"reason\": \"<string>\",\n    \"notes\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-07-28T03:01:20.000Z",
+                      "updatedAt": "2026-07-28T03:01:20.000Z",
+                      "uid": "35240-001aa17e-22b0-448d-9649-4318124a6ffb"
+                    },
+                    {
+                      "id": "5c4c7db5-f153-4530-af15-5bc1001b5bfa",
+                      "name": "The request was malformed or violated a documented constraint such as the date range limit.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/paid-in-outs?createdAtStart=<dateTime>&createdAtEnd=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "paid-in-outs"
+                          ],
+                          "query": [
+                            {
+                              "description": "Inclusive RFC 3339 start of the creation range. Max 7-day range.",
+                              "key": "createdAtStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end of the creation range. Must be at least 5 minutes in the past.",
+                              "key": "createdAtEnd",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:20.000Z",
+                      "updatedAt": "2026-07-28T03:01:20.000Z",
+                      "uid": "35240-5c4c7db5-f153-4530-af15-5bc1001b5bfa"
+                    },
+                    {
+                      "id": "71a01d8b-225a-4818-9d00-fb8672c401b4",
+                      "name": "The API key is missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/paid-in-outs?createdAtStart=<dateTime>&createdAtEnd=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "paid-in-outs"
+                          ],
+                          "query": [
+                            {
+                              "description": "Inclusive RFC 3339 start of the creation range. Max 7-day range.",
+                              "key": "createdAtStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end of the creation range. Must be at least 5 minutes in the past.",
+                              "key": "createdAtEnd",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:20.000Z",
+                      "updatedAt": "2026-07-28T03:01:20.000Z",
+                      "uid": "35240-71a01d8b-225a-4818-9d00-fb8672c401b4"
+                    },
+                    {
+                      "id": "627fc81c-d239-4190-8e84-64819e53d5f0",
+                      "name": "The API key does not have access to the requested location.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/paid-in-outs?createdAtStart=<dateTime>&createdAtEnd=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "paid-in-outs"
+                          ],
+                          "query": [
+                            {
+                              "description": "Inclusive RFC 3339 start of the creation range. Max 7-day range.",
+                              "key": "createdAtStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end of the creation range. Must be at least 5 minutes in the past.",
+                              "key": "createdAtEnd",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:20.000Z",
+                      "updatedAt": "2026-07-28T03:01:20.000Z",
+                      "uid": "35240-627fc81c-d239-4190-8e84-64819e53d5f0"
+                    },
+                    {
+                      "id": "d2c0e6d0-c0fa-4a26-a949-5e126bab71ac",
+                      "name": "An unexpected server error occurred.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/locations/:locationId/paid-in-outs?createdAtStart=<dateTime>&createdAtEnd=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "locations",
+                            ":locationId",
+                            "paid-in-outs"
+                          ],
+                          "query": [
+                            {
+                              "description": "Inclusive RFC 3339 start of the creation range. Max 7-day range.",
+                              "key": "createdAtStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Exclusive RFC 3339 end of the creation range. Must be at least 5 minutes in the past.",
+                              "key": "createdAtEnd",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "locationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:01:20.000Z",
+                      "updatedAt": "2026-07-28T03:01:20.000Z",
+                      "uid": "35240-d2c0e6d0-c0fa-4a26-a949-5e126bab71ac"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:01:19.000Z",
+                  "updatedAt": "2026-07-28T03:01:19.000Z",
+                  "uid": "35240-f6e6e6c0-7b5d-4cc3-9806-311bd1270527"
+                }
+              ],
+              "id": "aad763fb-51cc-49a5-83d4-142b1f82b8c5",
+              "createdAt": "2026-07-28T03:01:19.000Z",
+              "updatedAt": "2026-07-28T03:01:19.000Z",
+              "uid": "35240-aad763fb-51cc-49a5-83d4-142b1f82b8c5"
+            }
+          ],
+          "id": "8c1cd5ab-727a-45b6-93ea-4572c26b253b",
+          "createdAt": "2026-07-28T03:01:19.000Z",
+          "updatedAt": "2026-07-28T03:01:19.000Z",
+          "uid": "35240-8c1cd5ab-727a-45b6-93ea-4572c26b253b"
+        }
+      ],
+      "id": "0bc8a807-2578-4d10-8552-15c186e9e6e7",
+      "createdAt": "2026-07-28T03:01:19.000Z",
+      "updatedAt": "2026-07-28T03:01:19.000Z",
+      "uid": "35240-0bc8a807-2578-4d10-8552-15c186e9e6e7"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.seatninja.com"
+    }
+  ]
+}

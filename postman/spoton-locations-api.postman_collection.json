@@ -1,0 +1,338 @@
+{
+  "info": {
+    "_postman_id": "c62ec293-c60c-4e20-a3f4-5e99db3d09af",
+    "name": "SpotOn Reserve Availability Locations API",
+    "description": "The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.\n\nContact Support:\n Name: SpotOn Reserve Developer Center",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:01:12.000Z",
+    "updatedAt": "2026-07-28T03:01:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c62ec293-c60c-4e20-a3f4-5e99db3d09af"
+  },
+  "item": [
+    {
+      "name": "locations",
+      "item": [
+        {
+          "name": "{locationId}",
+          "item": [
+            {
+              "name": "SpotOn Get Location",
+              "id": "d595dcdf-a81b-4a6a-a948-5e8a4f81fcd7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/locations/:locationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "locations",
+                    ":locationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "55106d79-3d9b-4873-8610-01c15f0aafad",
+                      "key": "locationId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier for the location."
+                    }
+                  ]
+                },
+                "description": "Retrieve the details for a single location by its unique identifier."
+              },
+              "response": [
+                {
+                  "id": "c06af320-8dbc-4488-a6c2-d1a129db92b1",
+                  "name": "The requested location.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/locations/:locationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "locations",
+                        ":locationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "locationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"organizationId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"deleted\": \"<boolean>\",\n  \"fiscalendofdaytime\": \"<long>\",\n  \"spotonmerchantid\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:01:12.000Z",
+                  "updatedAt": "2026-07-28T03:01:12.000Z",
+                  "uid": "35240-c06af320-8dbc-4488-a6c2-d1a129db92b1"
+                },
+                {
+                  "id": "0b1d1ce6-aaa1-4381-827b-418bd3f3f11e",
+                  "name": "The API key is missing or invalid.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/locations/:locationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "locations",
+                        ":locationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "locationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:01:12.000Z",
+                  "updatedAt": "2026-07-28T03:01:12.000Z",
+                  "uid": "35240-0b1d1ce6-aaa1-4381-827b-418bd3f3f11e"
+                },
+                {
+                  "id": "398abe8d-cf0c-4291-ad0d-697c9d18eca9",
+                  "name": "The API key does not have access to the requested location.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/locations/:locationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "locations",
+                        ":locationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "locationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:01:12.000Z",
+                  "updatedAt": "2026-07-28T03:01:12.000Z",
+                  "uid": "35240-398abe8d-cf0c-4291-ad0d-697c9d18eca9"
+                },
+                {
+                  "id": "df107282-fd45-4eee-b9ea-494c645fd311",
+                  "name": "The requested resource does not exist.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/locations/:locationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "locations",
+                        ":locationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "locationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:01:12.000Z",
+                  "updatedAt": "2026-07-28T03:01:12.000Z",
+                  "uid": "35240-df107282-fd45-4eee-b9ea-494c645fd311"
+                },
+                {
+                  "id": "57f44904-2433-484e-98df-12cfbb0aaadb",
+                  "name": "An unexpected server error occurred.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/locations/:locationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "locations",
+                        ":locationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "locationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:01:12.000Z",
+                  "updatedAt": "2026-07-28T03:01:12.000Z",
+                  "uid": "35240-57f44904-2433-484e-98df-12cfbb0aaadb"
+                }
+              ],
+              "createdAt": "2026-07-28T03:01:12.000Z",
+              "updatedAt": "2026-07-28T03:01:12.000Z",
+              "uid": "35240-d595dcdf-a81b-4a6a-a948-5e8a4f81fcd7"
+            }
+          ],
+          "id": "256d41a3-ac86-4a27-8589-9d3433f9ee4d",
+          "createdAt": "2026-07-28T03:01:12.000Z",
+          "updatedAt": "2026-07-28T03:01:12.000Z",
+          "uid": "35240-256d41a3-ac86-4a27-8589-9d3433f9ee4d"
+        }
+      ],
+      "id": "c594c4b2-a8e3-401a-b7cc-56446132ca79",
+      "createdAt": "2026-07-28T03:01:12.000Z",
+      "updatedAt": "2026-07-28T03:01:12.000Z",
+      "uid": "35240-c594c4b2-a8e3-401a-b7cc-56446132ca79"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.seatninja.com"
+    }
+  ]
+}

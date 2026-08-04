@@ -1,0 +1,845 @@
+{
+  "info": {
+    "_postman_id": "551e0a5a-2468-4e19-ab61-74e89758ede0",
+    "name": "SpotOn Reserve Availability API",
+    "description": "The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.\n\nContact Support:\n Name: SpotOn Reserve Developer Center",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:01:00.000Z",
+    "updatedAt": "2026-07-28T03:01:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-551e0a5a-2468-4e19-ab61-74e89758ede0"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "reservations",
+          "item": [
+            {
+              "name": "{restaurantId}",
+              "item": [
+                {
+                  "name": "availability",
+                  "item": [
+                    {
+                      "name": "SpotOn Get Available Reservation Times",
+                      "id": "6854fe6d-0a54-425a-861a-f85c323774ec",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/reservations/:restaurantId/availability?date=<date>&partySize=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "reservations",
+                            ":restaurantId",
+                            "availability"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The date to check availability for, in YYYY-MM-DD format.",
+                              "key": "date",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "(Required) The number of guests in the party.",
+                              "key": "partySize",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "11bd6196-7598-4430-bb82-dd3d7201e969",
+                              "key": "restaurantId",
+                              "value": "<integer>",
+                              "description": "(Required) The unique identifier for the restaurant."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve the open reservation time slots for a restaurant filtered by date and party size."
+                      },
+                      "response": [
+                        {
+                          "id": "69223874-1521-4212-97f6-9890ce023b8b",
+                          "name": "Available reservation time slots.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/reservations/:restaurantId/availability?date=<date>&partySize=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "reservations",
+                                ":restaurantId",
+                                "availability"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The date to check availability for, in YYYY-MM-DD format.",
+                                  "key": "date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "(Required) The number of guests in the party.",
+                                  "key": "partySize",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "restaurantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"restaurantId\": \"<integer>\",\n  \"date\": \"<date>\",\n  \"partySize\": \"<integer>\",\n  \"slots\": [\n    {\n      \"time\": \"<dateTime>\",\n      \"available\": \"<boolean>\"\n    },\n    {\n      \"time\": \"<dateTime>\",\n      \"available\": \"<boolean>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T03:01:00.000Z",
+                          "updatedAt": "2026-07-28T03:01:00.000Z",
+                          "uid": "35240-69223874-1521-4212-97f6-9890ce023b8b"
+                        },
+                        {
+                          "id": "24ca3dcc-09dd-4ada-a003-4b3f4eb56791",
+                          "name": "The request was malformed or violated a documented constraint.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/reservations/:restaurantId/availability?date=<date>&partySize=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "reservations",
+                                ":restaurantId",
+                                "availability"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The date to check availability for, in YYYY-MM-DD format.",
+                                  "key": "date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "(Required) The number of guests in the party.",
+                                  "key": "partySize",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "restaurantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:00.000Z",
+                          "updatedAt": "2026-07-28T03:01:00.000Z",
+                          "uid": "35240-24ca3dcc-09dd-4ada-a003-4b3f4eb56791"
+                        },
+                        {
+                          "id": "d338f82e-72ad-4e63-94fd-e8e007176df5",
+                          "name": "The API key is missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/reservations/:restaurantId/availability?date=<date>&partySize=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "reservations",
+                                ":restaurantId",
+                                "availability"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The date to check availability for, in YYYY-MM-DD format.",
+                                  "key": "date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "(Required) The number of guests in the party.",
+                                  "key": "partySize",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "restaurantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:00.000Z",
+                          "updatedAt": "2026-07-28T03:01:00.000Z",
+                          "uid": "35240-d338f82e-72ad-4e63-94fd-e8e007176df5"
+                        },
+                        {
+                          "id": "4a9b9b6a-eb44-46ce-bad1-db98bfe5dfa7",
+                          "name": "The API key does not have access to the requested restaurant.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/reservations/:restaurantId/availability?date=<date>&partySize=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "reservations",
+                                ":restaurantId",
+                                "availability"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The date to check availability for, in YYYY-MM-DD format.",
+                                  "key": "date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "(Required) The number of guests in the party.",
+                                  "key": "partySize",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "restaurantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:00.000Z",
+                          "updatedAt": "2026-07-28T03:01:00.000Z",
+                          "uid": "35240-4a9b9b6a-eb44-46ce-bad1-db98bfe5dfa7"
+                        },
+                        {
+                          "id": "f1afd963-380a-4f1d-a508-7a9f73c9ff27",
+                          "name": "The requested resource does not exist.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/reservations/:restaurantId/availability?date=<date>&partySize=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "reservations",
+                                ":restaurantId",
+                                "availability"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The date to check availability for, in YYYY-MM-DD format.",
+                                  "key": "date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "(Required) The number of guests in the party.",
+                                  "key": "partySize",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "restaurantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:00.000Z",
+                          "updatedAt": "2026-07-28T03:01:00.000Z",
+                          "uid": "35240-f1afd963-380a-4f1d-a508-7a9f73c9ff27"
+                        },
+                        {
+                          "id": "ff08b0b9-007b-48f7-b890-7978d2411ae7",
+                          "name": "An unexpected server error occurred.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/reservations/:restaurantId/availability?date=<date>&partySize=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "reservations",
+                                ":restaurantId",
+                                "availability"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The date to check availability for, in YYYY-MM-DD format.",
+                                  "key": "date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "(Required) The number of guests in the party.",
+                                  "key": "partySize",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "restaurantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:00.000Z",
+                          "updatedAt": "2026-07-28T03:01:00.000Z",
+                          "uid": "35240-ff08b0b9-007b-48f7-b890-7978d2411ae7"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:01:00.000Z",
+                      "updatedAt": "2026-07-28T03:01:00.000Z",
+                      "uid": "35240-6854fe6d-0a54-425a-861a-f85c323774ec"
+                    }
+                  ],
+                  "id": "917df4b0-2595-4884-8864-c45d627469db",
+                  "createdAt": "2026-07-28T03:01:00.000Z",
+                  "updatedAt": "2026-07-28T03:01:00.000Z",
+                  "uid": "35240-917df4b0-2595-4884-8864-c45d627469db"
+                },
+                {
+                  "name": "wait-time",
+                  "item": [
+                    {
+                      "name": "SpotOn Get Wait Time",
+                      "id": "a61d5925-a712-4991-8679-a83735ba1646",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/reservations/:restaurantId/wait-time?partySize=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "reservations",
+                            ":restaurantId",
+                            "wait-time"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optional party size to retrieve a size-specific wait time.",
+                              "key": "partySize",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "7be8bc83-8322-494f-8d32-f1b13feebe79",
+                              "key": "restaurantId",
+                              "value": "<integer>",
+                              "description": "(Required) The unique identifier for the restaurant."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve the current wait time for a restaurant."
+                      },
+                      "response": [
+                        {
+                          "id": "f823f502-cac0-47b7-8fb9-5e36dc56ad0b",
+                          "name": "The current wait time.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/reservations/:restaurantId/wait-time?partySize=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "reservations",
+                                ":restaurantId",
+                                "wait-time"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional party size to retrieve a size-specific wait time.",
+                                  "key": "partySize",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "restaurantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"restaurantId\": \"<integer>\",\n  \"partySize\": \"<integer>\",\n  \"quotedWaitMinutes\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T03:01:00.000Z",
+                          "updatedAt": "2026-07-28T03:01:00.000Z",
+                          "uid": "35240-f823f502-cac0-47b7-8fb9-5e36dc56ad0b"
+                        },
+                        {
+                          "id": "97c65939-ffbe-4c13-9db3-7b37a6ae1eb7",
+                          "name": "The API key is missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/reservations/:restaurantId/wait-time?partySize=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "reservations",
+                                ":restaurantId",
+                                "wait-time"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional party size to retrieve a size-specific wait time.",
+                                  "key": "partySize",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "restaurantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:00.000Z",
+                          "updatedAt": "2026-07-28T03:01:00.000Z",
+                          "uid": "35240-97c65939-ffbe-4c13-9db3-7b37a6ae1eb7"
+                        },
+                        {
+                          "id": "c3524a8e-849e-4fc4-919b-6d7c3731fedb",
+                          "name": "The API key does not have access to the requested restaurant.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/reservations/:restaurantId/wait-time?partySize=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "reservations",
+                                ":restaurantId",
+                                "wait-time"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional party size to retrieve a size-specific wait time.",
+                                  "key": "partySize",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "restaurantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:00.000Z",
+                          "updatedAt": "2026-07-28T03:01:00.000Z",
+                          "uid": "35240-c3524a8e-849e-4fc4-919b-6d7c3731fedb"
+                        },
+                        {
+                          "id": "b87d8c26-c9b4-465d-a7ce-2164217fcdf2",
+                          "name": "The requested resource does not exist.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/reservations/:restaurantId/wait-time?partySize=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "reservations",
+                                ":restaurantId",
+                                "wait-time"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional party size to retrieve a size-specific wait time.",
+                                  "key": "partySize",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "restaurantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:00.000Z",
+                          "updatedAt": "2026-07-28T03:01:00.000Z",
+                          "uid": "35240-b87d8c26-c9b4-465d-a7ce-2164217fcdf2"
+                        },
+                        {
+                          "id": "828fefa0-a0df-4994-9f39-921e202be75e",
+                          "name": "An unexpected server error occurred.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/reservations/:restaurantId/wait-time?partySize=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "reservations",
+                                ":restaurantId",
+                                "wait-time"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional party size to retrieve a size-specific wait time.",
+                                  "key": "partySize",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "restaurantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:01:00.000Z",
+                          "updatedAt": "2026-07-28T03:01:00.000Z",
+                          "uid": "35240-828fefa0-a0df-4994-9f39-921e202be75e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:01:00.000Z",
+                      "updatedAt": "2026-07-28T03:01:00.000Z",
+                      "uid": "35240-a61d5925-a712-4991-8679-a83735ba1646"
+                    }
+                  ],
+                  "id": "e4805515-2839-4eb7-b414-674bfd0470f2",
+                  "createdAt": "2026-07-28T03:01:00.000Z",
+                  "updatedAt": "2026-07-28T03:01:00.000Z",
+                  "uid": "35240-e4805515-2839-4eb7-b414-674bfd0470f2"
+                }
+              ],
+              "id": "acc06f9d-d8a1-4d00-a875-534a9683ed64",
+              "createdAt": "2026-07-28T03:01:00.000Z",
+              "updatedAt": "2026-07-28T03:01:00.000Z",
+              "uid": "35240-acc06f9d-d8a1-4d00-a875-534a9683ed64"
+            }
+          ],
+          "id": "754805f2-1b6e-4166-8c75-6c60322d7aef",
+          "createdAt": "2026-07-28T03:01:00.000Z",
+          "updatedAt": "2026-07-28T03:01:00.000Z",
+          "uid": "35240-754805f2-1b6e-4166-8c75-6c60322d7aef"
+        }
+      ],
+      "id": "fcd27f03-8633-4810-a217-4b1cf331d9df",
+      "createdAt": "2026-07-28T03:01:00.000Z",
+      "updatedAt": "2026-07-28T03:01:00.000Z",
+      "uid": "35240-fcd27f03-8633-4810-a217-4b1cf331d9df"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.seatninja.com"
+    }
+  ]
+}
