@@ -1,0 +1,480 @@
+{
+  "item": [
+    {
+      "id": "1424e279-e6f7-4a0e-a339-2e996772af0b",
+      "name": "Waitlist",
+      "description": {
+        "content": "Add guests to a restaurant waitlist.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2bb4f667-71f7-4d32-8e93-db9fe0edbba1",
+          "name": "SpotOn Add to Waitlist",
+          "request": {
+            "name": "SpotOn Add to Waitlist",
+            "description": {
+              "content": "Add a guest to the waitlist at the specified restaurant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "reservations",
+                ":restaurantId",
+                "waitlist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "restaurantId",
+                  "description": "(Required) The unique identifier for the restaurant."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerInformation\": {\n    \"firstName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"imageUrl\": \"<uri>\",\n    \"memberNumber\": \"<string>\",\n    \"memberTier\": \"<string>\"\n  },\n  \"partySize\": \"<integer>\",\n  \"notes\": \"<string>\",\n  \"partyFlags\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "356f12fb-d868-4b76-bece-0d4281a77bcd",
+              "name": "The created waitlist entry.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "reservations",
+                    ":restaurantId",
+                    "waitlist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "restaurantId",
+                      "description": "(Required) The unique identifier for the restaurant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerInformation\": {\n    \"customerId\": \"abc123\",\n    \"firstName\": \"Mark\",\n    \"lastName\": \"Nalepka\",\n    \"phoneNumber\": \"1112223333\",\n    \"email\": \"jsmith@example.com\",\n    \"imageUrl\": \"https://example.com/path/abc123\",\n    \"memberNumber\": \"3\",\n    \"memberTier\": \"Gold\"\n  },\n  \"notes\": \"Operator note\",\n  \"partySize\": 4,\n  \"partyFlags\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"waitlistId\": \"abc123\",\n  \"restaurantId\": 152,\n  \"customerInformation\": {\n    \"customerId\": \"abc123\",\n    \"firstName\": \"Mark\",\n    \"lastName\": \"Nalepka\",\n    \"phoneNumber\": \"1112223333\",\n    \"email\": \"jsmith@example.com\",\n    \"imageUrl\": \"https://example.com/path/abc123\",\n    \"memberNumber\": \"3\",\n    \"memberTier\": \"Gold\"\n  },\n  \"partySize\": 4,\n  \"quotedWaitMinutes\": 15,\n  \"status\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95930499-2d38-42b6-a4d4-8f3dfbe539ff",
+              "name": "The request was malformed or violated a documented constraint.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "reservations",
+                    ":restaurantId",
+                    "waitlist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "restaurantId",
+                      "description": "(Required) The unique identifier for the restaurant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerInformation\": {\n    \"customerId\": \"abc123\",\n    \"firstName\": \"Mark\",\n    \"lastName\": \"Nalepka\",\n    \"phoneNumber\": \"1112223333\",\n    \"email\": \"jsmith@example.com\",\n    \"imageUrl\": \"https://example.com/path/abc123\",\n    \"memberNumber\": \"3\",\n    \"memberTier\": \"Gold\"\n  },\n  \"notes\": \"Operator note\",\n  \"partySize\": 4,\n  \"partyFlags\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example\",\n  \"code\": \"A1B2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac9e3cd8-05ee-4a22-b7c6-656a33cc07d5",
+              "name": "The API key is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "reservations",
+                    ":restaurantId",
+                    "waitlist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "restaurantId",
+                      "description": "(Required) The unique identifier for the restaurant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerInformation\": {\n    \"customerId\": \"abc123\",\n    \"firstName\": \"Mark\",\n    \"lastName\": \"Nalepka\",\n    \"phoneNumber\": \"1112223333\",\n    \"email\": \"jsmith@example.com\",\n    \"imageUrl\": \"https://example.com/path/abc123\",\n    \"memberNumber\": \"3\",\n    \"memberTier\": \"Gold\"\n  },\n  \"notes\": \"Operator note\",\n  \"partySize\": 4,\n  \"partyFlags\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example\",\n  \"code\": \"A1B2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "645016e6-2fcb-44a7-b893-a3420eea351b",
+              "name": "The API key does not have access to the requested restaurant.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "reservations",
+                    ":restaurantId",
+                    "waitlist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "restaurantId",
+                      "description": "(Required) The unique identifier for the restaurant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerInformation\": {\n    \"customerId\": \"abc123\",\n    \"firstName\": \"Mark\",\n    \"lastName\": \"Nalepka\",\n    \"phoneNumber\": \"1112223333\",\n    \"email\": \"jsmith@example.com\",\n    \"imageUrl\": \"https://example.com/path/abc123\",\n    \"memberNumber\": \"3\",\n    \"memberTier\": \"Gold\"\n  },\n  \"notes\": \"Operator note\",\n  \"partySize\": 4,\n  \"partyFlags\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example\",\n  \"code\": \"A1B2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "631f6cb8-590b-4c67-9c26-10a8b6520e57",
+              "name": "The requested resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "reservations",
+                    ":restaurantId",
+                    "waitlist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "restaurantId",
+                      "description": "(Required) The unique identifier for the restaurant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerInformation\": {\n    \"customerId\": \"abc123\",\n    \"firstName\": \"Mark\",\n    \"lastName\": \"Nalepka\",\n    \"phoneNumber\": \"1112223333\",\n    \"email\": \"jsmith@example.com\",\n    \"imageUrl\": \"https://example.com/path/abc123\",\n    \"memberNumber\": \"3\",\n    \"memberTier\": \"Gold\"\n  },\n  \"notes\": \"Operator note\",\n  \"partySize\": 4,\n  \"partyFlags\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example\",\n  \"code\": \"A1B2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e540130d-97ce-4834-a66d-95fb6716147c",
+              "name": "An unexpected server error occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "reservations",
+                    ":restaurantId",
+                    "waitlist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "restaurantId",
+                      "description": "(Required) The unique identifier for the restaurant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerInformation\": {\n    \"customerId\": \"abc123\",\n    \"firstName\": \"Mark\",\n    \"lastName\": \"Nalepka\",\n    \"phoneNumber\": \"1112223333\",\n    \"email\": \"jsmith@example.com\",\n    \"imageUrl\": \"https://example.com/path/abc123\",\n    \"memberNumber\": \"3\",\n    \"memberTier\": \"Gold\"\n  },\n  \"notes\": \"Operator note\",\n  \"partySize\": 4,\n  \"partyFlags\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example\",\n  \"code\": \"A1B2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.seatninja.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3e78ca5a-d1ec-49fc-a018-bf86cac9363c",
+    "name": "SpotOn Reserve Availability Waitlist API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.\n\nContact Support:\n Name: SpotOn Reserve Developer Center",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SpotOn Reserve Availability API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Availability",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "SpotOn Get Available Reservation Times",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.seatninja.com/v2/reservations/:restaurantId/availability",
+            "params": [
+              {
+                "name": "restaurantId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the restaurant."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "The date to check availability for, in YYYY-MM-DD format."
+              },
+              {
+                "name": "partySize",
+                "value": "",
+                "type": "query",
+                "description": "The number of guests in the party."
+              }
+            ]
+          },
+          "docs": "Retrieve the open reservation time slots for a restaurant filtered by date and party size."
+        },
+        {
+          "info": {
+            "name": "SpotOn Get Wait Time",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.seatninja.com/v2/reservations/:restaurantId/wait-time",
+            "params": [
+              {
+                "name": "restaurantId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the restaurant."
+              },
+              {
+                "name": "partySize",
+                "value": "",
+                "type": "query",
+                "description": "Optional party size to retrieve a size-specific wait time."
+              }
+            ]
+          },
+          "docs": "Retrieve the current wait time for a restaurant."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

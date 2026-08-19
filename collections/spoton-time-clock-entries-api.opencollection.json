@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SpotOn Reserve Availability Time Clock Entries API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Time Clock Entries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "SpotOn List Time Clock Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.seatninja.com/locations/:locationId/time-clock-entries",
+            "params": [
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the location."
+              },
+              {
+                "name": "updatedAtStart",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive RFC 3339 start of the update range."
+              },
+              {
+                "name": "updatedAtEnd",
+                "value": "",
+                "type": "query",
+                "description": "Exclusive RFC 3339 end of the update range."
+              },
+              {
+                "name": "inStart",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive RFC 3339 start for shift clock-in times."
+              },
+              {
+                "name": "inEnd",
+                "value": "",
+                "type": "query",
+                "description": "Exclusive RFC 3339 end for shift clock-in times."
+              },
+              {
+                "name": "outStart",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive RFC 3339 start for shift clock-out times."
+              },
+              {
+                "name": "outEnd",
+                "value": "",
+                "type": "query",
+                "description": "Exclusive RFC 3339 end for shift clock-out times."
+              }
+            ]
+          },
+          "docs": "Retrieve all time clock entries for a location within a specified date/time range, filtered by update time, clock-in time, or clock-out time."
+        },
+        {
+          "info": {
+            "name": "SpotOn Get Time Clock Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.seatninja.com/locations/:locationId/time-clock-entries/:timeClockEntryId",
+            "params": [
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the location."
+              },
+              {
+                "name": "timeClockEntryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the time clock entry."
+              }
+            ]
+          },
+          "docs": "Retrieve a single time clock entry by its unique identifier for a location."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

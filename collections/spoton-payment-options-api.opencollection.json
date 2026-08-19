@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SpotOn Reserve Availability Payment Options API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payment Options",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "SpotOn List Payment Options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.seatninja.com/locations/:locationId/payment-options",
+            "params": [
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the location."
+              }
+            ]
+          },
+          "docs": "Retrieve all payment options configured for a location."
+        },
+        {
+          "info": {
+            "name": "SpotOn Get Payment Option",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.seatninja.com/locations/:locationId/payment-options/:paymentOptionId",
+            "params": [
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the location."
+              },
+              {
+                "name": "paymentOptionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the payment option."
+              }
+            ]
+          },
+          "docs": "Retrieve a single payment option by its unique identifier for a location."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

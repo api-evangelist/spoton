@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SpotOn Reserve Availability Report Categories API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Report Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "SpotOn List Report Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.seatninja.com/locations/:locationId/report-categories",
+            "params": [
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the location."
+              }
+            ]
+          },
+          "docs": "Retrieve all report categories configured for a location."
+        },
+        {
+          "info": {
+            "name": "SpotOn Get Report Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.seatninja.com/locations/:locationId/report-categories/:reportCategoryId",
+            "params": [
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the location."
+              },
+              {
+                "name": "reportCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the report category."
+              }
+            ]
+          },
+          "docs": "Retrieve a single report category by its unique identifier for a location."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SpotOn Reserve Availability Reservations API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reservations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "SpotOn Create Reservation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.seatninja.com/v2/reservations/:restaurantId/reservation",
+            "params": [
+              {
+                "name": "restaurantId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the restaurant."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a reservation for a guest at the specified restaurant."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

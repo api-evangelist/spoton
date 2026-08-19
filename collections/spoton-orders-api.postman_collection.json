@@ -1,0 +1,905 @@
+{
+  "item": [
+    {
+      "id": "7c6cf04f-295e-49fd-acfd-9dacd29cc802",
+      "name": "Orders",
+      "description": {
+        "content": "Order and check data export, including items, modifiers, payments, and taxes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2fb333e4-9396-4d5c-a723-39b0f0417944",
+          "name": "SpotOn List Orders",
+          "request": {
+            "name": "SpotOn List Orders",
+            "description": {
+              "content": "Retrieve all orders that were last updated, created, or closed within the supplied date/time range for a location. Only orders touched within the last ~90 days are available, and a single date range cannot exceed 26 hours.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "locations",
+                ":locationId",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "updatedAtStart",
+                  "value": "<dateTime>",
+                  "description": "Inclusive RFC 3339 start of the update range. Max 26-hour range, no milliseconds."
+                },
+                {
+                  "disabled": false,
+                  "key": "updatedAtEnd",
+                  "value": "<dateTime>",
+                  "description": "Exclusive RFC 3339 end of the update range. Must be at least 5 minutes in the past."
+                },
+                {
+                  "disabled": false,
+                  "key": "createdAtStart",
+                  "value": "<dateTime>",
+                  "description": "Inclusive RFC 3339 start of the creation range. Max 26-hour range, no milliseconds."
+                },
+                {
+                  "disabled": false,
+                  "key": "createdAtEnd",
+                  "value": "<dateTime>",
+                  "description": "Exclusive RFC 3339 end of the creation range. Must be at least 5 minutes in the past."
+                },
+                {
+                  "disabled": false,
+                  "key": "closedAtStart",
+                  "value": "<dateTime>",
+                  "description": "Inclusive RFC 3339 start of the closure range. Max 26-hour range, no milliseconds."
+                },
+                {
+                  "disabled": false,
+                  "key": "closedAtEnd",
+                  "value": "<dateTime>",
+                  "description": "Exclusive RFC 3339 end of the closure range. Must be at least 5 minutes in the past."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeUpdatedActivity",
+                  "value": "<boolean>",
+                  "description": "Return previously created or closed orders that were subsequently updated. Only valid with createdAt or closedAt ranges."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "locationId",
+                  "description": "(Required) The unique identifier for the location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "247d0475-37e0-469c-91de-11a055c062d9",
+              "name": "A list of orders for the location.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":locationId",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "updatedAtStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updatedAtEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdAtStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdAtEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "closedAtStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "closedAtEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "includeUpdatedActivity",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"abc123\",\n    \"name\": \"Smoke's Burgers\",\n    \"deleted\": false,\n    \"locationId\": \"abc123\",\n    \"orderTypeId\": \"abc123\",\n    \"orderTypeName\": \"Smoke's Burgers\",\n    \"createdByEmployeeId\": \"abc123\",\n    \"createdByEmployeeName\": \"Smoke's Burgers\",\n    \"createdAt\": \"2025-03-15T14:30:00Z\",\n    \"closedAt\": \"2025-03-15T14:30:00Z\",\n    \"orderNumber\": \"3\",\n    \"tableNumber\": \"3\",\n    \"scheduled\": false,\n    \"releasedAt\": \"2025-03-15T14:30:00Z\",\n    \"ownerInfo\": {\n      \"employeeId\": \"example\",\n      \"employeeName\": \"example\",\n      \"jobPositionId\": \"example\"\n    },\n    \"totalAmount\": \"12.50\",\n    \"balanceDueAmount\": \"12.50\",\n    \"checks\": [\n      {}\n    ],\n    \"updatedAt\": \"2025-03-15T14:30:00Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2569924-4a37-4e78-9b5f-8d96c82231e9",
+              "name": "The request was malformed or violated a documented constraint such as the date range limit.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":locationId",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "updatedAtStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updatedAtEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdAtStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdAtEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "closedAtStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "closedAtEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "includeUpdatedActivity",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example\",\n  \"code\": \"A1B2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fbe2ef1e-6f65-413a-908a-d79f0702e51e",
+              "name": "The API key is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":locationId",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "updatedAtStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updatedAtEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdAtStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdAtEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "closedAtStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "closedAtEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "includeUpdatedActivity",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example\",\n  \"code\": \"A1B2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9165c87-d8fc-4dd7-84e3-55029d002ed5",
+              "name": "The API key does not have access to the requested location.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":locationId",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "updatedAtStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updatedAtEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdAtStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdAtEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "closedAtStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "closedAtEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "includeUpdatedActivity",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example\",\n  \"code\": \"A1B2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6498d6de-a4f4-4262-bcc3-6ce6e64fbffb",
+              "name": "An unexpected server error occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":locationId",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "updatedAtStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updatedAtEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdAtStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdAtEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "closedAtStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "closedAtEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "includeUpdatedActivity",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example\",\n  \"code\": \"A1B2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee2a27f6-07c9-4ffb-9f0f-b535527732c0",
+          "name": "SpotOn Get Order",
+          "request": {
+            "name": "SpotOn Get Order",
+            "description": {
+              "content": "Retrieve a single order by its unique identifier for a location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "locations",
+                ":locationId",
+                "orders",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "locationId",
+                  "description": "(Required) The unique identifier for the location."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) The unique identifier for the order."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb387206-6644-4dca-8e01-9c14fce0a903",
+              "name": "The requested order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":locationId",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) The unique identifier for the order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"name\": \"Smoke's Burgers\",\n  \"deleted\": false,\n  \"locationId\": \"abc123\",\n  \"orderTypeId\": \"abc123\",\n  \"orderTypeName\": \"Smoke's Burgers\",\n  \"createdByEmployeeId\": \"abc123\",\n  \"createdByEmployeeName\": \"Smoke's Burgers\",\n  \"createdAt\": \"2025-03-15T14:30:00Z\",\n  \"closedAt\": \"2025-03-15T14:30:00Z\",\n  \"orderNumber\": \"3\",\n  \"tableNumber\": \"3\",\n  \"scheduled\": false,\n  \"releasedAt\": \"2025-03-15T14:30:00Z\",\n  \"ownerInfo\": {\n    \"employeeId\": \"abc123\",\n    \"employeeName\": \"Smoke's Burgers\",\n    \"jobPositionId\": \"abc123\"\n  },\n  \"totalAmount\": \"12.50\",\n  \"balanceDueAmount\": \"12.50\",\n  \"checks\": [\n    {\n      \"gratuityAmount\": \"example\",\n      \"totalAmount\": \"example\",\n      \"paymentsAmount\": \"example\",\n      \"balanceAmount\": \"example\",\n      \"guests\": \"example\",\n      \"surcharges\": \"example\",\n      \"payments\": \"example\",\n      \"autoGratuityTaxes\": \"example\",\n      \"items\": \"example\",\n      \"voidedItems\": \"example\"\n    }\n  ],\n  \"updatedAt\": \"2025-03-15T14:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ef1a81d-b8a9-4032-bf92-c1162299326c",
+              "name": "The API key is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":locationId",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) The unique identifier for the order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example\",\n  \"code\": \"A1B2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94a240d1-d92d-45f4-bf5b-e0d2e684a445",
+              "name": "The API key does not have access to the requested location.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":locationId",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) The unique identifier for the order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example\",\n  \"code\": \"A1B2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4892836-eb9d-485f-aadb-d6f20c90164d",
+              "name": "The requested resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":locationId",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) The unique identifier for the order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example\",\n  \"code\": \"A1B2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7cc1e7f3-5f7d-4c1e-bddf-83592319e3e6",
+              "name": "An unexpected server error occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":locationId",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locationId",
+                      "description": "(Required) The unique identifier for the location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) The unique identifier for the order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example\",\n  \"code\": \"A1B2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.seatninja.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c0093c43-d550-49f6-89b1-f575c162a27b",
+    "name": "SpotOn Reserve Availability Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.\n\nContact Support:\n Name: SpotOn Reserve Developer Center",
+      "type": "text/plain"
+    }
+  }
+}

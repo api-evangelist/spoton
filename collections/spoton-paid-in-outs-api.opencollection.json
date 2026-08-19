@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SpotOn Reserve Availability Paid In Outs API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Paid In Outs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "SpotOn List Paid in Outs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.seatninja.com/locations/:locationId/paid-in-outs",
+            "params": [
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the location."
+              },
+              {
+                "name": "createdAtStart",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive RFC 3339 start of the creation range. Max 7-day range."
+              },
+              {
+                "name": "createdAtEnd",
+                "value": "",
+                "type": "query",
+                "description": "Exclusive RFC 3339 end of the creation range. Must be at least 5 minutes in the past."
+              }
+            ]
+          },
+          "docs": "Retrieve all paid in/out records created within a specified date range for a location. A single date range cannot exceed 7 days."
+        },
+        {
+          "info": {
+            "name": "SpotOn Get Paid in Out",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.seatninja.com/locations/:locationId/paid-in-outs/:paidInOutId",
+            "params": [
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the location."
+              },
+              {
+                "name": "paidInOutId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the paid in/out record."
+              }
+            ]
+          },
+          "docs": "Retrieve a single paid in/out record by its unique identifier for a location."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

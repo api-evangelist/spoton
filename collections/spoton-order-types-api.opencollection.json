@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SpotOn Reserve Availability Order Types API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Order Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "SpotOn List Order Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.seatninja.com/locations/:locationId/order-types",
+            "params": [
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the location."
+              }
+            ]
+          },
+          "docs": "Retrieve all order types configured for a location."
+        },
+        {
+          "info": {
+            "name": "SpotOn Get Order Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.seatninja.com/locations/:locationId/order-types/:orderTypeId",
+            "params": [
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the location."
+              },
+              {
+                "name": "orderTypeId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the order type."
+              }
+            ]
+          },
+          "docs": "Retrieve a single order type by its unique identifier for a location."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

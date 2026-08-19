@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SpotOn Reserve Availability Orders API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "SpotOn List Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.seatninja.com/locations/:locationId/orders",
+            "params": [
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the location."
+              },
+              {
+                "name": "updatedAtStart",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive RFC 3339 start of the update range. Max 26-hour range, no milliseconds."
+              },
+              {
+                "name": "updatedAtEnd",
+                "value": "",
+                "type": "query",
+                "description": "Exclusive RFC 3339 end of the update range. Must be at least 5 minutes in the past."
+              },
+              {
+                "name": "createdAtStart",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive RFC 3339 start of the creation range. Max 26-hour range, no milliseconds."
+              },
+              {
+                "name": "createdAtEnd",
+                "value": "",
+                "type": "query",
+                "description": "Exclusive RFC 3339 end of the creation range. Must be at least 5 minutes in the past."
+              },
+              {
+                "name": "closedAtStart",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive RFC 3339 start of the closure range. Max 26-hour range, no milliseconds."
+              },
+              {
+                "name": "closedAtEnd",
+                "value": "",
+                "type": "query",
+                "description": "Exclusive RFC 3339 end of the closure range. Must be at least 5 minutes in the past."
+              },
+              {
+                "name": "includeUpdatedActivity",
+                "value": "",
+                "type": "query",
+                "description": "Return previously created or closed orders that were subsequently updated. Only valid with createdAt or closedAt ranges."
+              }
+            ]
+          },
+          "docs": "Retrieve all orders that were last updated, created, or closed within the supplied date/time range for a location. Only orders touched within the last ~90 days are available, and a single date range cannot exceed 26 hours."
+        },
+        {
+          "info": {
+            "name": "SpotOn Get Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.seatninja.com/locations/:locationId/orders/:orderId",
+            "params": [
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the location."
+              },
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the order."
+              }
+            ]
+          },
+          "docs": "Retrieve a single order by its unique identifier for a location."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
