@@ -25,6 +25,13 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/spoton.png
 tags:
   - Restaurant
+  - Point-of-Sale
+  - Payments
+  - Online Ordering
+  - Reservations
+  - Reporting
+tags_raw:
+  - Restaurant
   - Point of Sale
   - Payments
   - Online Ordering
@@ -1525,6 +1532,8 @@ apis:
   humanURL: https://developers.spoton.com/restaurant/docs/introduction
   baseURL: https://restaurantapi.spoton.com/posexport/v1
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -2585,6 +2594,8 @@ apis:
   humanURL: https://developers.spoton.com/restaurant/docs/introduction
   baseURL: https://restaurantapi.spoton.com/posexport/v1
   tags:
+  - Restaurant
+  tags_raw:
   - Restaurants
   properties:
   - type: OpenAPI
