@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: SpotOn Reserve Availability Orders API
   description: The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.
@@ -188,27 +188,66 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or violated a documented constraint such as the date range limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: The API key does not have access to the requested location.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    OrderTax:
+    OwnerInfo:
       type: object
-      description: A tax applied to an order line, modifier, or surcharge.
+      description: Employee ownership details for an order.
       properties:
-        taxId:
+        employeeId:
           type: string
-          description: Tax identifier. Empty for splick.it orders.
+          description: Employee identifier.
           example: abc123
-        taxName:
+        employeeName:
           type: string
-          description: Tax name at the time of application.
+          description: Employee name.
           example: Smoke's Burgers
-        percentage:
+        jobPositionId:
           type: string
-          description: Tax percentage as a decimal string, for example "6.5".
-          example: '8.25'
-        amount:
+          description: Job position identifier held during ownership.
+          example: abc123
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
           type: string
-          description: Tax amount in US dollars, as a decimal string.
-          example: '12.50'
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
     OrderDiscount:
       type: object
       description: A discount applied to an order line or modifier.
@@ -234,24 +273,36 @@ components:
           type: string
           description: Discount amount in US dollars, as a decimal string.
           example: '12.50'
-    OrderGuest:
+    OrderSurcharge:
       type: object
-      description: A guest on an order check.
+      description: A surcharge applied to an order check or payment.
       properties:
-        name:
+        surchargeId:
           type: string
-          description: Guest name if available.
+          description: Surcharge identifier.
+          example: abc123
+        surchargeName:
+          type: string
+          description: Surcharge name at the time of application.
           example: Smoke's Burgers
-        items:
+        createdAt:
+          type: string
+          format: date-time
+          description: RFC 3339 timestamp when the surcharge was applied.
+          example: '2025-03-15T14:30:00Z'
+        amount:
+          type: string
+          description: Surcharge amount in US dollars, as a decimal string.
+          example: '12.50'
+        taxesAmount:
+          type: string
+          description: Applied tax amount, as a decimal string.
+          example: '12.50'
+        taxes:
           type: array
-          description: Items ordered by the guest.
+          description: Tax details.
           items:
-            $ref: '#/components/schemas/OrderMenuItem'
-        voidedItems:
-          type: array
-          description: Items voided for the guest.
-          items:
-            $ref: '#/components/schemas/OrderMenuItem'
+            $ref: '#/components/schemas/OrderTax'
     OrderMenuItem:
       type: object
       description: A menu item line on an order check or guest.
@@ -317,6 +368,26 @@ components:
           description: Applied modifiers.
           items:
             $ref: '#/components/schemas/OrderModifier'
+    OrderTax:
+      type: object
+      description: A tax applied to an order line, modifier, or surcharge.
+      properties:
+        taxId:
+          type: string
+          description: Tax identifier. Empty for splick.it orders.
+          example: abc123
+        taxName:
+          type: string
+          description: Tax name at the time of application.
+          example: Smoke's Burgers
+        percentage:
+          type: string
+          description: Tax percentage as a decimal string, for example "6.5".
+          example: '8.25'
+        amount:
+          type: string
+          description: Tax amount in US dollars, as a decimal string.
+          example: '12.50'
     OrderModifier:
       type: object
       description: A modifier applied to an ordered menu item.
@@ -363,72 +434,6 @@ components:
           description: Applied tax details.
           items:
             $ref: '#/components/schemas/OrderTax'
-    OrderCheck:
-      type: object
-      description: A check on an order, holding guests, payments, and surcharges.
-      properties:
-        gratuityAmount:
-          type: string
-          description: Applied auto-gratuity amount, as a decimal string.
-          example: '12.50'
-        totalAmount:
-          type: string
-          description: Final check total, as a decimal string.
-          example: '12.50'
-        paymentsAmount:
-          type: string
-          description: Total payments received, as a decimal string.
-          example: '12.50'
-        balanceAmount:
-          type: string
-          description: Remaining balance, as a decimal string.
-          example: '12.50'
-        guests:
-          type: array
-          description: Guests on the check.
-          items:
-            $ref: '#/components/schemas/OrderGuest'
-        surcharges:
-          type: array
-          description: Check-level surcharges.
-          items:
-            $ref: '#/components/schemas/OrderSurcharge'
-        payments:
-          type: array
-          description: Payment records.
-          items:
-            $ref: '#/components/schemas/OrderPayment'
-        autoGratuityTaxes:
-          type: array
-          description: Taxes applied to the auto-gratuity.
-          items:
-            $ref: '#/components/schemas/OrderTax'
-        items:
-          type: array
-          description: Items applied directly to the check, typically empty.
-          items:
-            $ref: '#/components/schemas/OrderMenuItem'
-        voidedItems:
-          type: array
-          description: Voided items applied directly to the check.
-          items:
-            $ref: '#/components/schemas/OrderMenuItem'
-    OwnerInfo:
-      type: object
-      description: Employee ownership details for an order.
-      properties:
-        employeeId:
-          type: string
-          description: Employee identifier.
-          example: abc123
-        employeeName:
-          type: string
-          description: Employee name.
-          example: Smoke's Burgers
-        jobPositionId:
-          type: string
-          description: Job position identifier held during ownership.
-          example: abc123
     OrderPayment:
       type: object
       description: A payment recorded against an order check.
@@ -499,18 +504,6 @@ components:
           type: string
           description: Cardholder name.
           example: Smoke's Burgers
-    Error:
-      type: object
-      description: A standard error response.
-      properties:
-        message:
-          type: string
-          description: A human-readable description of the error.
-          example: example
-        code:
-          type: string
-          description: A machine-readable error code.
-          example: A1B2
     Order:
       type: object
       description: An order exported from the SpotOn Restaurant POS System.
@@ -553,10 +546,11 @@ components:
           description: RFC 3339 creation timestamp.
           example: '2025-03-15T14:30:00Z'
         closedAt:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           description: RFC 3339 closure timestamp. Null if the order is open.
-          nullable: true
           example: '2025-03-15T14:30:00Z'
         orderNumber:
           type: string
@@ -571,10 +565,11 @@ components:
           description: Whether the order is scheduled for the future.
           example: false
         releasedAt:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           description: RFC 3339 kitchen release time for scheduled orders.
-          nullable: true
           example: '2025-03-15T14:30:00Z'
         ownerInfo:
           $ref: '#/components/schemas/OwnerInfo'
@@ -596,67 +591,74 @@ components:
           format: date-time
           description: RFC 3339 last update timestamp, including milliseconds.
           example: '2025-03-15T14:30:00Z'
-    OrderSurcharge:
+    OrderCheck:
       type: object
-      description: A surcharge applied to an order check or payment.
+      description: A check on an order, holding guests, payments, and surcharges.
       properties:
-        surchargeId:
+        gratuityAmount:
           type: string
-          description: Surcharge identifier.
-          example: abc123
-        surchargeName:
-          type: string
-          description: Surcharge name at the time of application.
-          example: Smoke's Burgers
-        createdAt:
-          type: string
-          format: date-time
-          description: RFC 3339 timestamp when the surcharge was applied.
-          example: '2025-03-15T14:30:00Z'
-        amount:
-          type: string
-          description: Surcharge amount in US dollars, as a decimal string.
+          description: Applied auto-gratuity amount, as a decimal string.
           example: '12.50'
-        taxesAmount:
+        totalAmount:
           type: string
-          description: Applied tax amount, as a decimal string.
+          description: Final check total, as a decimal string.
           example: '12.50'
-        taxes:
+        paymentsAmount:
+          type: string
+          description: Total payments received, as a decimal string.
+          example: '12.50'
+        balanceAmount:
+          type: string
+          description: Remaining balance, as a decimal string.
+          example: '12.50'
+        guests:
           type: array
-          description: Tax details.
+          description: Guests on the check.
+          items:
+            $ref: '#/components/schemas/OrderGuest'
+        surcharges:
+          type: array
+          description: Check-level surcharges.
+          items:
+            $ref: '#/components/schemas/OrderSurcharge'
+        payments:
+          type: array
+          description: Payment records.
+          items:
+            $ref: '#/components/schemas/OrderPayment'
+        autoGratuityTaxes:
+          type: array
+          description: Taxes applied to the auto-gratuity.
           items:
             $ref: '#/components/schemas/OrderTax'
-  responses:
-    Forbidden:
-      description: The API key does not have access to the requested location.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: The API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or violated a documented constraint such as the date range limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: An unexpected server error occurred.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+        items:
+          type: array
+          description: Items applied directly to the check, typically empty.
+          items:
+            $ref: '#/components/schemas/OrderMenuItem'
+        voidedItems:
+          type: array
+          description: Voided items applied directly to the check.
+          items:
+            $ref: '#/components/schemas/OrderMenuItem'
+    OrderGuest:
+      type: object
+      description: A guest on an order check.
+      properties:
+        name:
+          type: string
+          description: Guest name if available.
+          example: Smoke's Burgers
+        items:
+          type: array
+          description: Items ordered by the guest.
+          items:
+            $ref: '#/components/schemas/OrderMenuItem'
+        voidedItems:
+          type: array
+          description: Items voided for the guest.
+          items:
+            $ref: '#/components/schemas/OrderMenuItem'
   parameters:
     LocationId:
       name: locationId

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: SpotOn Reserve Availability Waitlist API
   description: The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.
@@ -92,8 +92,14 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    Forbidden:
-      description: The API key does not have access to the requested restaurant.
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or violated a documented constraint.
       content:
         application/json:
           schema:
@@ -110,14 +116,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    ServerError:
-      description: An unexpected server error occurred.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or violated a documented constraint.
+    Forbidden:
+      description: The API key does not have access to the requested restaurant.
       content:
         application/json:
           schema:
@@ -135,31 +135,35 @@ components:
           type: string
           description: A machine-readable error code.
           example: A1B2
-    WaitlistRequest:
+    WaitlistEntry:
       type: object
-      description: A request to add a guest to the waitlist.
+      description: A created waitlist entry.
       properties:
+        waitlistId:
+          type: string
+          description: The unique identifier for the waitlist entry.
+          example: abc123
+        restaurantId:
+          type: integer
+          format: int32
+          description: The restaurant the waitlist entry belongs to.
+          example: 152
         customerInformation:
           $ref: '#/components/schemas/CustomerInformation'
-        notes:
-          type: string
-          description: Optional notes for the waitlist entry.
-          example: Operator note
         partySize:
           type: integer
           format: int32
-          minimum: 1
-          maximum: 99
           description: The number of guests in the party.
           example: 4
-        partyFlags:
+        quotedWaitMinutes:
           type: integer
-          format: int64
-          description: Optional bit flags describing party attributes.
-          example: 0
-      required:
-      - customerInformation
-      - partySize
+          format: int32
+          description: The quoted wait time in minutes.
+          example: 15
+        status:
+          type: string
+          description: The current status of the waitlist entry.
+          example: example
     CustomerInformation:
       type: object
       description: Guest contact and identity details for a reservation or waitlist entry.
@@ -201,35 +205,31 @@ components:
       required:
       - firstName
       - phoneNumber
-    WaitlistEntry:
+    WaitlistRequest:
       type: object
-      description: A created waitlist entry.
+      description: A request to add a guest to the waitlist.
       properties:
-        waitlistId:
-          type: string
-          description: The unique identifier for the waitlist entry.
-          example: abc123
-        restaurantId:
-          type: integer
-          format: int32
-          description: The restaurant the waitlist entry belongs to.
-          example: 152
         customerInformation:
           $ref: '#/components/schemas/CustomerInformation'
+        notes:
+          type: string
+          description: Optional notes for the waitlist entry.
+          example: Operator note
         partySize:
           type: integer
           format: int32
+          minimum: 1
+          maximum: 99
           description: The number of guests in the party.
           example: 4
-        quotedWaitMinutes:
+        partyFlags:
           type: integer
-          format: int32
-          description: The quoted wait time in minutes.
-          example: 15
-        status:
-          type: string
-          description: The current status of the waitlist entry.
-          example: example
+          format: int64
+          description: Optional bit flags describing party attributes.
+          example: 0
+      required:
+      - customerInformation
+      - partySize
   parameters:
     RestaurantId:
       name: restaurantId

@@ -37,6 +37,23 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "spoton-availability-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "spoton-cash-deposits-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "spoton-employees-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "spoton-job-positions-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "spoton-locations-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "spoton-menu-items-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "spoton-order-types-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "spoton-orders-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "spoton-paid-in-outs-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "spoton-payment-options-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "spoton-report-categories-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "spoton-reservations-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "spoton-restaurants-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "spoton-time-clock-entries-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "spoton-waitlist-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }
