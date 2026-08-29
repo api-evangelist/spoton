@@ -9,6 +9,18 @@ description: >-
   an API key supplied via the x-api-key request header, with access granted on a per-location basis. SpotOn also
   publishes the Reserve API (powered by SeatNinja) for its reservations and waitlist product.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
