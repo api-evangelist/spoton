@@ -1120,6 +1120,8 @@ apis:
   humanURL: https://developers.spoton.com/restaurant/docs/introduction
   baseURL: https://restaurantapi.spoton.com/posexport/v1
   tags:
+  - menu-items
+  tags_raw:
   - Menu Items
   properties:
   - type: OpenAPI
