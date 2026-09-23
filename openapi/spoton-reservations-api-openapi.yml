@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: SpotOn Reserve Availability Reservations API
-  description: The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.
+  title: SpotOn Reserve Reservations API
+  description: The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product.
   version: v2
   contact:
     name: SpotOn Reserve Developer Center
@@ -94,20 +94,8 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    ServerError:
-      description: An unexpected server error occurred.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     BadRequest:
       description: The request was malformed or violated a documented constraint.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource does not exist.
       content:
         application/json:
           schema:
@@ -118,56 +106,25 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Forbidden:
       description: The API key does not have access to the requested restaurant.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      description: A standard error response.
-      properties:
-        message:
-          type: string
-          description: A human-readable description of the error.
-          example: example
-        code:
-          type: string
-          description: A machine-readable error code.
-          example: A1B2
-    ReservationRequest:
-      type: object
-      description: A request to create a reservation.
-      properties:
-        customerInformation:
-          $ref: '#/components/schemas/CustomerInformation'
-        notes:
-          type: string
-          description: Optional notes for the reservation, such as a seating request.
-          example: Operator note
-        time:
-          type: string
-          format: date-time
-          description: The requested reservation date and time, in RFC 3339 format.
-          example: '2025-03-15T14:30:00Z'
-        partySize:
-          type: integer
-          format: int32
-          minimum: 1
-          maximum: 99
-          description: The number of guests in the party.
-          example: 4
-        partyFlags:
-          type: integer
-          format: int64
-          description: Optional bit flags describing party attributes.
-          example: 0
-      required:
-      - customerInformation
-      - time
-      - partySize
     CustomerInformation:
       type: object
       description: Guest contact and identity details for a reservation or waitlist entry.
@@ -247,6 +204,49 @@ components:
           type: string
           description: Notes attached to the reservation.
           example: Operator note
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
+    ReservationRequest:
+      type: object
+      description: A request to create a reservation.
+      properties:
+        customerInformation:
+          $ref: '#/components/schemas/CustomerInformation'
+        notes:
+          type: string
+          description: Optional notes for the reservation, such as a seating request.
+          example: Operator note
+        time:
+          type: string
+          format: date-time
+          description: The requested reservation date and time, in RFC 3339 format.
+          example: '2025-03-15T14:30:00Z'
+        partySize:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 99
+          description: The number of guests in the party.
+          example: 4
+        partyFlags:
+          type: integer
+          format: int64
+          description: Optional bit flags describing party attributes.
+          example: 0
+      required:
+      - customerInformation
+      - time
+      - partySize
   parameters:
     RestaurantId:
       name: restaurantId

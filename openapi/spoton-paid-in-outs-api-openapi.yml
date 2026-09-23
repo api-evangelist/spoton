@@ -1,18 +1,18 @@
 openapi: 3.2.0
 info:
-  title: SpotOn Reserve Availability Paid In Outs API
-  description: The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.
-  version: v2
+  title: SpotOn Restaurant POS Export Paid In Outs API
+  description: The SpotOn Restaurant POS Export API provides close-to-realtime data export from the SpotOn Restaurant POS System.
+  version: v1
   contact:
-    name: SpotOn Reserve Developer Center
-    url: https://developers.spoton.com/reserve/docs/getting-started
+    name: SpotOn Developer Center
+    url: https://developers.spoton.com/restaurant/docs/introduction
   x-generated-from: documentation
   x-last-validated: '2026-06-03'
 servers:
-- url: https://api.seatninja.com
+- url: https://restaurantapi.spoton.com/posexport/v1
   description: Production
-- url: https://sandbox.seatninja.com
-  description: Sandbox
+- url: https://restaurantapi-qa.spoton.com/posexport/v1
+  description: QA / Sandbox
 security:
 - apiKeyAuth: []
 tags:
@@ -129,12 +129,6 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    ServerError:
-      description: An unexpected server error occurred.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     BadRequest:
       description: The request was malformed or violated a documented constraint such as the date range limit.
       content:
@@ -143,6 +137,12 @@ components:
             $ref: '#/components/schemas/Error'
     Unauthorized:
       description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: An unexpected server error occurred.
       content:
         application/json:
           schema:
@@ -160,18 +160,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      description: A standard error response.
-      properties:
-        message:
-          type: string
-          description: A human-readable description of the error.
-          example: example
-        code:
-          type: string
-          description: A machine-readable error code.
-          example: A1B2
     PaidInOut:
       type: object
       description: A cash paid in or paid out record at a location.
@@ -228,6 +216,18 @@ components:
           type: string
           description: Operator notes.
           example: Operator note
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
   parameters:
     LocationId:
       name: locationId
@@ -241,4 +241,4 @@ components:
       type: apiKey
       in: header
       name: x-api-key
-      description: API key scoped to specific restaurants.
+      description: API key granting per-location access to the POS Export API.

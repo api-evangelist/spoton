@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: SpotOn Reserve Availability Waitlist API
-  description: The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.
+  title: SpotOn Reserve Waitlist API
+  description: The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product.
   version: v2
   contact:
     name: SpotOn Reserve Developer Center
@@ -91,50 +91,32 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    ServerError:
-      description: An unexpected server error occurred.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or violated a documented constraint.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: The API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The API key does not have access to the requested restaurant.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
+    WaitlistRequest:
       type: object
-      description: A standard error response.
+      description: A request to add a guest to the waitlist.
       properties:
-        message:
+        customerInformation:
+          $ref: '#/components/schemas/CustomerInformation'
+        notes:
           type: string
-          description: A human-readable description of the error.
-          example: example
-        code:
-          type: string
-          description: A machine-readable error code.
-          example: A1B2
+          description: Optional notes for the waitlist entry.
+          example: Operator note
+        partySize:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 99
+          description: The number of guests in the party.
+          example: 4
+        partyFlags:
+          type: integer
+          format: int64
+          description: Optional bit flags describing party attributes.
+          example: 0
+      required:
+      - customerInformation
+      - partySize
     WaitlistEntry:
       type: object
       description: A created waitlist entry.
@@ -205,31 +187,49 @@ components:
       required:
       - firstName
       - phoneNumber
-    WaitlistRequest:
+    Error:
       type: object
-      description: A request to add a guest to the waitlist.
+      description: A standard error response.
       properties:
-        customerInformation:
-          $ref: '#/components/schemas/CustomerInformation'
-        notes:
+        message:
           type: string
-          description: Optional notes for the waitlist entry.
-          example: Operator note
-        partySize:
-          type: integer
-          format: int32
-          minimum: 1
-          maximum: 99
-          description: The number of guests in the party.
-          example: 4
-        partyFlags:
-          type: integer
-          format: int64
-          description: Optional bit flags describing party attributes.
-          example: 0
-      required:
-      - customerInformation
-      - partySize
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
+  responses:
+    BadRequest:
+      description: The request was malformed or violated a documented constraint.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: The API key does not have access to the requested restaurant.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     RestaurantId:
       name: restaurantId

@@ -1,24 +1,14 @@
 {
   "provider": "spoton",
   "sources": [
-    "spoton-availability-api-openapi.yml",
-    "spoton-cash-deposits-api-openapi.yml",
-    "spoton-employees-api-openapi.yml",
-    "spoton-job-positions-api-openapi.yml",
-    "spoton-locations-api-openapi.yml",
-    "spoton-menu-items-api-openapi.yml",
-    "spoton-order-types-api-openapi.yml",
-    "spoton-orders-api-openapi.yml",
-    "spoton-paid-in-outs-api-openapi.yml",
-    "spoton-payment-options-api-openapi.yml",
-    "spoton-report-categories-api-openapi.yml",
-    "spoton-reservations-api-openapi.yml",
-    "spoton-restaurants-api-openapi.yml",
-    "spoton-time-clock-entries-api-openapi.yml",
-    "spoton-waitlist-api-openapi.yml"
+    "_ae-authored/spoton-reserve-openapi-original.yml",
+    "_ae-authored/spoton-restaurant-pos-export-openapi-original.yml"
   ],
   "outputs": [
     "spoton-availability-api-openapi.yml",
+    "spoton-reservations-api-openapi.yml",
+    "spoton-restaurants-api-openapi.yml",
+    "spoton-waitlist-api-openapi.yml",
     "spoton-cash-deposits-api-openapi.yml",
     "spoton-employees-api-openapi.yml",
     "spoton-job-positions-api-openapi.yml",
@@ -29,31 +19,32 @@
     "spoton-paid-in-outs-api-openapi.yml",
     "spoton-payment-options-api-openapi.yml",
     "spoton-report-categories-api-openapi.yml",
-    "spoton-reservations-api-openapi.yml",
-    "spoton-restaurants-api-openapi.yml",
-    "spoton-time-clock-entries-api-openapi.yml",
-    "spoton-waitlist-api-openapi.yml"
+    "spoton-time-clock-entries-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
-    "spoton-availability-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "spoton-cash-deposits-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "spoton-employees-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "spoton-job-positions-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "spoton-locations-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "spoton-menu-items-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "spoton-order-types-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "spoton-orders-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "spoton-paid-in-outs-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "spoton-payment-options-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "spoton-report-categories-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "spoton-reservations-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "spoton-restaurants-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "spoton-time-clock-entries-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "spoton-waitlist-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "spoton-reserve-openapi-original.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "spoton-restaurant-pos-export-openapi-original.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "spoton-availability-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spoton-cash-deposits-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spoton-employees-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spoton-job-positions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spoton-locations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spoton-menu-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spoton-order-types-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spoton-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spoton-paid-in-outs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spoton-payment-options-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spoton-report-categories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spoton-reservations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spoton-restaurants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spoton-time-clock-entries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spoton-waitlist-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

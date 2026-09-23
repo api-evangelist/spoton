@@ -1,18 +1,18 @@
 openapi: 3.2.0
 info:
-  title: SpotOn Reserve Availability Orders API
-  description: The SpotOn Reserve API (powered by SeatNinja) lets partners integrate reservation, waitlist, and guest-management workflows into the SpotOn Reserve product. It supports listing accessible restaurants, checking available reservation times, creating and managing reservations, retrieving wait times, and adding guests to a waitlist. Authentication uses an API key supplied via the x-api-key request header, scoped to specific restaurants. The sandbox environment enforces daily and hourly request quotas; production has no documented rate limit.
-  version: v2
+  title: SpotOn Restaurant POS Export Orders API
+  description: The SpotOn Restaurant POS Export API provides close-to-realtime data export from the SpotOn Restaurant POS System.
+  version: v1
   contact:
-    name: SpotOn Reserve Developer Center
-    url: https://developers.spoton.com/reserve/docs/getting-started
+    name: SpotOn Developer Center
+    url: https://developers.spoton.com/restaurant/docs/introduction
   x-generated-from: documentation
   x-last-validated: '2026-06-03'
 servers:
-- url: https://api.seatninja.com
+- url: https://restaurantapi.spoton.com/posexport/v1
   description: Production
-- url: https://sandbox.seatninja.com
-  description: Sandbox
+- url: https://restaurantapi-qa.spoton.com/posexport/v1
+  description: QA / Sandbox
 security:
 - apiKeyAuth: []
 tags:
@@ -189,12 +189,6 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    ServerError:
-      description: An unexpected server error occurred.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     BadRequest:
       description: The request was malformed or violated a documented constraint such as the date range limit.
       content:
@@ -203,6 +197,12 @@ components:
             $ref: '#/components/schemas/Error'
     Unauthorized:
       description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: An unexpected server error occurred.
       content:
         application/json:
           schema:
@@ -220,290 +220,56 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    OwnerInfo:
+    OrderCheck:
       type: object
-      description: Employee ownership details for an order.
+      description: A check on an order, holding guests, payments, and surcharges.
       properties:
-        employeeId:
+        gratuityAmount:
           type: string
-          description: Employee identifier.
-          example: abc123
-        employeeName:
-          type: string
-          description: Employee name.
-          example: Smoke's Burgers
-        jobPositionId:
-          type: string
-          description: Job position identifier held during ownership.
-          example: abc123
-    Error:
-      type: object
-      description: A standard error response.
-      properties:
-        message:
-          type: string
-          description: A human-readable description of the error.
-          example: example
-        code:
-          type: string
-          description: A machine-readable error code.
-          example: A1B2
-    OrderDiscount:
-      type: object
-      description: A discount applied to an order line or modifier.
-      properties:
-        id:
-          type: string
-          description: Discount instance identifier. May repeat across levels.
-          example: abc123
-        discountId:
-          type: string
-          description: Discount type identifier.
-          example: abc123
-        discountName:
-          type: string
-          description: Discount name at the time of application.
-          example: Smoke's Burgers
-        createdAt:
-          type: string
-          format: date-time
-          description: RFC 3339 timestamp when the discount was applied.
-          example: '2025-03-15T14:30:00Z'
-        amount:
-          type: string
-          description: Discount amount in US dollars, as a decimal string.
-          example: '12.50'
-    OrderSurcharge:
-      type: object
-      description: A surcharge applied to an order check or payment.
-      properties:
-        surchargeId:
-          type: string
-          description: Surcharge identifier.
-          example: abc123
-        surchargeName:
-          type: string
-          description: Surcharge name at the time of application.
-          example: Smoke's Burgers
-        createdAt:
-          type: string
-          format: date-time
-          description: RFC 3339 timestamp when the surcharge was applied.
-          example: '2025-03-15T14:30:00Z'
-        amount:
-          type: string
-          description: Surcharge amount in US dollars, as a decimal string.
-          example: '12.50'
-        taxesAmount:
-          type: string
-          description: Applied tax amount, as a decimal string.
-          example: '12.50'
-        taxes:
-          type: array
-          description: Tax details.
-          items:
-            $ref: '#/components/schemas/OrderTax'
-    OrderMenuItem:
-      type: object
-      description: A menu item line on an order check or guest.
-      properties:
-        menuItemId:
-          type: string
-          description: Menu item identifier.
-          example: abc123
-        name:
-          type: string
-          description: Item name at the time the order was placed.
-          example: Smoke's Burgers
-        createdAt:
-          type: string
-          format: date-time
-          description: RFC 3339 timestamp when the item was added.
-          example: '2025-03-15T14:30:00Z'
-        quantity:
-          type: string
-          description: Decimal quantity as a string. Subitems show the parent quantity.
-          example: example
-        preDiscountsAmount:
-          type: string
-          description: Extended amount before discounts and taxes, as a decimal string.
-          example: '12.50'
-        discountsAmount:
-          type: string
-          description: Total applied discounts, as a decimal string.
-          example: '12.50'
-        postDiscountsAmount:
-          type: string
-          description: Amount after discounts and before taxes, as a decimal string.
-          example: '12.50'
-        taxesAmount:
-          type: string
-          description: Applied taxes, as a decimal string.
+          description: Applied auto-gratuity amount, as a decimal string.
           example: '12.50'
         totalAmount:
           type: string
-          description: Final amount after discounts and taxes, as a decimal string.
+          description: Final check total, as a decimal string.
           example: '12.50'
-        discounts:
+        paymentsAmount:
+          type: string
+          description: Total payments received, as a decimal string.
+          example: '12.50'
+        balanceAmount:
+          type: string
+          description: Remaining balance, as a decimal string.
+          example: '12.50'
+        guests:
           type: array
-          description: Applied discount details.
+          description: Guests on the check.
           items:
-            $ref: '#/components/schemas/OrderDiscount'
-        taxes:
-          type: array
-          description: Applied tax details.
-          items:
-            $ref: '#/components/schemas/OrderTax'
-        subItems:
-          type: array
-          description: Nested subitems.
-          items:
-            $ref: '#/components/schemas/OrderMenuItem'
-        giftCardIssueReload:
-          type: boolean
-          description: Whether the line represents a gift card sale or reload.
-          example: false
-        modifiers:
-          type: array
-          description: Applied modifiers.
-          items:
-            $ref: '#/components/schemas/OrderModifier'
-    OrderTax:
-      type: object
-      description: A tax applied to an order line, modifier, or surcharge.
-      properties:
-        taxId:
-          type: string
-          description: Tax identifier. Empty for splick.it orders.
-          example: abc123
-        taxName:
-          type: string
-          description: Tax name at the time of application.
-          example: Smoke's Burgers
-        percentage:
-          type: string
-          description: Tax percentage as a decimal string, for example "6.5".
-          example: '8.25'
-        amount:
-          type: string
-          description: Tax amount in US dollars, as a decimal string.
-          example: '12.50'
-    OrderModifier:
-      type: object
-      description: A modifier applied to an ordered menu item.
-      properties:
-        modifierId:
-          type: string
-          description: Modifier identifier.
-          example: abc123
-        modifierOptionId:
-          type: string
-          description: Selected modifier option identifier.
-          example: abc123
-        text:
-          type: string
-          description: Combined display text for the modifier, for example "Extra Cheese".
-          example: Extra Cheese
-        preDiscountsAmount:
-          type: string
-          description: Extended amount before discounts and taxes, as a decimal string.
-          example: '12.50'
-        discountsAmount:
-          type: string
-          description: Applied discount portion, as a decimal string.
-          example: '12.50'
-        postDiscountsAmount:
-          type: string
-          description: Amount after discounts and before taxes, as a decimal string.
-          example: '12.50'
-        taxesAmount:
-          type: string
-          description: Applied taxes, as a decimal string.
-          example: '12.50'
-        totalAmount:
-          type: string
-          description: Final amount after discounts and taxes, as a decimal string.
-          example: '12.50'
-        discounts:
-          type: array
-          description: Distributed discount details.
-          items:
-            $ref: '#/components/schemas/OrderDiscount'
-        taxes:
-          type: array
-          description: Applied tax details.
-          items:
-            $ref: '#/components/schemas/OrderTax'
-    OrderPayment:
-      type: object
-      description: A payment recorded against an order check.
-      properties:
-        paymentOptionId:
-          type: string
-          description: Payment method identifier.
-          example: abc123
-        paymentName:
-          type: string
-          description: Payment method name at the time of application.
-          example: Smoke's Burgers
-        createdAt:
-          type: string
-          format: date-time
-          description: RFC 3339 timestamp when the payment was applied.
-          example: '2025-03-15T14:30:00Z'
-        amount:
-          type: string
-          description: Payment amount in US dollars, as a decimal string.
-          example: '12.50'
+            $ref: '#/components/schemas/OrderGuest'
         surcharges:
           type: array
-          description: Payment-level surcharges.
+          description: Check-level surcharges.
           items:
             $ref: '#/components/schemas/OrderSurcharge'
-        surchargesAmount:
-          type: integer
-          format: int64
-          description: Total surcharge amount.
-          example: 0
-        tipAmount:
-          type: string
-          description: Tip amount in US dollars, as a decimal string.
-          example: '12.50'
-        tipDeductionAmount:
-          type: string
-          description: Processing fee deduction from the tip, as a decimal string.
-          example: '12.50'
-        tipAppliedToEmployeeId:
-          type: string
-          description: Identifier of the employee the tip was applied to.
-          example: abc123
-        employeeId:
-          type: string
-          description: Identifier of the employee who processed the payment.
-          example: abc123
-        employeeName:
-          type: string
-          description: Name of the employee who processed the payment.
-          example: Smoke's Burgers
-        cardType:
-          type: string
-          description: The card type used for the payment.
-          enum:
-          - Unknown
-          - Amex
-          - Discover
-          - Manual CC
-          - Mastercard
-          - Visa
-          example: Unknown
-        cardNumber:
-          type: string
-          description: Last four digits of the card, formatted as "...XXXX".
-          example: '3'
-        cardholderName:
-          type: string
-          description: Cardholder name.
-          example: Smoke's Burgers
+        payments:
+          type: array
+          description: Payment records.
+          items:
+            $ref: '#/components/schemas/OrderPayment'
+        autoGratuityTaxes:
+          type: array
+          description: Taxes applied to the auto-gratuity.
+          items:
+            $ref: '#/components/schemas/OrderTax'
+        items:
+          type: array
+          description: Items applied directly to the check, typically empty.
+          items:
+            $ref: '#/components/schemas/OrderMenuItem'
+        voidedItems:
+          type: array
+          description: Voided items applied directly to the check.
+          items:
+            $ref: '#/components/schemas/OrderMenuItem'
     Order:
       type: object
       description: An order exported from the SpotOn Restaurant POS System.
@@ -591,56 +357,290 @@ components:
           format: date-time
           description: RFC 3339 last update timestamp, including milliseconds.
           example: '2025-03-15T14:30:00Z'
-    OrderCheck:
+    OrderTax:
       type: object
-      description: A check on an order, holding guests, payments, and surcharges.
+      description: A tax applied to an order line, modifier, or surcharge.
       properties:
-        gratuityAmount:
+        taxId:
           type: string
-          description: Applied auto-gratuity amount, as a decimal string.
+          description: Tax identifier. Empty for splick.it orders.
+          example: abc123
+        taxName:
+          type: string
+          description: Tax name at the time of application.
+          example: Smoke's Burgers
+        percentage:
+          type: string
+          description: Tax percentage as a decimal string, for example "6.5".
+          example: '8.25'
+        amount:
+          type: string
+          description: Tax amount in US dollars, as a decimal string.
+          example: '12.50'
+    OrderDiscount:
+      type: object
+      description: A discount applied to an order line or modifier.
+      properties:
+        id:
+          type: string
+          description: Discount instance identifier. May repeat across levels.
+          example: abc123
+        discountId:
+          type: string
+          description: Discount type identifier.
+          example: abc123
+        discountName:
+          type: string
+          description: Discount name at the time of application.
+          example: Smoke's Burgers
+        createdAt:
+          type: string
+          format: date-time
+          description: RFC 3339 timestamp when the discount was applied.
+          example: '2025-03-15T14:30:00Z'
+        amount:
+          type: string
+          description: Discount amount in US dollars, as a decimal string.
+          example: '12.50'
+    OrderModifier:
+      type: object
+      description: A modifier applied to an ordered menu item.
+      properties:
+        modifierId:
+          type: string
+          description: Modifier identifier.
+          example: abc123
+        modifierOptionId:
+          type: string
+          description: Selected modifier option identifier.
+          example: abc123
+        text:
+          type: string
+          description: Combined display text for the modifier, for example "Extra Cheese".
+          example: Extra Cheese
+        preDiscountsAmount:
+          type: string
+          description: Extended amount before discounts and taxes, as a decimal string.
+          example: '12.50'
+        discountsAmount:
+          type: string
+          description: Applied discount portion, as a decimal string.
+          example: '12.50'
+        postDiscountsAmount:
+          type: string
+          description: Amount after discounts and before taxes, as a decimal string.
+          example: '12.50'
+        taxesAmount:
+          type: string
+          description: Applied taxes, as a decimal string.
           example: '12.50'
         totalAmount:
           type: string
-          description: Final check total, as a decimal string.
+          description: Final amount after discounts and taxes, as a decimal string.
           example: '12.50'
-        paymentsAmount:
-          type: string
-          description: Total payments received, as a decimal string.
-          example: '12.50'
-        balanceAmount:
-          type: string
-          description: Remaining balance, as a decimal string.
-          example: '12.50'
-        guests:
+        discounts:
           type: array
-          description: Guests on the check.
+          description: Distributed discount details.
           items:
-            $ref: '#/components/schemas/OrderGuest'
-        surcharges:
+            $ref: '#/components/schemas/OrderDiscount'
+        taxes:
           type: array
-          description: Check-level surcharges.
-          items:
-            $ref: '#/components/schemas/OrderSurcharge'
-        payments:
-          type: array
-          description: Payment records.
-          items:
-            $ref: '#/components/schemas/OrderPayment'
-        autoGratuityTaxes:
-          type: array
-          description: Taxes applied to the auto-gratuity.
+          description: Applied tax details.
           items:
             $ref: '#/components/schemas/OrderTax'
-        items:
+    OrderMenuItem:
+      type: object
+      description: A menu item line on an order check or guest.
+      properties:
+        menuItemId:
+          type: string
+          description: Menu item identifier.
+          example: abc123
+        name:
+          type: string
+          description: Item name at the time the order was placed.
+          example: Smoke's Burgers
+        createdAt:
+          type: string
+          format: date-time
+          description: RFC 3339 timestamp when the item was added.
+          example: '2025-03-15T14:30:00Z'
+        quantity:
+          type: string
+          description: Decimal quantity as a string. Subitems show the parent quantity.
+          example: example
+        preDiscountsAmount:
+          type: string
+          description: Extended amount before discounts and taxes, as a decimal string.
+          example: '12.50'
+        discountsAmount:
+          type: string
+          description: Total applied discounts, as a decimal string.
+          example: '12.50'
+        postDiscountsAmount:
+          type: string
+          description: Amount after discounts and before taxes, as a decimal string.
+          example: '12.50'
+        taxesAmount:
+          type: string
+          description: Applied taxes, as a decimal string.
+          example: '12.50'
+        totalAmount:
+          type: string
+          description: Final amount after discounts and taxes, as a decimal string.
+          example: '12.50'
+        discounts:
           type: array
-          description: Items applied directly to the check, typically empty.
+          description: Applied discount details.
+          items:
+            $ref: '#/components/schemas/OrderDiscount'
+        taxes:
+          type: array
+          description: Applied tax details.
+          items:
+            $ref: '#/components/schemas/OrderTax'
+        subItems:
+          type: array
+          description: Nested subitems.
           items:
             $ref: '#/components/schemas/OrderMenuItem'
-        voidedItems:
+        giftCardIssueReload:
+          type: boolean
+          description: Whether the line represents a gift card sale or reload.
+          example: false
+        modifiers:
           type: array
-          description: Voided items applied directly to the check.
+          description: Applied modifiers.
           items:
-            $ref: '#/components/schemas/OrderMenuItem'
+            $ref: '#/components/schemas/OrderModifier'
+    OrderPayment:
+      type: object
+      description: A payment recorded against an order check.
+      properties:
+        paymentOptionId:
+          type: string
+          description: Payment method identifier.
+          example: abc123
+        paymentName:
+          type: string
+          description: Payment method name at the time of application.
+          example: Smoke's Burgers
+        createdAt:
+          type: string
+          format: date-time
+          description: RFC 3339 timestamp when the payment was applied.
+          example: '2025-03-15T14:30:00Z'
+        amount:
+          type: string
+          description: Payment amount in US dollars, as a decimal string.
+          example: '12.50'
+        surcharges:
+          type: array
+          description: Payment-level surcharges.
+          items:
+            $ref: '#/components/schemas/OrderSurcharge'
+        surchargesAmount:
+          type: integer
+          format: int64
+          description: Total surcharge amount.
+          example: 0
+        tipAmount:
+          type: string
+          description: Tip amount in US dollars, as a decimal string.
+          example: '12.50'
+        tipDeductionAmount:
+          type: string
+          description: Processing fee deduction from the tip, as a decimal string.
+          example: '12.50'
+        tipAppliedToEmployeeId:
+          type: string
+          description: Identifier of the employee the tip was applied to.
+          example: abc123
+        employeeId:
+          type: string
+          description: Identifier of the employee who processed the payment.
+          example: abc123
+        employeeName:
+          type: string
+          description: Name of the employee who processed the payment.
+          example: Smoke's Burgers
+        cardType:
+          type: string
+          description: The card type used for the payment.
+          enum:
+          - Unknown
+          - Amex
+          - Discover
+          - Manual CC
+          - Mastercard
+          - Visa
+          example: Unknown
+        cardNumber:
+          type: string
+          description: Last four digits of the card, formatted as "...XXXX".
+          example: '3'
+        cardholderName:
+          type: string
+          description: Cardholder name.
+          example: Smoke's Burgers
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
+    OrderSurcharge:
+      type: object
+      description: A surcharge applied to an order check or payment.
+      properties:
+        surchargeId:
+          type: string
+          description: Surcharge identifier.
+          example: abc123
+        surchargeName:
+          type: string
+          description: Surcharge name at the time of application.
+          example: Smoke's Burgers
+        createdAt:
+          type: string
+          format: date-time
+          description: RFC 3339 timestamp when the surcharge was applied.
+          example: '2025-03-15T14:30:00Z'
+        amount:
+          type: string
+          description: Surcharge amount in US dollars, as a decimal string.
+          example: '12.50'
+        taxesAmount:
+          type: string
+          description: Applied tax amount, as a decimal string.
+          example: '12.50'
+        taxes:
+          type: array
+          description: Tax details.
+          items:
+            $ref: '#/components/schemas/OrderTax'
+    OwnerInfo:
+      type: object
+      description: Employee ownership details for an order.
+      properties:
+        employeeId:
+          type: string
+          description: Employee identifier.
+          example: abc123
+        employeeName:
+          type: string
+          description: Employee name.
+          example: Smoke's Burgers
+        jobPositionId:
+          type: string
+          description: Job position identifier held during ownership.
+          example: abc123
     OrderGuest:
       type: object
       description: A guest on an order check.
@@ -672,4 +672,4 @@ components:
       type: apiKey
       in: header
       name: x-api-key
-      description: API key scoped to specific restaurants.
+      description: API key granting per-location access to the POS Export API.
