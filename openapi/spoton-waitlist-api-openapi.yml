@@ -92,60 +92,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    WaitlistRequest:
-      type: object
-      description: A request to add a guest to the waitlist.
-      properties:
-        customerInformation:
-          $ref: '#/components/schemas/CustomerInformation'
-        notes:
-          type: string
-          description: Optional notes for the waitlist entry.
-          example: Operator note
-        partySize:
-          type: integer
-          format: int32
-          minimum: 1
-          maximum: 99
-          description: The number of guests in the party.
-          example: 4
-        partyFlags:
-          type: integer
-          format: int64
-          description: Optional bit flags describing party attributes.
-          example: 0
-      required:
-      - customerInformation
-      - partySize
-    WaitlistEntry:
-      type: object
-      description: A created waitlist entry.
-      properties:
-        waitlistId:
-          type: string
-          description: The unique identifier for the waitlist entry.
-          example: abc123
-        restaurantId:
-          type: integer
-          format: int32
-          description: The restaurant the waitlist entry belongs to.
-          example: 152
-        customerInformation:
-          $ref: '#/components/schemas/CustomerInformation'
-        partySize:
-          type: integer
-          format: int32
-          description: The number of guests in the party.
-          example: 4
-        quotedWaitMinutes:
-          type: integer
-          format: int32
-          description: The quoted wait time in minutes.
-          example: 15
-        status:
-          type: string
-          description: The current status of the waitlist entry.
-          example: example
     CustomerInformation:
       type: object
       description: Guest contact and identity details for a reservation or waitlist entry.
@@ -187,6 +133,31 @@ components:
       required:
       - firstName
       - phoneNumber
+    WaitlistRequest:
+      type: object
+      description: A request to add a guest to the waitlist.
+      properties:
+        customerInformation:
+          $ref: '#/components/schemas/CustomerInformation'
+        notes:
+          type: string
+          description: Optional notes for the waitlist entry.
+          example: Operator note
+        partySize:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 99
+          description: The number of guests in the party.
+          example: 4
+        partyFlags:
+          type: integer
+          format: int64
+          description: Optional bit flags describing party attributes.
+          example: 0
+      required:
+      - customerInformation
+      - partySize
     Error:
       type: object
       description: A standard error response.
@@ -199,19 +170,36 @@ components:
           type: string
           description: A machine-readable error code.
           example: A1B2
+    WaitlistEntry:
+      type: object
+      description: A created waitlist entry.
+      properties:
+        waitlistId:
+          type: string
+          description: The unique identifier for the waitlist entry.
+          example: abc123
+        restaurantId:
+          type: integer
+          format: int32
+          description: The restaurant the waitlist entry belongs to.
+          example: 152
+        customerInformation:
+          $ref: '#/components/schemas/CustomerInformation'
+        partySize:
+          type: integer
+          format: int32
+          description: The number of guests in the party.
+          example: 4
+        quotedWaitMinutes:
+          type: integer
+          format: int32
+          description: The quoted wait time in minutes.
+          example: 15
+        status:
+          type: string
+          description: The current status of the waitlist entry.
+          example: example
   responses:
-    BadRequest:
-      description: The request was malformed or violated a documented constraint.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: The API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     ServerError:
       description: An unexpected server error occurred.
       content:
@@ -226,6 +214,18 @@ components:
             $ref: '#/components/schemas/Error'
     NotFound:
       description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or violated a documented constraint.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
       content:
         application/json:
           schema:

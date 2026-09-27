@@ -141,31 +141,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    Unauthorized:
-      description: The API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: An unexpected server error occurred.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The API key does not have access to the requested location.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     Address:
       type: object
@@ -195,26 +170,6 @@ components:
           type: string
           description: Phone number.
           example: '1112223333'
-    JobPosition:
-      type: object
-      description: A job position configured at a location.
-      properties:
-        id:
-          type: string
-          description: Unique job position identifier.
-          example: abc123
-        locationId:
-          type: string
-          description: Associated location identifier.
-          example: abc123
-        name:
-          type: string
-          description: Job position title.
-          example: Smoke's Burgers
-        deleted:
-          type: boolean
-          description: Whether the job position is marked as deleted.
-          example: false
     Employee:
       type: object
       description: An employee record at a location.
@@ -308,6 +263,26 @@ components:
           type: string
           description: A machine-readable error code.
           example: A1B2
+    JobPosition:
+      type: object
+      description: A job position configured at a location.
+      properties:
+        id:
+          type: string
+          description: Unique job position identifier.
+          example: abc123
+        locationId:
+          type: string
+          description: Associated location identifier.
+          example: abc123
+        name:
+          type: string
+          description: Job position title.
+          example: Smoke's Burgers
+        deleted:
+          type: boolean
+          description: Whether the job position is marked as deleted.
+          example: false
   parameters:
     LocationId:
       name: locationId
@@ -316,6 +291,31 @@ components:
       description: The unique identifier for the location.
       schema:
         type: string
+  responses:
+    Forbidden:
+      description: The API key does not have access to the requested location.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     apiKeyAuth:
       type: apiKey

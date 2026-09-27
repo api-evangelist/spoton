@@ -93,37 +93,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    BadRequest:
-      description: The request was malformed or violated a documented constraint.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: The API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: An unexpected server error occurred.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The API key does not have access to the requested restaurant.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     CustomerInformation:
       type: object
@@ -166,6 +135,49 @@ components:
       required:
       - firstName
       - phoneNumber
+    ReservationRequest:
+      type: object
+      description: A request to create a reservation.
+      properties:
+        customerInformation:
+          $ref: '#/components/schemas/CustomerInformation'
+        notes:
+          type: string
+          description: Optional notes for the reservation, such as a seating request.
+          example: Operator note
+        time:
+          type: string
+          format: date-time
+          description: The requested reservation date and time, in RFC 3339 format.
+          example: '2025-03-15T14:30:00Z'
+        partySize:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 99
+          description: The number of guests in the party.
+          example: 4
+        partyFlags:
+          type: integer
+          format: int64
+          description: Optional bit flags describing party attributes.
+          example: 0
+      required:
+      - customerInformation
+      - time
+      - partySize
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
     Reservation:
       type: object
       description: A created reservation.
@@ -204,49 +216,37 @@ components:
           type: string
           description: Notes attached to the reservation.
           example: Operator note
-    Error:
-      type: object
-      description: A standard error response.
-      properties:
-        message:
-          type: string
-          description: A human-readable description of the error.
-          example: example
-        code:
-          type: string
-          description: A machine-readable error code.
-          example: A1B2
-    ReservationRequest:
-      type: object
-      description: A request to create a reservation.
-      properties:
-        customerInformation:
-          $ref: '#/components/schemas/CustomerInformation'
-        notes:
-          type: string
-          description: Optional notes for the reservation, such as a seating request.
-          example: Operator note
-        time:
-          type: string
-          format: date-time
-          description: The requested reservation date and time, in RFC 3339 format.
-          example: '2025-03-15T14:30:00Z'
-        partySize:
-          type: integer
-          format: int32
-          minimum: 1
-          maximum: 99
-          description: The number of guests in the party.
-          example: 4
-        partyFlags:
-          type: integer
-          format: int64
-          description: Optional bit flags describing party attributes.
-          example: 0
-      required:
-      - customerInformation
-      - time
-      - partySize
+  responses:
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: The API key does not have access to the requested restaurant.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or violated a documented constraint.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     RestaurantId:
       name: restaurantId

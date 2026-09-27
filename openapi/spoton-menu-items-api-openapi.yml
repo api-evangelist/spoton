@@ -162,12 +162,6 @@ components:
           description: A machine-readable error code.
           example: A1B2
   responses:
-    Unauthorized:
-      description: The API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     ServerError:
       description: An unexpected server error occurred.
       content:
@@ -182,6 +176,12 @@ components:
             $ref: '#/components/schemas/Error'
     NotFound:
       description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
       content:
         application/json:
           schema:
