@@ -135,8 +135,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The API key does not have access to the requested location.
+    BadRequest:
+      description: The request was malformed or violated a documented constraint such as the date range limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
       content:
         application/json:
           schema:
@@ -147,14 +153,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or violated a documented constraint such as the date range limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: The API key is missing or invalid.
+    Forbidden:
+      description: The API key does not have access to the requested location.
       content:
         application/json:
           schema:

@@ -109,8 +109,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The API key does not have access to the requested location.
+    Unauthorized:
+      description: The API key is missing or invalid.
       content:
         application/json:
           schema:
@@ -121,33 +121,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: The API key is missing or invalid.
+    Forbidden:
+      description: The API key does not have access to the requested location.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    LocationId:
-      name: locationId
-      in: path
-      required: true
-      description: The unique identifier for the location.
-      schema:
-        type: string
   schemas:
-    Error:
-      type: object
-      description: A standard error response.
-      properties:
-        message:
-          type: string
-          description: A human-readable description of the error.
-          example: example
-        code:
-          type: string
-          description: A machine-readable error code.
-          example: A1B2
     PaymentOption:
       type: object
       description: A payment method configured at a location.
@@ -180,6 +160,26 @@ components:
           - CC
           - OTHER
           example: CASH
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
+  parameters:
+    LocationId:
+      name: locationId
+      in: path
+      required: true
+      description: The unique identifier for the location.
+      schema:
+        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

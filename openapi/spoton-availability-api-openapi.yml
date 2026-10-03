@@ -146,25 +146,6 @@ components:
           type: string
           description: A machine-readable error code.
           example: A1B2
-    WaitTimeResponse:
-      type: object
-      description: The current wait time for a restaurant.
-      properties:
-        restaurantId:
-          type: integer
-          format: int32
-          description: The restaurant the wait time applies to.
-          example: 152
-        partySize:
-          type: integer
-          format: int32
-          description: The party size the wait time applies to, if requested.
-          example: 4
-        quotedWaitMinutes:
-          type: integer
-          format: int32
-          description: The current quoted wait time in minutes.
-          example: 15
     AvailabilityResponse:
       type: object
       description: The set of available reservation time slots for a date and party size.
@@ -189,6 +170,34 @@ components:
           description: The available time slots.
           items:
             $ref: '#/components/schemas/AvailabilitySlot'
+    WaitTimeResponse:
+      type: object
+      description: The current wait time for a restaurant.
+      properties:
+        restaurantId:
+          type: integer
+          format: int32
+          description: The restaurant the wait time applies to.
+          example: 152
+        partySize:
+          type: integer
+          format: int32
+          description: The party size the wait time applies to, if requested.
+          example: 4
+        quotedWaitMinutes:
+          type: integer
+          format: int32
+          description: The current quoted wait time in minutes.
+          example: 15
+  parameters:
+    RestaurantId:
+      name: restaurantId
+      in: path
+      required: true
+      description: The unique identifier for the restaurant.
+      schema:
+        type: integer
+        format: int32
   responses:
     ServerError:
       description: An unexpected server error occurred.
@@ -196,8 +205,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The API key does not have access to the requested restaurant.
+    Unauthorized:
+      description: The API key is missing or invalid.
       content:
         application/json:
           schema:
@@ -214,21 +223,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: The API key is missing or invalid.
+    Forbidden:
+      description: The API key does not have access to the requested restaurant.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    RestaurantId:
-      name: restaurantId
-      in: path
-      required: true
-      description: The unique identifier for the restaurant.
-      schema:
-        type: integer
-        format: int32
   securitySchemes:
     apiKeyAuth:
       type: apiKey

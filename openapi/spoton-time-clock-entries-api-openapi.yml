@@ -159,34 +159,46 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or violated a documented constraint such as the date range limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: The API key does not have access to the requested location.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    LocationId:
+      name: locationId
+      in: path
+      required: true
+      description: The unique identifier for the location.
+      schema:
+        type: string
   schemas:
-    Break:
-      type: object
-      description: A break taken during a time clock shift.
-      properties:
-        id:
-          type: string
-          description: Unique break identifier.
-          example: abc123
-        startedAt:
-          type: string
-          format: date-time
-          description: RFC 3339 timestamp when the break started.
-          example: '2025-03-15T14:30:00Z'
-        endedAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: RFC 3339 timestamp when the break ended. May be null if the break is ongoing.
-          example: '2025-03-15T14:30:00Z'
-        kind:
-          type: string
-          description: Whether the break is paid or unpaid.
-          enum:
-          - PAID
-          - UNPAID
-          example: PAID
     Error:
       type: object
       description: A standard error response.
@@ -261,45 +273,33 @@ components:
           format: date-time
           description: RFC 3339 timestamp of the last update.
           example: '2025-03-15T14:30:00Z'
-  responses:
-    ServerError:
-      description: An unexpected server error occurred.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The API key does not have access to the requested location.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or violated a documented constraint such as the date range limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: The API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    LocationId:
-      name: locationId
-      in: path
-      required: true
-      description: The unique identifier for the location.
-      schema:
-        type: string
+    Break:
+      type: object
+      description: A break taken during a time clock shift.
+      properties:
+        id:
+          type: string
+          description: Unique break identifier.
+          example: abc123
+        startedAt:
+          type: string
+          format: date-time
+          description: RFC 3339 timestamp when the break started.
+          example: '2025-03-15T14:30:00Z'
+        endedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: RFC 3339 timestamp when the break ended. May be null if the break is ongoing.
+          example: '2025-03-15T14:30:00Z'
+        kind:
+          type: string
+          description: Whether the break is paid or unpaid.
+          enum:
+          - PAID
+          - UNPAID
+          example: PAID
   securitySchemes:
     apiKeyAuth:
       type: apiKey
