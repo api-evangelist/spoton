@@ -103,6 +103,18 @@ components:
         type: integer
         format: int32
   responses:
+    Forbidden:
+      description: The API key does not have access to the requested restaurant.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     ServerError:
       description: An unexpected server error occurred.
       content:
@@ -115,25 +127,51 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     BadRequest:
       description: The request was malformed or violated a documented constraint.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The API key does not have access to the requested restaurant.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Reservation:
+      type: object
+      description: A created reservation.
+      properties:
+        reservationId:
+          type: string
+          description: The unique identifier for the reservation.
+          example: abc123
+        restaurantId:
+          type: integer
+          format: int32
+          description: The restaurant the reservation belongs to.
+          example: 152
+        customerInformation:
+          $ref: '#/components/schemas/CustomerInformation'
+        time:
+          type: string
+          format: date-time
+          description: The reserved date and time, in RFC 3339 format.
+          example: '2025-03-15T14:30:00Z'
+        partySize:
+          type: integer
+          format: int32
+          description: The number of guests in the party.
+          example: 4
+        status:
+          type: string
+          description: The current status of the reservation.
+          enum:
+          - booked
+          - confirmed
+          - checked_in
+          - cancelled
+          example: booked
+        notes:
+          type: string
+          description: Notes attached to the reservation.
+          example: Operator note
     ReservationRequest:
       type: object
       description: A request to create a reservation.
@@ -177,44 +215,6 @@ components:
           type: string
           description: A machine-readable error code.
           example: A1B2
-    Reservation:
-      type: object
-      description: A created reservation.
-      properties:
-        reservationId:
-          type: string
-          description: The unique identifier for the reservation.
-          example: abc123
-        restaurantId:
-          type: integer
-          format: int32
-          description: The restaurant the reservation belongs to.
-          example: 152
-        customerInformation:
-          $ref: '#/components/schemas/CustomerInformation'
-        time:
-          type: string
-          format: date-time
-          description: The reserved date and time, in RFC 3339 format.
-          example: '2025-03-15T14:30:00Z'
-        partySize:
-          type: integer
-          format: int32
-          description: The number of guests in the party.
-          example: 4
-        status:
-          type: string
-          description: The current status of the reservation.
-          enum:
-          - booked
-          - confirmed
-          - checked_in
-          - cancelled
-          example: booked
-        notes:
-          type: string
-          description: Notes attached to the reservation.
-          example: Operator note
     CustomerInformation:
       type: object
       description: Guest contact and identity details for a reservation or waitlist entry.

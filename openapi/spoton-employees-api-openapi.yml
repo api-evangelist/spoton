@@ -142,8 +142,8 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    ServerError:
-      description: An unexpected server error occurred.
+    Forbidden:
+      description: The API key does not have access to the requested location.
       content:
         application/json:
           schema:
@@ -160,8 +160,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The API key does not have access to the requested location.
+    ServerError:
+      description: An unexpected server error occurred.
       content:
         application/json:
           schema:
@@ -187,18 +187,6 @@ components:
           type: boolean
           description: Whether the job position is marked as deleted.
           example: false
-    Error:
-      type: object
-      description: A standard error response.
-      properties:
-        message:
-          type: string
-          description: A human-readable description of the error.
-          example: example
-        code:
-          type: string
-          description: A machine-readable error code.
-          example: A1B2
     Address:
       type: object
       description: A mailing address for an employee.
@@ -308,6 +296,18 @@ components:
           description: The job positions the employee holds.
           items:
             $ref: '#/components/schemas/JobPosition'
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
   parameters:
     LocationId:
       name: locationId

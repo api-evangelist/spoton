@@ -160,8 +160,8 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    ServerError:
-      description: An unexpected server error occurred.
+    Forbidden:
+      description: The API key does not have access to the requested location.
       content:
         application/json:
           schema:
@@ -178,26 +178,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     BadRequest:
       description: The request was malformed or violated a documented constraint such as the date range limit.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The API key does not have access to the requested location.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    LocationId:
-      name: locationId
-      in: path
-      required: true
-      description: The unique identifier for the location.
-      schema:
-        type: string
   schemas:
     Error:
       type: object
@@ -211,6 +203,33 @@ components:
           type: string
           description: A machine-readable error code.
           example: A1B2
+    Break:
+      type: object
+      description: A break taken during a time clock shift.
+      properties:
+        id:
+          type: string
+          description: Unique break identifier.
+          example: abc123
+        startedAt:
+          type: string
+          format: date-time
+          description: RFC 3339 timestamp when the break started.
+          example: '2025-03-15T14:30:00Z'
+        endedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: RFC 3339 timestamp when the break ended. May be null if the break is ongoing.
+          example: '2025-03-15T14:30:00Z'
+        kind:
+          type: string
+          description: Whether the break is paid or unpaid.
+          enum:
+          - PAID
+          - UNPAID
+          example: PAID
     TimeClockEntry:
       type: object
       description: An employee shift clock-in and clock-out record.
@@ -273,33 +292,14 @@ components:
           format: date-time
           description: RFC 3339 timestamp of the last update.
           example: '2025-03-15T14:30:00Z'
-    Break:
-      type: object
-      description: A break taken during a time clock shift.
-      properties:
-        id:
-          type: string
-          description: Unique break identifier.
-          example: abc123
-        startedAt:
-          type: string
-          format: date-time
-          description: RFC 3339 timestamp when the break started.
-          example: '2025-03-15T14:30:00Z'
-        endedAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: RFC 3339 timestamp when the break ended. May be null if the break is ongoing.
-          example: '2025-03-15T14:30:00Z'
-        kind:
-          type: string
-          description: Whether the break is paid or unpaid.
-          enum:
-          - PAID
-          - UNPAID
-          example: PAID
+  parameters:
+    LocationId:
+      name: locationId
+      in: path
+      required: true
+      description: The unique identifier for the location.
+      schema:
+        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

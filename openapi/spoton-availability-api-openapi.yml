@@ -120,32 +120,47 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    RestaurantId:
+      name: restaurantId
+      in: path
+      required: true
+      description: The unique identifier for the restaurant.
+      schema:
+        type: integer
+        format: int32
+  responses:
+    Forbidden:
+      description: The API key does not have access to the requested restaurant.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or violated a documented constraint.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    AvailabilitySlot:
-      type: object
-      description: An available reservation time slot.
-      properties:
-        time:
-          type: string
-          format: date-time
-          description: The available reservation date and time, in RFC 3339 format.
-          example: '2025-03-15T14:30:00Z'
-        available:
-          type: boolean
-          description: Whether the slot is available for booking.
-          example: false
-    Error:
-      type: object
-      description: A standard error response.
-      properties:
-        message:
-          type: string
-          description: A human-readable description of the error.
-          example: example
-        code:
-          type: string
-          description: A machine-readable error code.
-          example: A1B2
     AvailabilityResponse:
       type: object
       description: The set of available reservation time slots for a date and party size.
@@ -170,6 +185,19 @@ components:
           description: The available time slots.
           items:
             $ref: '#/components/schemas/AvailabilitySlot'
+    AvailabilitySlot:
+      type: object
+      description: An available reservation time slot.
+      properties:
+        time:
+          type: string
+          format: date-time
+          description: The available reservation date and time, in RFC 3339 format.
+          example: '2025-03-15T14:30:00Z'
+        available:
+          type: boolean
+          description: Whether the slot is available for booking.
+          example: false
     WaitTimeResponse:
       type: object
       description: The current wait time for a restaurant.
@@ -189,46 +217,18 @@ components:
           format: int32
           description: The current quoted wait time in minutes.
           example: 15
-  parameters:
-    RestaurantId:
-      name: restaurantId
-      in: path
-      required: true
-      description: The unique identifier for the restaurant.
-      schema:
-        type: integer
-        format: int32
-  responses:
-    ServerError:
-      description: An unexpected server error occurred.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: The API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or violated a documented constraint.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The API key does not have access to the requested restaurant.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
   securitySchemes:
     apiKeyAuth:
       type: apiKey
