@@ -1,0 +1,229 @@
+generated: '2026-10-14'
+method: searched
+checked:
+- https://www.spoton.com/integrations/
+- olo/integrations/olo-integration-edges.yml
+marketplace_apps:
+- marketplace: own
+  channel: partner-built
+  app: spoton
+  url: https://www.spoton.com/integrations/
+  app_count: 13
+  adapter: sweep-restaurant-pos.py:spoton-pages
+  listed: 13
+  note: 'SpotOn does not state who built each integration: direction unknown'
+edges:
+- partner_name: PopMenu
+  app: PopMenu
+  partner: popmenu
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://www.spoton.com/integrations/popmenu/
+  category: null
+  partner_domain: popmenu.com
+  detected_by: sweep-restaurant-pos.py
+  detected: '2026-10-14'
+- partner_name: Deliverect
+  app: Deliverect
+  partner: deliverect
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://www.spoton.com/integrations/deliverect/
+  category: null
+  partner_domain: deliverect.com
+  detected_by: sweep-restaurant-pos.py
+  detected: '2026-10-14'
+- partner_name: DoorDash
+  app: DoorDash
+  partner: doordash
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://www.spoton.com/integrations/doordash/
+  category: null
+  partner_domain: doordash.com
+  detected_by: sweep-restaurant-pos.py
+  detected: '2026-10-14'
+- partner_name: Uber Eats
+  app: Uber Eats
+  partner: null
+  partner_match: null
+  partner_candidate: cornershop
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://www.spoton.com/integrations/uber-eats/
+  category: null
+  partner_domain: ubereats.com
+  detected_by: sweep-restaurant-pos.py
+  detected: '2026-10-14'
+- partner_name: Loman AI
+  app: Loman AI
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://www.spoton.com/integrations/loman-ai/
+  category: null
+  partner_domain: loman.ai
+  detected_by: sweep-restaurant-pos.py
+  detected: '2026-10-14'
+- partner_name: Maple AI
+  app: Maple AI
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://www.spoton.com/integrations/maple-ai/
+  category: null
+  partner_domain: maple.inc
+  detected_by: sweep-restaurant-pos.py
+  detected: '2026-10-14'
+- partner_name: 7shifts
+  app: 7shifts
+  partner: 7shifts
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://www.spoton.com/integrations/7shifts/
+  category: null
+  partner_domain: 7shifts.com
+  detected_by: sweep-restaurant-pos.py
+  detected: '2026-10-14'
+- partner_name: Margin Edge
+  app: Margin Edge
+  partner: marginedge
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://www.spoton.com/integrations/margin-edge/
+  category: null
+  partner_domain: marginedge.com
+  detected_by: sweep-restaurant-pos.py
+  detected: '2026-10-14'
+- partner_name: Reddie Menu Boards
+  app: Reddie Menu Boards
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://www.spoton.com/integrations/reddie-menu-boards/
+  category: null
+  partner_domain: reddiegroup.com
+  detected_by: sweep-restaurant-pos.py
+  detected: '2026-10-14'
+- partner_name: Fresh KDS
+  app: Fresh KDS
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://www.spoton.com/integrations/fresh-kds/
+  category: null
+  partner_domain: fresh.technology
+  detected_by: sweep-restaurant-pos.py
+  detected: '2026-10-14'
+- partner_name: OpenTable
+  app: OpenTable
+  partner: opentable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://www.spoton.com/integrations/opentable/
+  category: null
+  partner_domain: opentable.com
+  detected_by: sweep-restaurant-pos.py
+  detected: '2026-10-14'
+- partner_name: Shogo
+  app: Shogo
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://www.spoton.com/integrations/shogo/
+  category: null
+  partner_domain: shogo.io
+  detected_by: sweep-restaurant-pos.py
+  detected: '2026-10-14'
+- partner_name: DAVO
+  app: DAVO
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://www.spoton.com/integrations/davo/
+  category: null
+  partner_domain: davosalestax.com
+  detected_by: sweep-restaurant-pos.py
+  detected: '2026-10-14'
+- partner_name: Olo (own)
+  partner: olo
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.olo.com/partners/appetize
+  mirror_of: olo/integrations/olo-integration-edges.yml
+  apps:
+  - SpotOn
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: POS
+source:
+- olo/integrations/olo-integration-edges.yml
