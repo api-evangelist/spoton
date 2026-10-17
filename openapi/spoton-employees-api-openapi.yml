@@ -141,31 +141,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    Forbidden:
-      description: The API key does not have access to the requested location.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: The API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: An unexpected server error occurred.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     JobPosition:
       type: object
@@ -187,34 +162,18 @@ components:
           type: boolean
           description: Whether the job position is marked as deleted.
           example: false
-    Address:
+    Error:
       type: object
-      description: A mailing address for an employee.
+      description: A standard error response.
       properties:
-        street1:
+        message:
           type: string
-          description: First line of the street address.
-          example: 1242 Selma
-        street2:
+          description: A human-readable description of the error.
+          example: example
+        code:
           type: string
-          description: Second line of the street address.
-          example: 1242 Selma
-        city:
-          type: string
-          description: City.
-          example: Westland
-        state:
-          type: string
-          description: State or province.
-          example: MI
-        zip:
-          type: string
-          description: Postal code.
-          example: '48185'
-        phone:
-          type: string
-          description: Phone number.
-          example: '1112223333'
+          description: A machine-readable error code.
+          example: A1B2
     Employee:
       type: object
       description: An employee record at a location.
@@ -296,18 +255,59 @@ components:
           description: The job positions the employee holds.
           items:
             $ref: '#/components/schemas/JobPosition'
-    Error:
+    Address:
       type: object
-      description: A standard error response.
+      description: A mailing address for an employee.
       properties:
-        message:
+        street1:
           type: string
-          description: A human-readable description of the error.
-          example: example
-        code:
+          description: First line of the street address.
+          example: 1242 Selma
+        street2:
           type: string
-          description: A machine-readable error code.
-          example: A1B2
+          description: Second line of the street address.
+          example: 1242 Selma
+        city:
+          type: string
+          description: City.
+          example: Westland
+        state:
+          type: string
+          description: State or province.
+          example: MI
+        zip:
+          type: string
+          description: Postal code.
+          example: '48185'
+        phone:
+          type: string
+          description: Phone number.
+          example: '1112223333'
+  responses:
+    Forbidden:
+      description: The API key does not have access to the requested location.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     LocationId:
       name: locationId

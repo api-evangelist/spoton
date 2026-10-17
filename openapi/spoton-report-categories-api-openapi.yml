@@ -100,32 +100,19 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    Forbidden:
-      description: The API key does not have access to the requested location.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: An unexpected server error occurred.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: The API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
     ReportCategory:
       type: object
       description: A hierarchical report category used to group menu items.
@@ -150,18 +137,31 @@ components:
           type: boolean
           description: Whether the report category is marked as deleted.
           example: false
-    Error:
-      type: object
-      description: A standard error response.
-      properties:
-        message:
-          type: string
-          description: A human-readable description of the error.
-          example: example
-        code:
-          type: string
-          description: A machine-readable error code.
-          example: A1B2
+  responses:
+    Forbidden:
+      description: The API key does not have access to the requested location.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     LocationId:
       name: locationId

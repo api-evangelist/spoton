@@ -120,30 +120,15 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    RestaurantId:
-      name: restaurantId
-      in: path
-      required: true
-      description: The unique identifier for the restaurant.
-      schema:
-        type: integer
-        format: int32
   responses:
+    BadRequest:
+      description: The request was malformed or violated a documented constraint.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Forbidden:
       description: The API key does not have access to the requested restaurant.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: An unexpected server error occurred.
       content:
         application/json:
           schema:
@@ -154,13 +139,31 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or violated a documented constraint.
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
     AvailabilityResponse:
       type: object
       description: The set of available reservation time slots for a date and party size.
@@ -217,18 +220,15 @@ components:
           format: int32
           description: The current quoted wait time in minutes.
           example: 15
-    Error:
-      type: object
-      description: A standard error response.
-      properties:
-        message:
-          type: string
-          description: A human-readable description of the error.
-          example: example
-        code:
-          type: string
-          description: A machine-readable error code.
-          example: A1B2
+  parameters:
+    RestaurantId:
+      name: restaurantId
+      in: path
+      required: true
+      description: The unique identifier for the restaurant.
+      schema:
+        type: integer
+        format: int32
   securitySchemes:
     apiKeyAuth:
       type: apiKey

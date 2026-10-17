@@ -129,20 +129,14 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
+    BadRequest:
+      description: The request was malformed or violated a documented constraint such as the date range limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Forbidden:
       description: The API key does not have access to the requested location.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: An unexpected server error occurred.
       content:
         application/json:
           schema:
@@ -153,13 +147,31 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or violated a documented constraint such as the date range limit.
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
     PaidInOut:
       type: object
       description: A cash paid in or paid out record at a location.
@@ -216,18 +228,6 @@ components:
           type: string
           description: Operator notes.
           example: Operator note
-    Error:
-      type: object
-      description: A standard error response.
-      properties:
-        message:
-          type: string
-          description: A human-readable description of the error.
-          example: example
-        code:
-          type: string
-          description: A machine-readable error code.
-          example: A1B2
   parameters:
     LocationId:
       name: locationId

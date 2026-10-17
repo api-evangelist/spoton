@@ -108,32 +108,19 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    Forbidden:
-      description: The API key does not have access to the requested location.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: An unexpected server error occurred.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: The API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      description: A standard error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: A1B2
     MenuItemCatalog:
       type: object
       description: A menu item in a location's catalog.
@@ -174,18 +161,31 @@ components:
           type: string
           description: Price look-up (PLU) identifier for the menu item.
           example: '12345'
-    Error:
-      type: object
-      description: A standard error response.
-      properties:
-        message:
-          type: string
-          description: A human-readable description of the error.
-          example: example
-        code:
-          type: string
-          description: A machine-readable error code.
-          example: A1B2
+  responses:
+    Forbidden:
+      description: The API key does not have access to the requested location.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     LocationId:
       name: locationId
