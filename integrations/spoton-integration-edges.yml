@@ -1,8 +1,16 @@
-generated: '2026-10-14'
+generated: '2026-10-20'
 method: searched
+source:
+- olo/integrations/olo-integration-edges.yml
+- https://www.spoton.com/integrations/
 checked:
 - https://www.spoton.com/integrations/
 - olo/integrations/olo-integration-edges.yml
+- https://composio.dev/toolkits/spoton
+- https://monid.ai/tools/spoton
+- https://n8n.io/integrations/spoton/
+- https://zapier.com/apps/spoton/integrations
+summary: null
 marketplace_apps:
 - marketplace: own
   channel: partner-built
@@ -225,5 +233,4 @@ edges:
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
   category: POS
-source:
-- olo/integrations/olo-integration-edges.yml
+templates: []
