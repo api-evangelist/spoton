@@ -1,4 +1,4 @@
-# SpotOn (spoton)
+# SpotOn
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,174 +66,271 @@
 
 SpotOn is an all-in-one restaurant point-of-sale and management platform that combines POS, online ordering, reservations, payments, labor, and reporting for restaurants and hospitality businesses. For developers and integration partners, SpotOn offers the Restaurant POS Export API, a location-centric REST API that delivers close-to-realtime data export from the SpotOn Restaurant POS System. It exposes resources such as orders, menu items, modifiers, employees, taxes, surcharges, payment options, labor reports, and time clock entries. Authentication uses an API key supplied via the x-api-key request header, with access granted on a per-location basis. SpotOn also publishes the Reserve API (powered by SeatNinja) for its reservations and waitlist product.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/spoton/refs/heads/main/apis.yml)
+**Areas:** Restaurant · Point-of-Sale · Payments · Online Ordering · Reservations · Reporting
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## SpotOn on APIs.io
 
-## Tags:
+Everything profiled for SpotOn is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/spoton/](https://apis.io/providers/spoton/)** — or go straight to one of the APIs or properties below.
 
- - Restaurant, Point of Sale, Payments, Online Ordering, Reservations, Reporting
+### APIs (15)
 
-## Timestamps
+- [SpotOn Availability API](https://apis.io/apis/spoton/spoton-availability-api/) — Available reservation times and wait-time lookups.
+- [SpotOn Cash Deposits API](https://apis.io/apis/spoton/spoton-cash-deposits-api/) — Cash deposit records recorded at a location.
+- [SpotOn Employees API](https://apis.io/apis/spoton/spoton-employees-api/) — Employee records and their job positions for a location.
+- [SpotOn Job Positions API](https://apis.io/apis/spoton/spoton-job-positions-api/) — Job position definitions for a location.
+- [SpotOn Locations API](https://apis.io/apis/spoton/spoton-locations-api/) — Location details for the SpotOn POS organization.
+- [SpotOn Menu Items API](https://apis.io/apis/spoton/spoton-menu-items-api/) — Menu item catalog for a location.
+- [SpotOn Order Types API](https://apis.io/apis/spoton/spoton-order-types-api/) — Order type definitions for a location, such as Dine In or Takeout.
+- [SpotOn Orders API](https://apis.io/apis/spoton/spoton-orders-api/) — Order and check data export, including items, modifiers, payments, and taxes.
+- [SpotOn Paid In Outs API](https://apis.io/apis/spoton/spoton-paid-in-outs-api/) — Cash paid in and paid out records for a location.
+- [SpotOn Payment Options API](https://apis.io/apis/spoton/spoton-payment-options-api/) — Payment methods configured at a location.
+- [SpotOn Report Categories API](https://apis.io/apis/spoton/spoton-report-categories-api/) — Hierarchical report categories used to group menu items.
+- [SpotOn Reservations API](https://apis.io/apis/spoton/spoton-reservations-api/) — Create and manage guest reservations.
+- [SpotOn Restaurants API](https://apis.io/apis/spoton/spoton-restaurants-api/) — Restaurants accessible with the API key.
+- [SpotOn Time Clock Entries API](https://apis.io/apis/spoton/spoton-time-clock-entries-api/) — Employee shift clock-in and clock-out records.
+- [SpotOn Waitlist API](https://apis.io/apis/spoton/spoton-waitlist-api/) — Add guests to a restaurant waitlist.
 
-- **Created:** 2026-06-02
-- **Modified:** 2026-06-03
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### SpotOn Restaurant POS Export API
-A location-centric REST API providing close-to-realtime data export from the SpotOn Restaurant POS System. Resources include orders, order types, menu items, payment options, employees, job positions, time clock entries, paid in/outs, cash deposits, locations, and report categories. Authentication uses an API key passed in the x-api-key request header, with access scoped per location.
+#### Agentic access (1)
 
-**Human URL:** [https://developers.spoton.com/restaurant/docs/introduction](https://developers.spoton.com/restaurant/docs/introduction)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-**Base URL:** `https://restaurantapi.spoton.com/posexport/v1`
+- [Spoton Agentic Access](https://apis.io/agentic-access/spoton/spoton-agentic-access/)
 
-#### Tags:
+#### JSON Schema (31)
 
- - Point of Sale, Orders, Menu, Employees, Reporting
+The data models the API reads and writes.
 
-#### Properties
+- [AvailabilityResponse](https://apis.io/schemas/spoton/reserve-availability-response/)
+- [AvailabilitySlot](https://apis.io/schemas/spoton/reserve-availability-slot/)
+- [CustomerInformation](https://apis.io/schemas/spoton/reserve-customer-information/)
+- [Reservation](https://apis.io/schemas/spoton/reserve-reservation/)
+- [ReservationRequest](https://apis.io/schemas/spoton/reserve-reservation-request/)
+- [Restaurant](https://apis.io/schemas/spoton/reserve-restaurant/)
+- [WaitTimeResponse](https://apis.io/schemas/spoton/reserve-wait-time-response/)
+- [WaitlistEntry](https://apis.io/schemas/spoton/reserve-waitlist-entry/)
+- [WaitlistRequest](https://apis.io/schemas/spoton/reserve-waitlist-request/)
+- [Address](https://apis.io/schemas/spoton/restaurant-pos-export-address/)
+- [Break](https://apis.io/schemas/spoton/restaurant-pos-export-break/)
+- [CashDeposit](https://apis.io/schemas/spoton/restaurant-pos-export-cash-deposit/)
+- [Employee](https://apis.io/schemas/spoton/restaurant-pos-export-employee/)
+- [JobPosition](https://apis.io/schemas/spoton/restaurant-pos-export-job-position/)
+- [Location](https://apis.io/schemas/spoton/restaurant-pos-export-location/)
+- [MenuItemCatalog](https://apis.io/schemas/spoton/restaurant-pos-export-menu-item-catalog/)
+- [Order](https://apis.io/schemas/spoton/restaurant-pos-export-order/)
+- [OrderCheck](https://apis.io/schemas/spoton/restaurant-pos-export-order-check/)
+- [OrderDiscount](https://apis.io/schemas/spoton/restaurant-pos-export-order-discount/)
+- [OrderGuest](https://apis.io/schemas/spoton/restaurant-pos-export-order-guest/)
+- [OrderMenuItem](https://apis.io/schemas/spoton/restaurant-pos-export-order-menu-item/)
+- [OrderModifier](https://apis.io/schemas/spoton/restaurant-pos-export-order-modifier/)
+- [OrderPayment](https://apis.io/schemas/spoton/restaurant-pos-export-order-payment/)
+- [OrderSurcharge](https://apis.io/schemas/spoton/restaurant-pos-export-order-surcharge/)
+- [OrderTax](https://apis.io/schemas/spoton/restaurant-pos-export-order-tax/)
+- …and 6 more published on APIs.io
 
-- [Documentation](https://developers.spoton.com/restaurant/docs/introduction)
-- [APIReference](https://developers.spoton.com/restaurant/reference)
-- [Authentication](https://developers.spoton.com/restaurant/docs/api-access)
-- [OpenAPI](openapi/spoton-restaurant-pos-export-openapi-original.yml)
-- JSONSchema, JSONStructure, Example, and NaftikoCapability artifacts — see the Artifacts and Capabilities sections below.
+#### JSON Structure (31)
 
-### SpotOn Reserve API
-An API for SpotOn Reserve (powered by SeatNinja), the company's reservations and waitlist product, allowing partners to list accessible restaurants, check available reservation times and wait times, create reservations, and add guests to a waitlist. Authentication uses an API key passed in the x-api-key request header, scoped per restaurant.
+Data models expressed in JSON Structure.
 
-**Human URL:** [https://developers.spoton.com/reserve/docs/getting-started](https://developers.spoton.com/reserve/docs/getting-started)
+- [Reserve Availability Response Structure](https://apis.io/json-structure/spoton/reserve-availability-response-structure/)
+- [Reserve Availability Slot Structure](https://apis.io/json-structure/spoton/reserve-availability-slot-structure/)
+- [Reserve Customer Information Structure](https://apis.io/json-structure/spoton/reserve-customer-information-structure/)
+- [Reserve Reservation Request Structure](https://apis.io/json-structure/spoton/reserve-reservation-request-structure/)
+- [Reserve Reservation Structure](https://apis.io/json-structure/spoton/reserve-reservation-structure/)
+- [Reserve Restaurant Structure](https://apis.io/json-structure/spoton/reserve-restaurant-structure/)
+- [Reserve Wait Time Response Structure](https://apis.io/json-structure/spoton/reserve-wait-time-response-structure/)
+- [Reserve Waitlist Entry Structure](https://apis.io/json-structure/spoton/reserve-waitlist-entry-structure/)
+- [Reserve Waitlist Request Structure](https://apis.io/json-structure/spoton/reserve-waitlist-request-structure/)
+- [Restaurant Pos Export Address Structure](https://apis.io/json-structure/spoton/restaurant-pos-export-address-structure/)
+- [Restaurant Pos Export Break Structure](https://apis.io/json-structure/spoton/restaurant-pos-export-break-structure/)
+- [Restaurant Pos Export Cash Deposit Structure](https://apis.io/json-structure/spoton/restaurant-pos-export-cash-deposit-structure/)
+- [Restaurant Pos Export Employee Structure](https://apis.io/json-structure/spoton/restaurant-pos-export-employee-structure/)
+- [Restaurant Pos Export Job Position Structure](https://apis.io/json-structure/spoton/restaurant-pos-export-job-position-structure/)
+- [Restaurant Pos Export Location Structure](https://apis.io/json-structure/spoton/restaurant-pos-export-location-structure/)
+- [Restaurant Pos Export Menu Item Catalog Structure](https://apis.io/json-structure/spoton/restaurant-pos-export-menu-item-catalog-structure/)
+- [Restaurant Pos Export Order Check Structure](https://apis.io/json-structure/spoton/restaurant-pos-export-order-check-structure/)
+- [Restaurant Pos Export Order Discount Structure](https://apis.io/json-structure/spoton/restaurant-pos-export-order-discount-structure/)
+- [Restaurant Pos Export Order Guest Structure](https://apis.io/json-structure/spoton/restaurant-pos-export-order-guest-structure/)
+- [Restaurant Pos Export Order Menu Item Structure](https://apis.io/json-structure/spoton/restaurant-pos-export-order-menu-item-structure/)
+- [Restaurant Pos Export Order Modifier Structure](https://apis.io/json-structure/spoton/restaurant-pos-export-order-modifier-structure/)
+- [Restaurant Pos Export Order Payment Structure](https://apis.io/json-structure/spoton/restaurant-pos-export-order-payment-structure/)
+- [Restaurant Pos Export Order Structure](https://apis.io/json-structure/spoton/restaurant-pos-export-order-structure/)
+- [Restaurant Pos Export Order Surcharge Structure](https://apis.io/json-structure/spoton/restaurant-pos-export-order-surcharge-structure/)
+- [Restaurant Pos Export Order Tax Structure](https://apis.io/json-structure/spoton/restaurant-pos-export-order-tax-structure/)
+- …and 6 more published on APIs.io
 
-**Base URL:** `https://api.seatninja.com`
+#### JSON-LD (2)
 
-#### Tags:
+Linked-data contexts for the provider's vocabulary.
 
- - Reservations, Waitlist, Availability
+- [Spoton Reserve Context](https://apis.io/jsonld/spoton/spoton-reserve-context/)
+- [Spoton Restaurant Pos Export Context](https://apis.io/jsonld/spoton/spoton-restaurant-pos-export-context/)
 
-#### Properties
+#### Vocabulary (1)
 
-- [Documentation](https://developers.spoton.com/reserve/docs/getting-started)
-- [GettingStarted](https://developers.spoton.com/reserve/docs/getting-started)
-- [SDK — JavaScript SDK](https://developers.spoton.com/reserve/docs/javascript)
-- [OpenAPI](openapi/spoton-reserve-openapi-original.yml)
-- JSONSchema, JSONStructure, Example, and NaftikoCapability artifacts — see the Artifacts and Capabilities sections below.
+The provider's domain terms, defined.
 
-## Common Properties
+- [Spoton Vocabulary](https://apis.io/vocabularies/spoton/spoton-vocabulary/)
+
+#### Examples (31)
+
+Example requests and responses.
+
+- [Reserve Availability Response Example](https://apis.io/examples/spoton/reserve-availability-response-example/)
+- [Reserve Availability Slot Example](https://apis.io/examples/spoton/reserve-availability-slot-example/)
+- [Reserve Customer Information Example](https://apis.io/examples/spoton/reserve-customer-information-example/)
+- [Reserve Reservation Example](https://apis.io/examples/spoton/reserve-reservation-example/)
+- [Reserve Reservation Request Example](https://apis.io/examples/spoton/reserve-reservation-request-example/)
+- [Reserve Restaurant Example](https://apis.io/examples/spoton/reserve-restaurant-example/)
+- [Reserve Wait Time Response Example](https://apis.io/examples/spoton/reserve-wait-time-response-example/)
+- [Reserve Waitlist Entry Example](https://apis.io/examples/spoton/reserve-waitlist-entry-example/)
+- [Reserve Waitlist Request Example](https://apis.io/examples/spoton/reserve-waitlist-request-example/)
+- [Restaurant Pos Export Address Example](https://apis.io/examples/spoton/restaurant-pos-export-address-example/)
+- [Restaurant Pos Export Break Example](https://apis.io/examples/spoton/restaurant-pos-export-break-example/)
+- [Restaurant Pos Export Cash Deposit Example](https://apis.io/examples/spoton/restaurant-pos-export-cash-deposit-example/)
+- [Restaurant Pos Export Employee Example](https://apis.io/examples/spoton/restaurant-pos-export-employee-example/)
+- [Restaurant Pos Export Job Position Example](https://apis.io/examples/spoton/restaurant-pos-export-job-position-example/)
+- [Restaurant Pos Export Location Example](https://apis.io/examples/spoton/restaurant-pos-export-location-example/)
+- [Restaurant Pos Export Menu Item Catalog Example](https://apis.io/examples/spoton/restaurant-pos-export-menu-item-catalog-example/)
+- [Restaurant Pos Export Order Check Example](https://apis.io/examples/spoton/restaurant-pos-export-order-check-example/)
+- [Restaurant Pos Export Order Discount Example](https://apis.io/examples/spoton/restaurant-pos-export-order-discount-example/)
+- [Restaurant Pos Export Order Example](https://apis.io/examples/spoton/restaurant-pos-export-order-example/)
+- [Restaurant Pos Export Order Guest Example](https://apis.io/examples/spoton/restaurant-pos-export-order-guest-example/)
+- [Restaurant Pos Export Order Menu Item Example](https://apis.io/examples/spoton/restaurant-pos-export-order-menu-item-example/)
+- [Restaurant Pos Export Order Modifier Example](https://apis.io/examples/spoton/restaurant-pos-export-order-modifier-example/)
+- [Restaurant Pos Export Order Payment Example](https://apis.io/examples/spoton/restaurant-pos-export-order-payment-example/)
+- [Restaurant Pos Export Order Surcharge Example](https://apis.io/examples/spoton/restaurant-pos-export-order-surcharge-example/)
+- [Restaurant Pos Export Order Tax Example](https://apis.io/examples/spoton/restaurant-pos-export-order-tax-example/)
+- …and 6 more published on APIs.io
+
+#### Collections (30)
+
+Postman and Open Collection request collections.
+
+- [SpotOn Reserve Availability API](https://apis.io/collections/spoton/open-spoton-availability-api/)
+- [SpotOn Reserve Availability Cash Deposits API](https://apis.io/collections/spoton/open-spoton-cash-deposits-api/)
+- [SpotOn Reserve Availability Employees API](https://apis.io/collections/spoton/open-spoton-employees-api/)
+- [SpotOn Reserve Availability Job Positions API](https://apis.io/collections/spoton/open-spoton-job-positions-api/)
+- [SpotOn Reserve Availability Locations API](https://apis.io/collections/spoton/open-spoton-locations-api/)
+- [SpotOn Reserve Availability Menu Items API](https://apis.io/collections/spoton/open-spoton-menu-items-api/)
+- [SpotOn Reserve Availability Order Types API](https://apis.io/collections/spoton/open-spoton-order-types-api/)
+- [SpotOn Reserve Availability Orders API](https://apis.io/collections/spoton/open-spoton-orders-api/)
+- [SpotOn Reserve Availability Paid In Outs API](https://apis.io/collections/spoton/open-spoton-paid-in-outs-api/)
+- [SpotOn Reserve Availability Payment Options API](https://apis.io/collections/spoton/open-spoton-payment-options-api/)
+- [SpotOn Reserve Availability Report Categories API](https://apis.io/collections/spoton/open-spoton-report-categories-api/)
+- [SpotOn Reserve Availability Reservations API](https://apis.io/collections/spoton/open-spoton-reservations-api/)
+- [SpotOn Reserve Availability Restaurants API](https://apis.io/collections/spoton/open-spoton-restaurants-api/)
+- [SpotOn Reserve Availability Time Clock Entries API](https://apis.io/collections/spoton/open-spoton-time-clock-entries-api/)
+- [SpotOn Reserve Availability Waitlist API](https://apis.io/collections/spoton/open-spoton-waitlist-api/)
+- [SpotOn Reserve Availability API](https://apis.io/collections/spoton/postman-spoton-availability-api/)
+- [SpotOn Reserve Availability Cash Deposits API](https://apis.io/collections/spoton/postman-spoton-cash-deposits-api/)
+- [SpotOn Reserve Availability Employees API](https://apis.io/collections/spoton/postman-spoton-employees-api/)
+- [SpotOn Reserve Availability Job Positions API](https://apis.io/collections/spoton/postman-spoton-job-positions-api/)
+- [SpotOn Reserve Availability Locations API](https://apis.io/collections/spoton/postman-spoton-locations-api/)
+- [SpotOn Reserve Availability Menu Items API](https://apis.io/collections/spoton/postman-spoton-menu-items-api/)
+- [SpotOn Reserve Availability Order Types API](https://apis.io/collections/spoton/postman-spoton-order-types-api/)
+- [SpotOn Reserve Availability Orders API](https://apis.io/collections/spoton/postman-spoton-orders-api/)
+- [SpotOn Reserve Availability Paid In Outs API](https://apis.io/collections/spoton/postman-spoton-paid-in-outs-api/)
+- [SpotOn Reserve Availability Payment Options API](https://apis.io/collections/spoton/postman-spoton-payment-options-api/)
+- …and 5 more published on APIs.io
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [SpotOn — jsonschema rules](https://apis.io/rules/spoton/spoton-jsonschema-spectral-rules/)
+- [SpotOn API Rules](https://apis.io/rules/spoton/spoton-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Spoton Authentication](https://apis.io/security/spoton/spoton-authentication/)
+- [Spoton Domain Security](https://apis.io/security/spoton/spoton-domain-security/)
+- [Spoton Trust Center](https://apis.io/security/spoton/spoton-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Spoton Plans Pricing](https://apis.io/plans/spoton/spoton-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Spoton Rate Limits](https://apis.io/rate-limits/spoton/spoton-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Spoton Finops](https://apis.io/finops/spoton/spoton-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.spoton.com)
 - [Documentation](https://developers.spoton.com/restaurant/docs/introduction)
-- [DeveloperPortal](https://www.spoton.com/developer-center/)
 - [Pricing](https://www.spoton.com/pricing/)
-- [GitHubOrganization](https://github.com/SpotOnInc)
-- [StatusPage](https://status.seatninja.com/)
 - [Support](https://help.spoton.com)
-- [LinkedIn](https://www.linkedin.com/company/spoton)
-- [X](https://twitter.com/spoton)
-- [SpectralRules](rules/spoton-rules.yml)
-- [Vocabulary](vocabulary/spoton-vocabulary.yaml)
-- [Plans](plans/spoton-plans-pricing.yml)
-- [RateLimits](rate-limits/spoton-rate-limits.yml)
-- [FinOps](finops/spoton-finops.yml)
+- [Blog](https://www.spoton.com/blog/rss/)
+- [GitHub](https://github.com/SpotOnInc)
+- [Status](https://status.seatninja.com/)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| Restaurant POS | All-in-one point-of-sale for counter-service and full-service restaurants. |
-| Online Ordering | Branded online ordering integrated with the POS. |
-| Reservations and Waitlist | SpotOn Reserve manages reservations, waitlists, and guest communication. |
-| Payments | Integrated card processing with per-transaction take rates. |
-| Labor Management | Employees, job positions, time clock entries, and labor reporting. |
-| Reporting | Sales, cash, and labor reporting with close-to-realtime data export. |
-| Data Export API | Location-centric REST API exporting orders, menu, payments, and labor data. |
+**Kin Score 35.3** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 31.3 |
+| Contract governance | 27.3 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 45.2 |
+| Access clarity | 26.3 |
 
-| Name | Description |
-|------|-------------|
-| Accounting and Reconciliation | Export orders, payments, and cash deposits to reconcile against statements and accounting systems. |
-| Business Intelligence | Pull POS sales and labor data into a warehouse for analytics and dashboards. |
-| Payroll Integration | Export time clock entries and pay rates to drive payroll processing. |
-| Menu Synchronization | Keep third-party ordering and inventory systems in sync with the POS menu catalog. |
-| Guest Booking Experiences | Build reservation and waitlist flows using the Reserve API and its JavaScript SDK. |
+**Agent readiness 22.9** — agent-aware
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-| Name | Description |
-|------|-------------|
-| Accounting Systems | Feed exported sales, cash, and tip data into accounting and bookkeeping platforms. |
-| Payroll Providers | Use time clock and labor data to integrate with payroll services. |
-| Data Warehouses | Load POS export data into analytics warehouses and BI tools. |
-| Reservation Front-Ends | Embed SpotOn Reserve booking and waitlist via the JavaScript SDK. |
+**Regulatory alignment 19.6** — Payments
 
-## Artifacts
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/spoton/](https://apis.io/providers/spoton/).
 
-Machine-readable API specifications organized by format.
+## How this profile is made
 
-### OpenAPI
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-- [SpotOn Restaurant POS Export API](openapi/spoton-restaurant-pos-export-openapi-original.yml) — 21 operations across 11 resource groups
-- [SpotOn Reserve API](openapi/spoton-reserve-openapi-original.yml) — 5 operations across reservations, waitlist, and availability
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for SpotOn: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### JSON Schema
+## Open an issue
 
-31 JSON Schema files in [`json-schema/`](json-schema/) extracted from the OpenAPI component schemas (22 Restaurant POS Export, 9 Reserve).
-
-### JSON Structure
-
-31 JSON Structure files in [`json-structure/`](json-structure/) converted from the JSON Schema files.
-
-### JSON-LD
-
-- [SpotOn Restaurant POS Export Context](json-ld/spoton-restaurant-pos-export-context.jsonld)
-- [SpotOn Reserve Context](json-ld/spoton-reserve-context.jsonld)
-
-### Examples
-
-31 example payloads in [`examples/`](examples/), one per JSON Schema.
-
-## Capabilities
-
-Self-contained Naftiko capabilities (one per OpenAPI tag), each exposing a REST adapter and an MCP adapter routed through an inline consumes block.
-
-### SpotOn Restaurant POS Export API
-
-- [Locations](capabilities/restaurant-pos-export-locations.yaml) — 1 operation
-- [Orders](capabilities/restaurant-pos-export-orders.yaml) — 2 operations
-- [Order Types](capabilities/restaurant-pos-export-order-types.yaml) — 2 operations
-- [Menu Items](capabilities/restaurant-pos-export-menu-items.yaml) — 2 operations
-- [Payment Options](capabilities/restaurant-pos-export-payment-options.yaml) — 2 operations
-- [Employees](capabilities/restaurant-pos-export-employees.yaml) — 2 operations
-- [Job Positions](capabilities/restaurant-pos-export-job-positions.yaml) — 2 operations
-- [Time Clock Entries](capabilities/restaurant-pos-export-time-clock-entries.yaml) — 2 operations
-- [Paid In Outs](capabilities/restaurant-pos-export-paid-in-outs.yaml) — 2 operations
-- [Cash Deposits](capabilities/restaurant-pos-export-cash-deposits.yaml) — 2 operations
-- [Report Categories](capabilities/restaurant-pos-export-report-categories.yaml) — 2 operations
-
-### SpotOn Reserve API
-
-- [Restaurants](capabilities/reserve-restaurants.yaml) — 1 operation
-- [Availability](capabilities/reserve-availability.yaml) — 2 operations
-- [Reservations](capabilities/reserve-reservations.yaml) — 1 operation
-- [Waitlist](capabilities/reserve-waitlist.yaml) — 1 operation
-
-## Vocabulary
-
-- [SpotOn Vocabulary](vocabulary/spoton-vocabulary.yaml) — Unified taxonomy mapping 15 resources, 4 actions, 7 workflows, and 6 personas across operational (OpenAPI) and capability (Naftiko) dimensions
-
-## Rules
-
-- [SpotOn Rules](rules/spoton-rules.yml) — 35 rules across 13 categories enforcing SpotOn API conventions
-
-## Commercial
-
-- [Plans / Pricing](plans/spoton-plans-pricing.yml) — API Commons Plans 0.1 capturing the Quick Start, POS Essentials, and Build Your Own tiers
-- [Rate Limits](rate-limits/spoton-rate-limits.yml) — API Commons Rate Limits 0.1 capturing date-range windowing and Reserve sandbox quotas
-- [FinOps](finops/spoton-finops.yml) — FOCUS-aligned FinOps Framework 1.0 for subscription plus take-rate billing
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/spoton/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
